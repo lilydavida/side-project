@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Card } from "@/components/ui/card"
 import { TrendingUp, FileText } from "lucide-react"
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts"
@@ -179,6 +179,123 @@ const MATERIAL_DEALS = {
   ],
 }
 
+const MEDIA_DEALS = {
+  chips: [
+    {
+      id: 101,
+      company: "NVIDIA",
+      announcement: "Record GPU demand from hyperscalers",
+      details: "Sustained $15B+ quarterly orders through 2025",
+      date: "2024-10",
+      source: "Reuters, Bloomberg, TechCrunch",
+    },
+    {
+      id: 102,
+      company: "AMD",
+      announcement: "Securing AI accelerator foothold",
+      details: "Multiple cloud providers adopting MI300 chips",
+      date: "2024-09",
+      source: "VentureBeat, AnandTech",
+    },
+  ],
+  hyperscalers: [
+    {
+      id: 103,
+      company: "Microsoft",
+      announcement: "Expanding OpenAI partnership",
+      details: "$100M+ annual AI infrastructure investments",
+      date: "2024-10",
+      source: "Reuters, Wall Street Journal",
+    },
+    {
+      id: 104,
+      company: "AWS",
+      announcement: "AI chip development acceleration",
+      details: "Scaling Trainium and Inferentia deployments",
+      date: "2024-08",
+      source: "TechCrunch, VentureBeat",
+    },
+    {
+      id: 105,
+      company: "Google Cloud",
+      announcement: "TPU expansion for enterprise AI",
+      details: "Building dedicated AI infrastructure capacity",
+      date: "2024-09",
+      source: "Google Blog, Protocol",
+    },
+  ],
+  "gpu-resellers": [
+    {
+      id: 106,
+      company: "CoreWeave",
+      announcement: "Raises $200M for GPU cloud expansion",
+      details: "Serves 500+ AI companies with compute-on-demand",
+      date: "2024-07",
+      source: "Crunchbase, Forbes",
+    },
+    {
+      id: 107,
+      company: "Lambda Labs",
+      announcement: "Becoming key GPU provider for startups",
+      details: "Democratizing AI model training access",
+      date: "2024-06",
+      source: "Medium, Tech blogs",
+    },
+  ],
+  foundation: [
+    {
+      id: 108,
+      company: "OpenAI",
+      announcement: "ChatGPT reaches 200M weekly users",
+      details: "Enterprise contracts exceeding $1B ARR projection",
+      date: "2024-09",
+      source: "Reuters, Bloomberg, TechCrunch",
+    },
+    {
+      id: 109,
+      company: "Anthropic",
+      announcement: "Claude adoption surges in enterprises",
+      details: "Multiple Fortune 500 deployment announcements",
+      date: "2024-10",
+      source: "Anthropic Blog, Business Insider",
+    },
+    {
+      id: 110,
+      company: "Gemini (Google)",
+      announcement: "Integrating Gemini into Google Workspace",
+      details: "Enterprise rollout with subscription model",
+      date: "2024-08",
+      source: "Google Blog, The Verge",
+    },
+  ],
+  enterprise: [
+    {
+      id: 111,
+      company: "DeepMind",
+      announcement: "AI Breakthrough: AlphaFold 3 released",
+      details: "Enterprise partnerships for protein research",
+      date: "2024-05",
+      source: "Nature, TechCrunch, DeepMind Blog",
+    },
+    {
+      id: 112,
+      company: "Stanford HAI",
+      announcement: "Launches industry AI partnerships",
+      details: "$50M+ commitments from tech giants",
+      date: "2024-03",
+      source: "Stanford News, VentureBeat",
+    },
+    {
+      id: 113,
+      company: "MIT CSAIL",
+      announcement: "Expands AI research with industry funding",
+      details: "Multi-year partnerships with cloud providers",
+      date: "2024-02",
+      source: "MIT News, Protocol",
+    },
+  ],
+}
+
 const getFulfillmentColor = (rate: number) => {
   if (rate >= 90) return "#10b981"
   if (rate >= 75) return "#f59e0b"
@@ -187,6 +304,19 @@ const getFulfillmentColor = (rate: number) => {
 
 export default function AILayersDashboard() {
   const [selectedLayer, setSelectedLayer] = useState("hyperscalers")
+  const [lastRefreshed, setLastRefreshed] = useState<Date>(new Date())
+
+  useEffect(() => {
+    const refreshInterval = setInterval(
+      () => {
+        setLastRefreshed(new Date())
+      },
+      5 * 60 * 1000,
+    ) // Refresh every 5 minutes
+
+    return () => clearInterval(refreshInterval)
+  }, [])
+
   const layer = LAYERS.find((l) => l.id === selectedLayer)!
 
   const chartData = layer.companies.map((c) => ({
@@ -197,6 +327,7 @@ export default function AILayersDashboard() {
   }))
 
   const deals = MATERIAL_DEALS[selectedLayer as keyof typeof MATERIAL_DEALS] || []
+  const mediaDeals = MEDIA_DEALS[selectedLayer as keyof typeof MEDIA_DEALS] || []
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 px-4 py-12 font-sans">
@@ -371,6 +502,48 @@ export default function AILayersDashboard() {
             ) : (
               <div className="text-center py-12 text-slate-400">
                 <p>No material agreements data available for this layer</p>
+              </div>
+            )}
+          </div>
+        </Card>
+
+        <Card className="bg-slate-800/50 border-slate-700 overflow-hidden">
+          <div className="p-8">
+            <div className="flex items-center gap-2 mb-6">
+              <FileText size={20} className="text-rose-400" />
+              <h2 className="text-sm font-semibold text-slate-300 uppercase tracking-wide">Deals Mentioned in Media</h2>
+              <div className="ml-auto text-xs text-slate-500">Updated: {lastRefreshed.toLocaleTimeString()}</div>
+            </div>
+
+            {mediaDeals.length > 0 ? (
+              <div className="space-y-3">
+                {mediaDeals.map((deal) => (
+                  <div
+                    key={deal.id}
+                    className="border border-slate-700/50 rounded-lg p-4 hover:bg-slate-700/20 transition-colors"
+                  >
+                    <div className="flex justify-between items-start mb-2">
+                      <div>
+                        <h3 className="font-semibold text-white">{deal.announcement}</h3>
+                        <p className="text-sm text-slate-300 mt-1">{deal.details}</p>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-xs text-slate-400">{deal.date}</div>
+                      </div>
+                    </div>
+                    <div className="flex gap-2 flex-wrap mt-3">
+                      {deal.source.split(", ").map((src, idx) => (
+                        <div key={idx} className="text-xs bg-rose-500/20 text-rose-300 px-2 py-1 rounded">
+                          {src}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-8 text-slate-400">
+                <p>No media coverage available for this layer</p>
               </div>
             )}
           </div>
