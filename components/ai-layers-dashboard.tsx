@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { Card } from "@/components/ui/card"
 import { TrendingUp, FileText } from "lucide-react"
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts"
+import Link from "next/link"
 
 const LAYERS = [
   {
@@ -63,6 +64,19 @@ const LAYERS = [
       { name: "MIT CSAIL", revenue: 0.6, commitments: 1.2, fulfillment: 50 },
       { name: "UC Berkeley AI Research", revenue: 0.7, commitments: 1.3, fulfillment: 54 },
       { name: "JPMorgan AI Research", revenue: 1.1, commitments: 1.9, fulfillment: 58 },
+    ],
+  },
+  {
+    id: "distribution",
+    name: "Distribution & Enterprise AI",
+    color: "from-indigo-600 to-indigo-400",
+    companies: [
+      { name: "Microsoft Copilot", revenue: 12.5, commitments: 18, fulfillment: 69 },
+      { name: "Google Workspace AI", revenue: 8.2, commitments: 12, fulfillment: 68 },
+      { name: "Slack Assistants", revenue: 2.1, commitments: 3.5, fulfillment: 60 },
+      { name: "Salesforce Einstein", revenue: 5.8, commitments: 8, fulfillment: 72 },
+      { name: "Adobe Firefly", revenue: 4.3, commitments: 6, fulfillment: 71 },
+      { name: "Atlassian AI", revenue: 1.9, commitments: 2.8, fulfillment: 68 },
     ],
   },
 ]
@@ -175,6 +189,35 @@ const MATERIAL_DEALS = {
       term: "3 years",
       date: "2023-09",
       source: "Partnership Announcement",
+    },
+  ],
+  distribution: [
+    {
+      id: 12,
+      company: "Microsoft Copilot",
+      customer: "Microsoft 365 Enterprise",
+      value: "$20B+",
+      term: "Annual",
+      date: "2024-06",
+      source: "Earnings Call",
+    },
+    {
+      id: 13,
+      company: "Google Workspace AI",
+      customer: "Google Workspace Users",
+      value: "$15B+",
+      term: "Subscription",
+      date: "2024-05",
+      source: "Google I/O",
+    },
+    {
+      id: 14,
+      company: "Salesforce Einstein",
+      customer: "Salesforce Customers",
+      value: "$5B+",
+      term: "Annual",
+      date: "2024-04",
+      source: "Dreamforce 2024",
     },
   ],
 }
@@ -294,6 +337,32 @@ const MEDIA_DEALS = {
       source: "MIT News, Protocol",
     },
   ],
+  distribution: [
+    {
+      id: 114,
+      company: "Microsoft Copilot",
+      announcement: "Copilot Pro hits 1M+ subscriptions",
+      details: "Enterprise integration across Microsoft 365",
+      date: "2024-09",
+      source: "Microsoft Blog, Reuters",
+    },
+    {
+      id: 115,
+      company: "Google Workspace AI",
+      announcement: "Duet AI becoming standard in Workspace",
+      details: "Rolling out to millions of enterprise users",
+      date: "2024-08",
+      source: "Google Blog, TechCrunch",
+    },
+    {
+      id: 116,
+      company: "Salesforce Einstein",
+      announcement: "Einstein agents drive customer success",
+      details: "$5B+ annual revenue from AI features",
+      date: "2024-07",
+      source: "Salesforce Blog, Business Insider",
+    },
+  ],
 }
 
 const getFulfillmentColor = (rate: number) => {
@@ -305,6 +374,7 @@ const getFulfillmentColor = (rate: number) => {
 export default function AILayersDashboard() {
   const [selectedLayer, setSelectedLayer] = useState("hyperscalers")
   const [lastRefreshed, setLastRefreshed] = useState<Date>(new Date())
+  const [showPreview, setShowPreview] = useState(true)
 
   useEffect(() => {
     const refreshInterval = setInterval(
@@ -332,14 +402,50 @@ export default function AILayersDashboard() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 px-4 py-12 font-sans">
       <div className="max-w-7xl mx-auto space-y-8">
+        {showPreview && (
+          <Card className="bg-gradient-to-r from-blue-900/40 via-purple-900/40 to-blue-900/40 border border-blue-700/50 p-6 relative overflow-hidden group cursor-pointer hover:border-blue-600/75 transition-colors">
+            <div
+              className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-purple-500/5 to-blue-500/0 opacity-0 group-hover:opacity-100 transition-opacity"
+              aria-hidden="true"
+            />
+            <div className="relative">
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex-1 space-y-3">
+                  <h3 className="text-lg font-semibold text-white">
+                    Research: The $280B Misalignment in AI Infrastructure
+                  </h3>
+                  <p className="text-slate-300 leading-relaxed">
+                    This portfolio maps every dollar flowing through the AI ecosystem to answer two critical questions:
+                    Who is funding this buildout, and where do the unit economics land when your competitors are also
+                    burning billions to scale? The answer reveals why profits concentrate in only two layers...
+                  </p>
+                  <Link
+                    href="/article"
+                    className="inline-block mt-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors text-sm font-medium"
+                  >
+                    Read Full Article →
+                  </Link>
+                </div>
+                <button
+                  onClick={() => setShowPreview(false)}
+                  className="text-slate-400 hover:text-slate-200 transition-colors flex-shrink-0"
+                  aria-label="Close preview"
+                >
+                  ✕
+                </button>
+              </div>
+            </div>
+          </Card>
+        )}
+
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-5xl font-bold text-white mb-3 tracking-tight">AI Infrastructure Economics</h1>
-          <p className="text-lg text-slate-400">Revenue vs. contractual commitments across the 4-layer stack</p>
+          <p className="text-lg text-slate-400">Revenue vs. contractual commitments across the 6-layer stack</p>
         </div>
 
         <div className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-6 gap-3">
             {LAYERS.map((layer) => (
               <button
                 key={layer.id}
@@ -550,9 +656,20 @@ export default function AILayersDashboard() {
         </Card>
 
         {/* Footer */}
-        <div className="text-center text-xs text-slate-500 pt-6">
-          <p>
+        <div className="text-center text-xs text-slate-500 pt-8 border-t border-slate-700/50 mt-12">
+          <p className="mb-2">
             Data aggregated from SEC filings and public disclosures • Last updated: {new Date().toLocaleDateString()}
+          </p>
+          <p className="text-slate-600">
+            Created by <span className="text-slate-500 font-medium">Lily David</span> • Licensed under{" "}
+            <a
+              href="https://creativecommons.org/licenses/by-sa/4.0/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-400 hover:text-slate-300 transition-colors"
+            >
+              CC BY-SA 4.0
+            </a>
           </p>
         </div>
       </div>
