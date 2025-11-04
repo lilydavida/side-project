@@ -14,7 +14,7 @@ const LAYERS = [
       { name: "NVIDIA", revenue: 184, commitments: 152, fulfillment: 98 },
       { name: "AMD", revenue: 22.7, commitments: 18, fulfillment: 89 },
       { name: "Intel", revenue: 52.1, commitments: 42, fulfillment: 81 },
-      { name: "Amazon (Trainium/Inferentia)", revenue: 18.5, commitments: 22, fulfillment: 84 },
+      { name: "Amazon", revenue: 18.5, commitments: 22, fulfillment: 84 },
       { name: "Google (TPU)", revenue: 14.8, commitments: 18, fulfillment: 83 },
     ],
   },
