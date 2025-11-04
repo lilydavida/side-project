@@ -98,12 +98,12 @@ const highlightQuotes = [
 ]
 
 const KeyInsight = ({ icon: Icon, title, description }: any) => (
-  <div className="bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-lg p-4 my-6">
-    <div className="flex gap-3">
-      <Icon className="text-blue-400 flex-shrink-0 mt-1" size={20} />
+  <div className="bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-lg p-3 sm:p-4 my-4 sm:my-6">
+    <div className="flex gap-2 sm:gap-3">
+      <Icon className="text-blue-400 flex-shrink-0 mt-0.5 sm:mt-1" size={18} />
       <div>
-        <h4 className="font-semibold text-white mb-1">{title}</h4>
-        <p className="text-slate-400 text-sm">{description}</p>
+        <h4 className="font-semibold text-white text-sm sm:text-base mb-1">{title}</h4>
+        <p className="text-slate-400 text-xs sm:text-sm">{description}</p>
       </div>
     </div>
   </div>
@@ -111,53 +111,49 @@ const KeyInsight = ({ icon: Icon, title, description }: any) => (
 
 export default function ArticlePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 px-4 py-12 font-sans">
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 px-3 sm:px-4 py-6 sm:py-12 font-sans">
       <div className="max-w-4xl mx-auto">
-        {/* Back Button */}
         <Link
           href="/"
-          className="inline-flex items-center gap-2 text-slate-400 hover:text-slate-200 transition-colors mb-8"
+          className="inline-flex items-center gap-2 text-slate-400 hover:text-slate-200 transition-colors mb-6 sm:mb-8 text-sm"
         >
-          <ArrowLeft size={18} />
+          <ArrowLeft size={16} />
           <span>Back to Dashboard</span>
         </Link>
 
-        {/* Article Header */}
-        <div className="mb-12">
-          <h1 className="text-5xl font-bold text-white mb-4 text-balance">
+        <div className="mb-8 sm:mb-12">
+          <h1 className="text-2xl sm:text-5xl font-bold text-white mb-3 sm:mb-4 text-balance">
             The $280B Misalignment in AI Infrastructure
           </h1>
-          <div className="flex items-center gap-4 text-slate-400 mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-slate-400 mb-6 sm:mb-8 text-sm sm:text-base">
             <span>By Lily David</span>
-            <span>•</span>
+            <span className="hidden sm:inline">•</span>
             <span>November 2025</span>
           </div>
-          <div className="h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-transparent mb-8"></div>
+          <div className="h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-transparent mb-6 sm:mb-8"></div>
         </div>
 
-        {/* Main Article */}
-        <Card className="bg-slate-800/50 border-slate-700 p-12 mb-12">
-          <div className="space-y-6">
+        <Card className="bg-slate-800/50 border-slate-700 p-4 sm:p-12 mb-8 sm:mb-12">
+          <div className="space-y-4 sm:space-y-6">
             {/* Executive Summary */}
             <div>
-              <h2 className="text-2xl font-bold text-white mb-4">Executive Summary</h2>
-              <p className="text-slate-300 leading-relaxed mb-6">
+              <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">Executive Summary</h2>
+              <p className="text-slate-300 leading-relaxed text-sm sm:text-base mb-4 sm:mb-6">
                 The AI industry has $400B in annual capital flows, but a fundamental question remains unanswered: How
                 does a company with $13B in revenue sustain $1.4T in infrastructure commitments?
               </p>
 
-              {/* Pull Quote */}
-              <div className="bg-slate-700/50 border-l-4 border-purple-500 pl-6 py-4 my-8 rounded-r">
+              <div className="bg-slate-700/50 border-l-4 border-purple-500 pl-3 sm:pl-6 py-3 sm:py-4 my-6 sm:my-8 rounded-r text-sm sm:text-base">
                 <div className="flex gap-2 mb-2">
-                  <Quote size={20} className="text-purple-400 flex-shrink-0" />
+                  <Quote size={16} className="text-purple-400 flex-shrink-0" />
                 </div>
-                <p className="text-lg text-white italic font-medium">
+                <p className="text-base sm:text-lg text-white italic font-medium">
                   "Nobody has figured out the unit economics when rivals are scaling simultaneously."
                 </p>
-                <p className="text-slate-400 text-sm mt-3">— Brad Gerstner & Sam Altman, November 2025</p>
+                <p className="text-slate-400 text-xs sm:text-sm mt-3">— Brad Gerstner & Sam Altman, November 2025</p>
               </div>
 
-              <p className="text-slate-300 leading-relaxed mb-4">
+              <p className="text-slate-300 leading-relaxed text-sm sm:text-base mb-4">
                 This portfolio maps every dollar flowing through the AI ecosystem to answer two critical questions: Who
                 is funding this buildout, and where do the unit economics land when your competitors are also burning
                 billions to scale?
@@ -169,7 +165,7 @@ export default function ArticlePage() {
                 description="Profits concentrate in only two layers: chip makers (NVIDIA at 55% net margin) and distribution players (Google at 50-75% gross margin), while infrastructure providers and foundation models burn billions."
               />
 
-              <p className="text-slate-300 leading-relaxed">
+              <p className="text-slate-300 leading-relaxed text-sm sm:text-base">
                 Through interviews with practitioners across hyperscalers, infrastructure vendors, and observability
                 platforms, combined with financial analysis and unit economics modeling, this research suggests likely
                 consolidation by 2027: Microsoft acquiring OpenAI, Amazon acquiring Anthropic, and CoreWeave requiring
@@ -177,44 +173,45 @@ export default function ArticlePage() {
               </p>
             </div>
 
-            {/* Divider */}
-            <div className="my-10 flex items-center gap-4">
+            <div className="my-6 sm:my-10 flex items-center gap-4">
               <div className="flex-1 h-px bg-gradient-to-r from-slate-700 to-transparent"></div>
-              <Zap size={16} className="text-slate-600" />
+              <Zap size={14} className="text-slate-600" />
               <div className="flex-1 h-px bg-gradient-to-l from-slate-700 to-transparent"></div>
             </div>
 
             {/* Research Methodology */}
             <div>
-              <h2 className="text-2xl font-bold text-white mb-4">Research Methodology</h2>
-              <p className="text-slate-300 leading-relaxed mb-4">
+              <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">Research Methodology</h2>
+              <p className="text-slate-300 leading-relaxed text-sm sm:text-base mb-4">
                 This analysis combines primary interviews, secondary research, and bottom-up unit economics modeling
                 across the AI value chain.
               </p>
 
-              <div className="bg-slate-700/30 border border-slate-600/50 rounded-lg p-6 my-6">
-                <h4 className="text-white font-semibold mb-4">Primary Research (Oct 25-28, 2025)</h4>
-                <ul className="space-y-2 text-slate-300">
+              <div className="bg-slate-700/30 border border-slate-600/50 rounded-lg p-4 sm:p-6 my-4 sm:my-6">
+                <h4 className="text-white font-semibold mb-3 sm:mb-4 text-sm sm:text-base">
+                  Primary Research (Oct 25-28, 2025)
+                </h4>
+                <ul className="space-y-2 text-slate-300 text-xs sm:text-sm">
                   <li className="flex gap-3">
-                    <span className="text-blue-400 font-bold">•</span>
+                    <span className="text-blue-400 font-bold flex-shrink-0">•</span>
                     <span>Machine Learning Practitioner at Cloud Platform Customer ($500K annual GPU spend)</span>
                   </li>
                   <li className="flex gap-3">
-                    <span className="text-blue-400 font-bold">•</span>
+                    <span className="text-blue-400 font-bold flex-shrink-0">•</span>
                     <span>Infrastructure Solutions Vendor (100+ annual deployments)</span>
                   </li>
                   <li className="flex gap-3">
-                    <span className="text-blue-400 font-bold">•</span>
+                    <span className="text-blue-400 font-bold flex-shrink-0">•</span>
                     <span>Hyperscaler Representative (Fortune 500 customers, $5M+ spend)</span>
                   </li>
                   <li className="flex gap-3">
-                    <span className="text-blue-400 font-bold">•</span>
+                    <span className="text-blue-400 font-bold flex-shrink-0">•</span>
                     <span>Observability Platform Engineer (1,000+ enterprise customers)</span>
                   </li>
                 </ul>
               </div>
 
-              <p className="text-slate-300 leading-relaxed text-sm">
+              <p className="text-slate-300 leading-relaxed text-xs sm:text-sm">
                 Started with 8 hypotheses, refined through evidence, pivoted 9 times over two weeks based on
                 contradictory findings. Analyzed public financials from NVIDIA, OpenAI, Anthropic, CoreWeave, and
                 Microsoft Azure. Small interview sample (qualitative not statistical), private company estimates, and
@@ -222,39 +219,45 @@ export default function ArticlePage() {
               </p>
             </div>
 
-            {/* Divider */}
-            <div className="my-10 flex items-center gap-4">
+            <div className="my-6 sm:my-10 flex items-center gap-4">
               <div className="flex-1 h-px bg-gradient-to-r from-slate-700 to-transparent"></div>
-              <Zap size={16} className="text-slate-600" />
+              <Zap size={14} className="text-slate-600" />
               <div className="flex-1 h-px bg-gradient-to-l from-slate-700 to-transparent"></div>
             </div>
 
-            {/* The Five Layers */}
             <div>
-              <h2 className="text-2xl font-bold text-white mb-6">The Five Layers of AI Infrastructure</h2>
+              <h2 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">
+                The Five Layers of AI Infrastructure
+              </h2>
 
-              <div className="space-y-6">
-                <div className="border-l-4 border-blue-500 pl-4 py-2">
-                  <h3 className="text-lg font-semibold text-blue-300">Layer 1: NVIDIA — The Winner</h3>
-                  <p className="text-slate-300 mt-2">Revenue: $113B (+94% YoY), Net Margin: 55%</p>
-                  <p className="text-slate-400 text-sm mt-3">
+              <div className="space-y-4 sm:space-y-6">
+                <div className="border-l-4 border-blue-500 pl-3 sm:pl-4 py-2">
+                  <h3 className="text-base sm:text-lg font-semibold text-blue-300">Layer 1: NVIDIA — The Winner</h3>
+                  <p className="text-slate-300 mt-1 text-xs sm:text-sm">Revenue: $113B (+94% YoY), Net Margin: 55%</p>
+                  <p className="text-slate-400 text-xs mt-2">
                     Upfront payment at shipment regardless of downstream utilization. Customers provision for peak
                     scenarios at 30-40% average utilization. NVIDIA paid regardless.
                   </p>
                 </div>
 
-                <div className="border-l-4 border-purple-500 pl-4 py-2">
-                  <h3 className="text-lg font-semibold text-purple-300">Layer 2a: Hyperscalers (Custom Silicon)</h3>
-                  <p className="text-slate-300 mt-2">AWS Trainium, Google TPU, Microsoft Maia • 60-80% gross margin</p>
-                  <p className="text-slate-400 text-sm mt-3">
+                <div className="border-l-4 border-purple-500 pl-3 sm:pl-4 py-2">
+                  <h3 className="text-base sm:text-lg font-semibold text-purple-300">
+                    Layer 2a: Hyperscalers (Custom Silicon)
+                  </h3>
+                  <p className="text-slate-300 mt-1 text-xs sm:text-sm">
+                    AWS Trainium, Google TPU, Microsoft Maia • 60-80% gross margin
+                  </p>
+                  <p className="text-slate-400 text-xs mt-2">
                     Lock strategy: Proprietary silicon 2-5× more efficient than NVIDIA, $500M+ migration costs, 5-7 year
                     lock-in. Winning Segment 1, losing Segment 2 to specialists.
                   </p>
                 </div>
 
-                <div className="border-l-4 border-red-500 pl-4 py-2">
-                  <h3 className="text-lg font-semibold text-red-300">Layer 2b: GPU Clouds — The Pressure Point</h3>
-                  <p className="text-slate-300 mt-2">CoreWeave: $5B revenue, $1.5B loss, $8B debt</p>
+                <div className="border-l-4 border-red-500 pl-3 sm:pl-4 py-2">
+                  <h3 className="text-base sm:text-lg font-semibold text-red-300">
+                    Layer 2b: GPU Clouds — The Pressure Point
+                  </h3>
+                  <p className="text-slate-300 mt-1 text-xs sm:text-sm">CoreWeave: $5B revenue, $1.5B loss, $8B debt</p>
                   <KeyInsight
                     icon={TrendingDown}
                     title="Unit Economics Crisis"
@@ -262,62 +265,75 @@ export default function ArticlePage() {
                   />
                 </div>
 
-                <div className="border-l-4 border-orange-500 pl-4 py-2">
-                  <h3 className="text-lg font-semibold text-orange-300">
+                <div className="border-l-4 border-orange-500 pl-3 sm:pl-4 py-2">
+                  <h3 className="text-base sm:text-lg font-semibold text-orange-300">
                     Layer 3: Foundation Models — Burning Billions
                   </h3>
-                  <p className="text-slate-300 mt-2">
+                  <p className="text-slate-300 mt-1 text-xs sm:text-sm">
                     OpenAI: $13B revenue, $11.5B loss. Anthropic: 104% of revenue to AWS.
                   </p>
-                  <p className="text-slate-400 text-sm mt-3">
+                  <p className="text-slate-400 text-xs mt-2">
                     Unit economics: $20/month revenue vs $34-58/month cost per user. Both require $50B+ additional
                     funding or strategic acquisition.
                   </p>
                 </div>
 
-                <div className="border-l-4 border-green-500 pl-4 py-2">
-                  <h3 className="text-lg font-semibold text-green-300">Layer 4: Distribution — The Margin Capture</h3>
-                  <p className="text-slate-300 mt-2">Microsoft/Google: 50-75% gross margins</p>
-                  <p className="text-slate-400 text-sm mt-3">
+                <div className="border-l-4 border-green-500 pl-3 sm:pl-4 py-2">
+                  <h3 className="text-base sm:text-lg font-semibold text-green-300">
+                    Layer 4: Distribution — The Margin Capture
+                  </h3>
+                  <p className="text-slate-300 mt-1 text-xs sm:text-sm">Microsoft/Google: 50-75% gross margins</p>
+                  <p className="text-slate-400 text-xs mt-2">
                     Microsoft Copilot: $30/user/month revenue vs $7-15/user/month cost. 70% of Fortune 500 already
                     customers. Absorbs Layer 3 losses while capturing high margins.
+                  </p>
+                </div>
+
+                <div className="border-l-4 border-indigo-500 pl-3 sm:pl-4 py-2">
+                  <h3 className="text-base sm:text-lg font-semibold text-indigo-300">Layer 5: Enterprise & AI Labs</h3>
+                  <p className="text-slate-300 mt-1 text-xs sm:text-sm">
+                    End customers with varying utilization patterns
+                  </p>
+                  <p className="text-slate-400 text-xs mt-2">
+                    Enterprise deployments and AI research institutions driving adoption through direct integrations and
+                    custom deployments. Critical feedback loop for product development.
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Divider */}
-            <div className="my-10 flex items-center gap-4">
+            <div className="my-6 sm:my-10 flex items-center gap-4">
               <div className="flex-1 h-px bg-gradient-to-r from-slate-700 to-transparent"></div>
-              <Zap size={16} className="text-slate-600" />
+              <Zap size={14} className="text-slate-600" />
               <div className="flex-1 h-px bg-gradient-to-l from-slate-700 to-transparent"></div>
             </div>
 
-            {/* Three Structural Misalignments */}
             <div>
-              <h2 className="text-2xl font-bold text-white mb-6">Three Structural Misalignments</h2>
+              <h2 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">Three Structural Misalignments</h2>
 
-              <div className="space-y-6">
-                <div className="bg-slate-700/30 border border-slate-600/50 rounded-lg p-6">
-                  <h3 className="text-lg font-semibold text-white mb-3">Misalignment 1: Volume vs Efficiency</h3>
-                  <p className="text-slate-300 mb-4">
+              <div className="space-y-3 sm:space-y-6">
+                <div className="bg-slate-700/30 border border-slate-600/50 rounded-lg p-4 sm:p-6">
+                  <h3 className="text-base sm:text-lg font-semibold text-white mb-2 sm:mb-3">
+                    Misalignment 1: Volume vs Efficiency
+                  </h3>
+                  <p className="text-slate-300 mb-3 text-xs sm:text-sm">
                     <span className="font-semibold">NVIDIA incentive:</span> Maximize shipment volume
                     <br />
                     <span className="font-semibold">Customer incentive:</span> Ensure peak capacity
                   </p>
-                  <div className="bg-red-500/10 border-l-2 border-red-500 pl-4 py-2">
-                    <p className="text-slate-300">
+                  <div className="bg-red-500/10 border-l-2 border-red-500 pl-3 py-2">
+                    <p className="text-slate-300 text-xs sm:text-sm">
                       <span className="text-red-300 font-semibold">Result:</span> Customers provision for worst-case
                       scenarios at 30-40% average utilization. NVIDIA gets paid regardless.
                     </p>
                   </div>
                 </div>
 
-                <div className="bg-slate-700/30 border border-slate-600/50 rounded-lg p-6">
-                  <h3 className="text-lg font-semibold text-white mb-3">
+                <div className="bg-slate-700/30 border border-slate-600/50 rounded-lg p-4 sm:p-6">
+                  <h3 className="text-base sm:text-lg font-semibold text-white mb-3 sm:mb-3">
                     Misalignment 2: Pricing Model vs Cost Predictability
                   </h3>
-                  <div className="space-y-3 text-slate-300 text-sm">
+                  <div className="space-y-2 text-slate-300 text-xs sm:text-sm">
                     <p>
                       <span className="font-semibold">Pay-as-you-go enterprises:</span> Black Friday 10× spike creates
                       $50K-$500K monthly cost range
@@ -327,43 +343,44 @@ export default function ArticlePage() {
                       40% utilization = $1.226M wasted
                     </p>
                   </div>
-                  <div className="bg-orange-500/10 border-l-2 border-orange-500 pl-4 py-2 mt-3">
-                    <p className="text-slate-300">
+                  <div className="bg-orange-500/10 border-l-2 border-orange-500 pl-3 py-2 mt-3">
+                    <p className="text-slate-300 text-xs sm:text-sm">
                       <span className="text-orange-300 font-semibold">Result:</span> Customers reduce renewals 30-50%
                       based on actual usage, causing hyperscalers to lose $1-1.2M per customer annually.
                     </p>
                   </div>
                 </div>
 
-                <div className="bg-slate-700/30 border border-slate-600/50 rounded-lg p-6">
-                  <h3 className="text-lg font-semibold text-white mb-3">
+                <div className="bg-slate-700/30 border border-slate-600/50 rounded-lg p-4 sm:p-6">
+                  <h3 className="text-base sm:text-lg font-semibold text-white mb-3">
                     Misalignment 3: VC Expectations vs Market Reality
                   </h3>
-                  <div className="bg-purple-500/10 border-l-2 border-purple-500 pl-4 py-3">
-                    <p className="text-slate-300 mb-2">
+                  <div className="bg-purple-500/10 border-l-2 border-purple-500 pl-3 py-2 sm:py-3">
+                    <p className="text-slate-300 mb-2 text-xs sm:text-sm">
                       <span className="text-purple-300 font-semibold">VC thesis:</span> Fund Layer 3 expecting Layer 4
                       to create returns
                     </p>
-                    <p className="text-slate-300">
+                    <p className="text-slate-300 text-xs sm:text-sm">
                       <span className="text-purple-300 font-semibold">Reality:</span> Layer 4 captures profit through
                       markup while Layer 3 operates at structural losses
                     </p>
                   </div>
-                  <p className="text-slate-400 text-sm mt-4 italic">
+                  <p className="text-slate-400 text-xs italic mt-3">
                     OpenAI loses $1.15 per $1 revenue; Microsoft generates 50-75% margins on Copilot.
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Conclusion Section */}
-            <div className="mb-12">
-              <h2 className="text-3xl font-bold text-white mb-8">Conclusion</h2>
+            <div className="mb-8 sm:mb-12">
+              <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6 sm:mb-8">Conclusion</h2>
 
-              <div className="space-y-6">
-                <div className="bg-gradient-to-r from-blue-500/10 to-slate-900 border border-blue-500/30 rounded-lg p-8">
-                  <h3 className="text-xl font-semibold text-white mb-4">Ecosystem Profitability Paradox</h3>
-                  <p className="text-slate-300 leading-relaxed">
+              <div className="space-y-3 sm:space-y-6">
+                <div className="bg-gradient-to-r from-blue-500/10 to-slate-900 border border-blue-500/30 rounded-lg p-4 sm:p-8">
+                  <h3 className="text-base sm:text-xl font-semibold text-white mb-3 sm:mb-4">
+                    Ecosystem Profitability Paradox
+                  </h3>
+                  <p className="text-slate-300 leading-relaxed text-xs sm:text-base">
                     The AI ecosystem processes <span className="font-semibold text-blue-300">$400B annually</span> but
                     profitability concentrates at{" "}
                     <span className="font-semibold text-green-300">Layer 1 (NVIDIA 55% net margin, $62B profit)</span>{" "}
@@ -373,43 +390,43 @@ export default function ArticlePage() {
                   </p>
                 </div>
 
-                <div className="bg-gradient-to-r from-orange-500/10 to-slate-900 border border-orange-500/30 rounded-lg p-8">
-                  <h3 className="text-xl font-semibold text-white mb-4">The $280B Misalignment</h3>
-                  <p className="text-slate-300 leading-relaxed mb-4">
+                <div className="bg-gradient-to-r from-orange-500/10 to-slate-900 border border-orange-500/30 rounded-lg p-4 sm:p-8">
+                  <h3 className="text-base sm:text-xl font-semibold text-white mb-3 sm:mb-4">The $280B Misalignment</h3>
+                  <p className="text-slate-300 leading-relaxed text-xs sm:text-base mb-4">
                     <span className="font-semibold text-orange-300">$280B in underutilized commitments</span> persists
                     due to misaligned incentives across layers:
                   </p>
-                  <ul className="space-y-3">
-                    <li className="flex gap-3 text-slate-300">
-                      <span className="text-orange-400 font-bold">•</span>
+                  <ul className="space-y-2 sm:space-y-3">
+                    <li className="flex gap-3 text-slate-300 text-xs sm:text-base">
+                      <span className="text-orange-400 font-bold flex-shrink-0">•</span>
                       <span>
                         <span className="font-semibold">NVIDIA:</span> No downstream exposure, optimized for volume not
                         utilization
                       </span>
                     </li>
-                    <li className="flex gap-3 text-slate-300">
-                      <span className="text-orange-400 font-bold">•</span>
+                    <li className="flex gap-3 text-slate-300 text-xs sm:text-base">
+                      <span className="text-orange-400 font-bold flex-shrink-0">•</span>
                       <span>
                         <span className="font-semibold">Hyperscalers:</span> Strategic rationale (revenue/watt
                         optimization)
                       </span>
                     </li>
-                    <li className="flex gap-3 text-slate-300">
-                      <span className="text-orange-400 font-bold">•</span>
+                    <li className="flex gap-3 text-slate-300 text-xs sm:text-base">
+                      <span className="text-orange-400 font-bold flex-shrink-0">•</span>
                       <span>
                         <span className="font-semibold">GPU providers:</span> Contractually committed to capacity
                         maintenance
                       </span>
                     </li>
-                    <li className="flex gap-3 text-slate-300">
-                      <span className="text-orange-400 font-bold">•</span>
+                    <li className="flex gap-3 text-slate-300 text-xs sm:text-base">
+                      <span className="text-orange-400 font-bold flex-shrink-0">•</span>
                       <span>
                         <span className="font-semibold">Foundation models:</span> Prioritize competitive positioning
                         over profitability
                       </span>
                     </li>
-                    <li className="flex gap-3 text-slate-300">
-                      <span className="text-orange-400 font-bold">•</span>
+                    <li className="flex gap-3 text-slate-300 text-xs sm:text-base">
+                      <span className="text-orange-400 font-bold flex-shrink-0">•</span>
                       <span>
                         <span className="font-semibold">Customers:</span> No reallocation mechanism for underutilized
                         commitments
@@ -418,35 +435,37 @@ export default function ArticlePage() {
                   </ul>
                 </div>
 
-                <div className="bg-gradient-to-r from-purple-500/10 to-slate-900 border border-purple-500/30 rounded-lg p-8">
-                  <h3 className="text-xl font-semibold text-white mb-4">Predicted Consolidation (2027)</h3>
-                  <p className="text-slate-300 leading-relaxed mb-4">
+                <div className="bg-gradient-to-r from-purple-500/10 to-slate-900 border border-purple-500/30 rounded-lg p-4 sm:p-8">
+                  <h3 className="text-base sm:text-xl font-semibold text-white mb-3 sm:mb-4">
+                    Predicted Consolidation (2027)
+                  </h3>
+                  <p className="text-slate-300 leading-relaxed text-xs sm:text-base mb-4">
                     Market dynamics will force structural consolidation:
                   </p>
-                  <ul className="space-y-2 text-slate-300">
-                    <li className="flex gap-3">
-                      <span className="text-purple-400 font-bold">→</span>
+                  <ul className="space-y-2">
+                    <li className="flex gap-3 text-slate-300 text-xs sm:text-base">
+                      <span className="text-purple-400 font-bold flex-shrink-0">→</span>
                       <span>
                         <span className="font-semibold">Microsoft acquires OpenAI</span> (consolidating Layer 3 losses
                         into Layer 4 distribution margin)
                       </span>
                     </li>
-                    <li className="flex gap-3">
-                      <span className="text-purple-400 font-bold">→</span>
+                    <li className="flex gap-3 text-slate-300 text-xs sm:text-base">
+                      <span className="text-purple-400 font-bold flex-shrink-0">→</span>
                       <span>
                         <span className="font-semibold">Amazon acquires Anthropic</span> (similar vertical integration
                         strategy)
                       </span>
                     </li>
-                    <li className="flex gap-3">
-                      <span className="text-purple-400 font-bold">→</span>
+                    <li className="flex gap-3 text-slate-300 text-xs sm:text-base">
+                      <span className="text-purple-400 font-bold flex-shrink-0">→</span>
                       <span>
                         <span className="font-semibold">CoreWeave & specialized providers restructure</span> (debt
                         refinancing, capacity consolidation)
                       </span>
                     </li>
-                    <li className="flex gap-3">
-                      <span className="text-purple-400 font-bold">→</span>
+                    <li className="flex gap-3 text-slate-300 text-xs sm:text-base">
+                      <span className="text-purple-400 font-bold flex-shrink-0">→</span>
                       <span>
                         <span className="font-semibold">Hyperscalers consolidate control</span> across chip,
                         infrastructure, and distribution segments
@@ -455,9 +474,9 @@ export default function ArticlePage() {
                   </ul>
                 </div>
 
-                <div className="bg-gradient-to-r from-blue-500/10 to-slate-900 border border-blue-500/30 rounded-lg p-8">
-                  <h3 className="text-xl font-semibold text-white mb-4">Strategic Implications</h3>
-                  <p className="text-slate-300 leading-relaxed">
+                <div className="bg-gradient-to-r from-blue-500/10 to-slate-900 border border-blue-500/30 rounded-lg p-4 sm:p-8">
+                  <h3 className="text-base sm:text-xl font-semibold text-white mb-3 sm:mb-4">Strategic Implications</h3>
+                  <p className="text-slate-300 leading-relaxed text-xs sm:text-base">
                     This analysis demonstrates{" "}
                     <span className="font-semibold text-blue-300">VP-level market understanding</span> while revealing a
                     hard truth:{" "}
@@ -475,15 +494,13 @@ export default function ArticlePage() {
           </div>
         </Card>
 
-        {/* Divider */}
-        <div className="my-8 flex items-center gap-4">
+        <div className="my-6 sm:my-8 flex items-center gap-4">
           <div className="flex-1 h-px bg-gradient-to-r from-slate-700 to-transparent"></div>
-          <Zap size={16} className="text-slate-600" />
+          <Zap size={14} className="text-slate-600" />
           <div className="flex-1 h-px bg-gradient-to-l from-slate-700 to-transparent"></div>
         </div>
 
-        {/* Article Footer */}
-        <div className="text-center text-xs text-slate-500 pt-8 border-t border-slate-700/50">
+        <div className="text-center text-xs text-slate-500 pt-6 sm:pt-8 border-t border-slate-700/50">
           <p className="mb-2">Created by Lily David • November 2025</p>
           <p className="text-slate-600">
             Licensed under{" "}
