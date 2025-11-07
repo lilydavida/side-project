@@ -304,7 +304,7 @@ const getFulfillmentColor = (rate: number) => {
 export default function AILayersDashboard() {
   const [selectedLayer, setSelectedLayer] = useState("hyperscalers")
   const [lastRefreshed, setLastRefreshed] = useState<Date>(new Date())
-  const [showPreview, setShowPreview] = useState(true)
+  const [showInsightsPreview, setShowInsightsPreview] = useState(true)
 
   useEffect(() => {
     const refreshInterval = setInterval(
@@ -332,34 +332,36 @@ export default function AILayersDashboard() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 px-3 sm:px-4 py-6 sm:py-12 font-sans">
       <div className="max-w-7xl mx-auto space-y-6 sm:space-y-8">
-        {showPreview && (
-          <Card className="bg-gradient-to-r from-blue-900/40 via-purple-900/40 to-blue-900/40 border border-blue-700/50 p-4 sm:p-6 relative overflow-hidden group cursor-pointer hover:border-blue-600/75 transition-colors">
+        {showInsightsPreview && (
+          <Card className="bg-gradient-to-r from-slate-800/40 via-slate-700/40 to-slate-800/40 border border-slate-600/50 p-4 sm:p-6 relative overflow-hidden group cursor-pointer hover:border-slate-500/75 transition-colors">
             <div
-              className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-purple-500/5 to-blue-500/0 opacity-0 group-hover:opacity-100 transition-opacity"
+              className="absolute inset-0 bg-gradient-to-r from-slate-500/0 via-slate-400/5 to-slate-500/0 opacity-0 group-hover:opacity-100 transition-opacity"
               aria-hidden="true"
             />
             <div className="relative">
               <div className="flex flex-col sm:flex-row items-start justify-between gap-4">
-                <div className="flex-1 space-y-2 sm:space-y-3">
-                  <h3 className="text-base sm:text-lg font-semibold text-white">
-                    Research: The $280B Misalignment in AI Infrastructure
+                <div className="flex-1 space-y-3 sm:space-y-4">
+                  <h3 className="text-lg sm:text-xl font-bold text-white leading-tight">
+                    The $280B Misalignment: Why AI Pricing Models Don't Work
                   </h3>
-                  <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-                    This portfolio maps every dollar flowing through the AI ecosystem to answer two critical questions:
-                    Who is funding this buildout, and where do the unit economics land when your competitors are also
-                    burning billions to scale? The answer reveals why profits concentrate in only two layers...
-                  </p>
+                  <div className="space-y-2 text-sm sm:text-base text-slate-200 leading-relaxed">
+                    <p>
+                      OpenAI loses $11.5B/quarter. CoreWeave's debt eats 21% of revenue. Everyone except NVIDIA and
+                      distribution is unprofitable.
+                    </p>
+                    <p>I analyzed where it breaks, why current models fail, and what fixes it.</p>
+                  </div>
                   <Link
-                    href="/article"
-                    className="inline-block mt-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors text-xs sm:text-sm font-medium"
+                    href="/insights"
+                    className="inline-block mt-2 px-4 py-2 bg-slate-600 hover:bg-slate-700 text-white rounded-lg transition-colors text-xs sm:text-sm font-medium"
                   >
-                    Read Full Article →
+                    Read Full Analysis →
                   </Link>
                 </div>
                 <button
-                  onClick={() => setShowPreview(false)}
+                  onClick={() => setShowInsightsPreview(false)}
                   className="text-slate-400 hover:text-slate-200 transition-colors flex-shrink-0"
-                  aria-label="Close preview"
+                  aria-label="Close insights preview"
                 >
                   ✕
                 </button>
@@ -369,13 +371,22 @@ export default function AILayersDashboard() {
         )}
 
         <div className="text-center mb-6 sm:mb-12">
-          <h1 className="text-3xl sm:text-5xl font-bold text-white mb-2 sm:mb-3 tracking-tight">
-            AI Infrastructure Economics
-          </h1>
+          <h1 className="text-3xl sm:text-5xl font-bold text-white mb-2 sm:mb-3 tracking-tight">Follow the Money</h1>
           <p className="text-sm sm:text-lg text-slate-400">
-            Revenue vs. contractual commitments across the 5-layer stack
+            Revenue vs. contractual commitments across the 5-layer AI stack
           </p>
         </div>
+
+        <Card className="bg-slate-800/30 border-slate-700/50 p-4 sm:p-6 mb-6">
+          <div className="space-y-3 text-sm sm:text-base text-slate-300 leading-relaxed">
+            <p>
+              <span className="font-semibold text-white">What & How:</span> This dashboard tracks the $400B AI
+              infrastructure stack across five layers, revealing $280B in underutilized commitments. Select layers to
+              view fulfillment rates (color-coded: green &gt;90%, yellow 75-90%, red &lt;75%), revenue vs commitments
+              charts, and auto-refreshing deals from SEC filings. Data powered by FMP API.
+            </p>
+          </div>
+        </Card>
 
         <div className="space-y-3 sm:space-y-4">
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-3">
