@@ -47,7 +47,7 @@ export default function InsightsPage() {
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-white mb-4">What I Got Wrong</h2>
             <p className="text-slate-300 leading-relaxed mb-4">
-              I started analyzing underutilized GPU capacity, I was convinced that cost optimization was the problem.
+              Initially, I started analyzing underutilized GPU capacity, I was convinced that cost optimization was the problem.
               Primary research challenged this: enterprises expect infrastructure costs during experimentation. That's
               the cost of discovery, not inefficiency.
             </p>
