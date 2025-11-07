@@ -47,9 +47,9 @@ export default function InsightsPage() {
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-white mb-4">What I Got Wrong</h2>
             <p className="text-slate-300 leading-relaxed mb-4">
-              I started analyzing underutilized GPU capacity, I was convinced that cost optimization was the problem. Primary
-              research challenged this: enterprises expect infrastructure costs during experimentation. That's the cost
-              of discovery, not inefficiency.
+              I started analyzing underutilized GPU capacity, I was convinced that cost optimization was the problem.
+              Primary research challenged this: enterprises expect infrastructure costs during experimentation. That's
+              the cost of discovery, not inefficiency.
             </p>
             <p className="text-slate-300 leading-relaxed mb-4">
               Back to first principles: What are enterprises actually trying to solve?
@@ -141,6 +141,15 @@ export default function InsightsPage() {
               Notice the pattern? Only Layers 1 and 4 make money. Let me show you why Layers 3 and 5 are where the unit
               economics breaks down.
             </p>
+            <div className="mt-6 p-4 bg-slate-900 border border-slate-800 rounded-lg">
+              <p className="text-slate-300 mb-2">Want to explore the detailed financials behind each layer?</p>
+              <Link
+                href="/dashboard"
+                className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors font-medium"
+              >
+                View Interactive Dashboard →
+              </Link>
+            </div>
           </section>
 
           {/* Layer 3 Deep Dive */}
