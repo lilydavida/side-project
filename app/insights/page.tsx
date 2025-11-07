@@ -69,15 +69,7 @@ export default function InsightsPage() {
               If you spend $2M running 100 experiments and find one generating $10M, you got 5× return. Optimizing $2M
               down to $1.2M doesn't matter. Finding winners faster does.
             </p>
-            <p className="text-slate-300 leading-relaxed mb-4">
-              <span className="font-semibold text-white">The Pivot:</span> From building FinOps tools ($50-400M market)
-              to redesigning AI pricing around customer outcomes ($30B+ market).
-            </p>
-            <p className="text-slate-300 leading-relaxed">
-              <span className="font-semibold text-white">The Lesson:</span> A 10-minute conversation revealed what two
-              weeks of desk research couldn't: I was solving the wrong problem. This is what customer discovery should
-              do—invalidate your assumptions before you build the wrong thing.
-            </p>
+           
           </section>
 
           {/* Who I Talked To */}
@@ -166,17 +158,7 @@ export default function InsightsPage() {
               <li>• Losing $14-38 per user per month</li>
             </ul>
 
-            <h3 className="text-xl font-semibold text-white mb-3 mt-6">Anthropic's unit economics:</h3>
-            <ul className="space-y-2 text-slate-300 mb-4">
-              <li>• Revenue: $7B annualized</li>
-              <li>• AWS compute: $2.66B over 9 months = 104% of revenue</li>
-              <li>• That's BEFORE R&D, salaries, facilities</li>
-            </ul>
-
-            <p className="text-slate-300 leading-relaxed mb-4 mt-6">
-              <span className="font-semibold text-white">Their pricing model:</span> $20/month subscriptions (flat
-              regardless of usage) + API tokens ($0.01-0.10 per 1,000 tokens, cost-plus).
-            </p>
+            
 
             <p className="text-slate-300 leading-relaxed mb-4">
               <span className="font-semibold text-white">Why this fails:</span> Subscriptions decouple payment from
@@ -498,7 +480,7 @@ export default function InsightsPage() {
 
           {/* If I Were PM */}
           <section className="mb-12">
-            <h2 className="text-2xl font-bold text-white mb-6">What I'd Build if I had to drive AI adoption</h2>
+            <h2 className="text-2xl font-bold text-white mb-6">What I'd Build if I had the chance</h2>
 
             <div className="space-y-6">
               <div>
