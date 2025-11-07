@@ -563,14 +563,11 @@ export default function InsightsPage() {
               enterprises lose money because theirs don't.
             </p>
             <p className="text-slate-300 leading-relaxed mb-4">
-              Outcome-based pricing solves this: enterprises pay for value, providers capture their fair share,
+              Outcome-based pricing could solve this: enterprises pay for value, providers capture their fair share,
               everyone's incentives align. Early evidence from gaming and ecommerce proves it works—customers willing to
               pay 2-3× when pricing tied to measurable outcomes.
             </p>
-            <p className="text-slate-300 leading-relaxed mb-4">
-              The question isn't whether current models are sustainable. Sam Altman's non-answer to Brad Gerstner proved
-              they aren't. The question is timing.
-            </p>
+            
             <p className="text-slate-300 leading-relaxed font-medium">
               My bet: The first hyperscaler to pilot outcome-based pricing with 10-20 enterprise customers in 2026 will
               define how AI gets priced for the next decade. That's a $30B opportunity hiding in plain sight.
