@@ -13,7 +13,7 @@ export default function InsightsPage() {
           className="inline-flex items-center gap-2 text-slate-400 hover:text-slate-300 transition-colors mb-4 sm:mb-8 text-sm"
         >
           <ArrowLeft size={16} />
-          <span>Back to Dashboard</span>
+          <span>Back to Home</span>
         </Link>
 
         <article className="prose prose-invert prose-slate max-w-none">

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Card } from "@/components/ui/card"
-import { TrendingUp, FileText } from "lucide-react"
+import { TrendingUp, FileText, ArrowLeft } from "lucide-react"
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts"
 import Link from "next/link"
 import { PAGE_CONFIG } from "@/lib/page-config"
@@ -333,6 +333,14 @@ export default function AILayersDashboard() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 px-3 sm:px-4 py-3 sm:py-12 font-sans">
       <div className="max-w-7xl mx-auto space-y-3 sm:space-y-8">
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 text-slate-400 hover:text-slate-300 transition-colors mb-2 sm:mb-4 text-sm"
+        >
+          <ArrowLeft size={16} />
+          <span>Back to Home</span>
+        </Link>
+
         <div className="text-center mb-3 sm:mb-12">
           <h1 className="text-2xl sm:text-5xl font-bold text-white mb-1 sm:mb-3 tracking-tight">
             {PAGE_CONFIG.dashboard.title}
