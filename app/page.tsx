@@ -2,9 +2,9 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 
 export default function HomePage() {
-  const dashboardTags = [{ label: "Data Visualization" }, { label: "Finance" }]
+  const dashboardTags = [{ label: "AI Infrastructure" }, { label: "Revenue Analytics" }, { label: "Financial Data" }]
 
-  const insightsTags = [{ label: "Research" }, { label: "Analysis" }]
+  const insightsTags = [{ label: "AI Economics" }, { label: "Pricing Strategy" }, { label: "Market Analysis" }]
 
   return (
     <div className="min-h-screen bg-background">
