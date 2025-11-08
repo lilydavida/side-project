@@ -19,14 +19,14 @@ export default function InsightsPage() {
           {/* Header */}
           <header className="mb-6 sm:mb-12 border-b border-slate-800 pb-4 sm:pb-8">
             <h1 className="text-2xl sm:text-5xl font-bold text-white mb-3 sm:mb-4 leading-tight">
-              The $280B Misalignment: Why AI Pricing Models don't not work
+              The $280B Misalignment: Why AI Pricing Models don't work
             </h1>
             <div className="text-slate-400 text-xs sm:text-sm">Lily David | November 2025</div>
           </header>
 
           {/* The Question */}
           <section className="mb-6 sm:mb-12">
-            <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">The Question Nobody Can Answer</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">The Question doing the rounds</h2>
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-3 sm:mb-4">
               In November 2025, OpenAI investor Brad Gerstner asked Sam Altman: "How does a company with $13B in revenue
               sustain $1.4T in infrastructure commitments?"
@@ -110,7 +110,7 @@ export default function InsightsPage() {
           {/* Five Layers */}
           <section className="mb-6 sm:mb-12">
             <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
-              The Five Layers Within AI Ecosystem (And Who's Making Money)
+              The Five Layers (And Who's Making Money)
             </h2>
             <div className="space-y-2 sm:space-y-3 text-sm sm:text-base text-slate-300">
               <p>
@@ -150,7 +150,7 @@ export default function InsightsPage() {
           {/* Layer 3 Deep Dive */}
           <section className="mb-6 sm:mb-12">
             <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
-              Layer 3: Foundation Models (Where The Losses Concentrate)
+            LLMs (Where The Losses Concentrate)
             </h2>
 
             <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 sm:mb-3 mt-4 sm:mt-6">
@@ -186,7 +186,7 @@ export default function InsightsPage() {
           {/* Layer 5 Deep Dive */}
           <section className="mb-6 sm:mb-12">
             <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
-              Layer 5: Enterprises (The Discovery Problem)
+             Enterprises (The Discovery Problem)
             </h2>
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-3 sm:mb-4">
               Primary research revealed a consistent pattern: AI agents haven't achieved the breakthrough everyone
@@ -303,7 +303,7 @@ export default function InsightsPage() {
           {/* Solution */}
           <section className="mb-6 sm:mb-12">
             <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
-              The Solution: Outcome-Based Pricing
+             The Hypothesis: Outcome-Based Pricing
             </h2>
 
             <div className="space-y-4 sm:space-y-6">
