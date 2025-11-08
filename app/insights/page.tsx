@@ -19,7 +19,7 @@ export default function InsightsPage() {
           {/* Header */}
           <header className="mb-6 sm:mb-12 border-b border-slate-800 pb-4 sm:pb-8">
             <h1 className="text-2xl sm:text-5xl font-bold text-white mb-3 sm:mb-4 leading-tight">
-              The $280B Misalignment: Why AI Pricing Models don't work
+              The $280B Misalignment: Why existing Pricing Models don't encourage AI adoption
             </h1>
             <div className="text-slate-400 text-xs sm:text-sm">Lily David | November 2025</div>
           </header>
