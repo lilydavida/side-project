@@ -10,7 +10,7 @@ export default function HomePage() {
       <div className="mx-auto max-w-4xl px-4 py-8 md:py-16 lg:py-20">
         <div className="mb-8 md:mb-12">
           <p className="text-pretty text-sm leading-relaxed text-slate-300 md:text-base">
-            Testing hypotheses through human validation and first-principles analysis with help from LLMs.{" "}
+            Testing hypotheses with primary research and first-principle thinking{" "}
             <a
               href="https://www.linkedin.com/in/lily-david-5a726628/"
               target="_blank"
