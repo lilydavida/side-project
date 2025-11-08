@@ -41,7 +41,7 @@ const LAYERS = [
   },
   {
     id: "foundation",
-    name: "Foundation Models",
+    name: "LLMs", // renamed from "Foundation Models" to "LLMs"
     color: "from-amber-600 to-amber-400",
     companies: [
       { name: "OpenAI", revenue: 3.4, commitments: 5.2, fulfillment: 65 },
@@ -304,7 +304,6 @@ const getFulfillmentColor = (rate: number) => {
 export default function AILayersDashboard() {
   const [selectedLayer, setSelectedLayer] = useState("hyperscalers")
   const [lastRefreshed, setLastRefreshed] = useState<Date>(new Date())
-  const [showInsightsPreview, setShowInsightsPreview] = useState(true)
 
   useEffect(() => {
     const refreshInterval = setInterval(
@@ -324,167 +323,121 @@ export default function AILayersDashboard() {
     revenue: c.revenue,
     commitments: c.commitments,
     gap: c.revenue - c.commitments,
+    fulfillment: c.fulfillment,
   }))
 
   const deals = MATERIAL_DEALS[selectedLayer as keyof typeof MATERIAL_DEALS] || []
   const mediaDeals = MEDIA_DEALS[selectedLayer as keyof typeof MEDIA_DEALS] || []
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 px-3 sm:px-4 py-6 sm:py-12 font-sans">
-      <div className="max-w-7xl mx-auto space-y-6 sm:space-y-8">
-        {showInsightsPreview && (
-          <Card className="bg-gradient-to-r from-slate-800/40 via-slate-700/40 to-slate-800/40 border border-slate-600/50 p-4 sm:p-6 relative overflow-hidden group cursor-pointer hover:border-slate-500/75 transition-colors">
-            <div
-              className="absolute inset-0 bg-gradient-to-r from-slate-500/0 via-slate-400/5 to-slate-500/0 opacity-0 group-hover:opacity-100 transition-opacity"
-              aria-hidden="true"
-            />
-            <div className="relative">
-              <div className="flex flex-col sm:flex-row items-start justify-between gap-4">
-                <div className="flex-1 space-y-3 sm:space-y-4">
-                  <h3 className="text-lg sm:text-xl font-bold text-white leading-tight">
-                    The $280B Misalignment: Why AI Pricing Models Don't Work
-                  </h3>
-                  <div className="space-y-2 text-sm sm:text-base text-slate-200 leading-relaxed">
-                    <p>
-                      OpenAI loses $11.5B/quarter. CoreWeave's debt eats 21% of revenue. Everyone except NVIDIA and
-                      distribution is unprofitable.
-                    </p>
-                    <p>I analyzed where it breaks, why current models fail, and what fixes it.</p>
-                  </div>
-                  <Link
-                    href="/insights"
-                    className="inline-block mt-2 px-4 py-2 bg-slate-600 hover:bg-slate-700 text-white rounded-lg transition-colors text-xs sm:text-sm font-medium"
-                  >
-                    Read Full Analysis →
-                  </Link>
-                </div>
-                <button
-                  onClick={() => setShowInsightsPreview(false)}
-                  className="text-slate-400 hover:text-slate-200 transition-colors flex-shrink-0"
-                  aria-label="Close insights preview"
-                >
-                  ✕
-                </button>
-              </div>
-            </div>
-          </Card>
-        )}
-
-        <div className="text-center mb-6 sm:mb-12">
-          <h1 className="text-3xl sm:text-5xl font-bold text-white mb-2 sm:mb-3 tracking-tight">Follow the Money</h1>
-          <p className="text-sm sm:text-lg text-slate-400">
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 px-3 sm:px-4 py-3 sm:py-12 font-sans">
+      <div className="max-w-7xl mx-auto space-y-3 sm:space-y-8">
+        <div className="text-center mb-3 sm:mb-12">
+          <h1 className="text-2xl sm:text-5xl font-bold text-white mb-1 sm:mb-3 tracking-tight">
+            Follow the Money trail
+          </h1>
+          <p className="text-xs sm:text-lg text-slate-400">
             Revenue vs. contractual commitments across the 5-layer AI stack
           </p>
         </div>
 
-        <Card className="bg-slate-800/30 border-slate-700/50 p-4 sm:p-6 mb-6">
-          <div className="space-y-3 text-sm sm:text-base text-slate-300 leading-relaxed">
+        <Card className="bg-slate-800/30 border-slate-700/50 p-3 sm:p-6 mb-3 sm:mb-6">
+          <div className="space-y-2 text-xs sm:text-base text-slate-300 leading-relaxed">
             <p>
-              <span className="font-semibold text-white">What & How:</span> This dashboard tracks the $400B AI
-              infrastructure stack across five layers, revealing $280B in underutilized commitments. Select layers to
-              view fulfillment rates (color-coded: green &gt;90%, yellow 75-90%, red &lt;75%), revenue vs commitments
-              charts, and auto-refreshing deals from SEC filings. Data powered by FMP API.
+              <span className="font-semibold text-white"></span> Select a player to view their current fulfillment gap.
+              Data powered by FMP API, deals tracked from SEC filings.
             </p>
           </div>
         </Card>
 
-        <div className="space-y-3 sm:space-y-4">
+        <div className="space-y-2 sm:space-y-4">
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-3">
             {LAYERS.map((layer) => (
               <button
                 key={layer.id}
                 onClick={() => setSelectedLayer(layer.id)}
-                className={`relative p-3 sm:p-4 rounded-lg transition-all text-xs sm:text-sm ${
+                className={`relative p-1.5 sm:p-3 rounded-lg transition-all text-xs sm:text-sm ${
                   selectedLayer === layer.id
                     ? `bg-gradient-to-br ${layer.color} text-white shadow-lg scale-105`
                     : "bg-slate-800/50 border border-slate-700 text-slate-300 hover:border-slate-600"
                 }`}
               >
                 <div className="font-semibold">{layer.name}</div>
-                <div className="text-xs mt-1 opacity-80">{layer.companies.length} cos</div>
               </button>
             ))}
           </div>
-
-          <Card className="bg-slate-800/30 border-slate-700/50 p-3 sm:p-4">
-            <div className="flex flex-wrap gap-2 sm:gap-3">
-              {layer.companies.map((company) => (
-                <div
-                  key={company.name}
-                  className="px-2 sm:px-3 py-1.5 sm:py-2 bg-slate-700/40 border border-slate-600/50 rounded text-xs sm:text-sm text-slate-300"
-                >
-                  <div className="font-medium">{company.name}</div>
-                  <div className="text-xs text-slate-400">
-                    {company.fulfillment}% • ${company.revenue}B
-                  </div>
-                </div>
-              ))}
-            </div>
-          </Card>
         </div>
 
         <Card className="bg-slate-800/50 border-slate-700 overflow-hidden">
-          <div className="p-4 sm:p-8">
-            <div className="flex items-center gap-2 mb-4 sm:mb-6">
-              <TrendingUp size={18} className="text-blue-400" />
-              <h2 className="text-xs sm:text-sm font-semibold text-slate-300 uppercase tracking-wide">
+          <div className="p-3 sm:p-8">
+            <div className="flex items-center gap-2 mb-3 sm:mb-6">
+              <TrendingUp size={16} className="text-blue-400" />
+              <h2 className="text-[10px] sm:text-sm font-semibold text-slate-300 uppercase tracking-wide">
                 Revenue vs Commitments ({layer.name})
               </h2>
             </div>
 
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={chartData} margin={{ top: 20, right: 10, left: 0, bottom: 60 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(148, 163, 184, 0.1)" vertical={false} />
+            <ResponsiveContainer width="100%" height={200} className="sm:h-[250px]">
+              <BarChart data={chartData} margin={{ top: 5, right: 5, left: -10, bottom: 40 }}>
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(148, 163, 184, 0.08)" vertical={false} />
                 <XAxis
                   dataKey="name"
-                  stroke="rgba(148, 163, 184, 0.5)"
-                  tick={{ fontSize: 10 }}
+                  stroke="rgba(148, 163, 184, 0.4)"
+                  tick={{ fontSize: 8 }}
                   angle={-45}
                   textAnchor="end"
-                  height={80}
+                  height={60}
                 />
                 <YAxis
-                  stroke="rgba(148, 163, 184, 0.5)"
-                  tick={{ fontSize: 10 }}
-                  label={{ value: "Billions USD", angle: -90, position: "insideLeft", fontSize: 10 }}
+                  stroke="rgba(148, 163, 184, 0.4)"
+                  tick={{ fontSize: 8 }}
+                  label={{ value: "Billions USD", angle: -90, position: "insideLeft", fontSize: 8 }}
                 />
                 <Tooltip
                   contentStyle={{
                     backgroundColor: "rgba(15, 23, 42, 0.95)",
                     border: "1px solid rgba(71, 85, 105, 0.5)",
                     borderRadius: "8px",
-                    fontSize: "12px",
+                    fontSize: "10px",
                   }}
                   labelStyle={{ color: "#e2e8f0" }}
-                  formatter={(value: number) => `$${value.toFixed(1)}B`}
+                  formatter={(value: number, name: string) => {
+                    if (name === "Fulfillment %") {
+                      return [`${value}%`, name]
+                    }
+                    return [`$${value.toFixed(1)}B`, name]
+                  }}
                 />
-                <Legend wrapperStyle={{ paddingTop: "20px", fontSize: "12px" }} />
-                <Bar dataKey="revenue" fill="rgb(59, 130, 246)" radius={[8, 8, 0, 0]} name="Revenue Recognized" />
-                <Bar
-                  dataKey="commitments"
-                  fill="rgb(168, 85, 247)"
-                  radius={[8, 8, 0, 0]}
-                  name="Contractual Commitments"
-                />
+                <Legend wrapperStyle={{ paddingTop: "10px", fontSize: "10px" }} />
+                <Bar dataKey="revenue" fill="rgba(148, 163, 184, 0.5)" radius={[6, 6, 0, 0]} name="Revenue" />
+                <Bar dataKey="commitments" fill="rgba(100, 116, 139, 0.4)" radius={[6, 6, 0, 0]} name="Commitments" />
               </BarChart>
             </ResponsiveContainer>
 
-            <div className="mt-4 sm:mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
-              <div className="bg-slate-700/30 p-3 sm:p-4 rounded-lg border border-slate-600/30">
-                <div className="text-xs text-slate-400 mb-1">Total Revenue</div>
-                <div className="text-lg sm:text-2xl font-bold text-blue-300">
+            <div className="mt-3 sm:mt-6 grid grid-cols-3 gap-2 sm:gap-3">
+              <div className="bg-slate-700/20 p-2 sm:p-3 rounded-lg border border-slate-600/20">
+                <div className="text-[9px] sm:text-xs text-slate-500 mb-0.5">Revenue</div>
+                <div className="text-sm sm:text-lg font-semibold text-slate-300">
                   ${layer.companies.reduce((sum, c) => sum + c.revenue, 0).toFixed(1)}B
                 </div>
               </div>
-              <div className="bg-slate-700/30 p-3 sm:p-4 rounded-lg border border-slate-600/30">
-                <div className="text-xs text-slate-400 mb-1">Total Commitments</div>
-                <div className="text-lg sm:text-2xl font-bold text-purple-300">
+              <div className="bg-slate-700/20 p-2 sm:p-3 rounded-lg border border-slate-600/20">
+                <div className="text-[9px] sm:text-xs text-slate-500 mb-0.5">Commitments</div>
+                <div className="text-sm sm:text-lg font-semibold text-slate-300">
                   ${layer.companies.reduce((sum, c) => sum + c.commitments, 0).toFixed(1)}B
                 </div>
               </div>
-              <div className="bg-slate-700/30 p-3 sm:p-4 rounded-lg border border-slate-600/30">
-                <div className="text-xs text-slate-400 mb-1">Fulfillment Gap</div>
-                <div className="text-lg sm:text-2xl font-bold text-emerald-300">
+              <div className="bg-slate-700/20 p-2 sm:p-3 rounded-lg border border-slate-600/20">
+                <div className="text-[9px] sm:text-xs text-slate-500 mb-0.5">Fulfillment Gap</div>
+                <div
+                  className={`text-sm sm:text-lg font-bold ${
+                    layer.companies.reduce((sum, c) => sum + c.revenue, 0) -
+                      layer.companies.reduce((sum, c) => sum + c.commitments, 0) <
+                    0
+                      ? "text-red-400"
+                      : "text-emerald-300"
+                  }`}
+                >
                   $
                   {(
                     layer.companies.reduce((sum, c) => sum + c.revenue, 0) -
@@ -496,6 +449,15 @@ export default function AILayersDashboard() {
             </div>
           </div>
         </Card>
+
+        <div className="text-center">
+          <Link
+            href="/insights"
+            className="inline-block text-sm text-slate-400 hover:text-slate-200 transition-colors underline"
+          >
+            Explore why these commitment gaps exist and what fixes them →
+          </Link>
+        </div>
 
         <Card className="bg-slate-800/50 border-slate-700 overflow-hidden">
           <div className="p-4 sm:p-8">
@@ -565,36 +527,41 @@ export default function AILayersDashboard() {
         </Card>
 
         <Card className="bg-slate-800/50 border-slate-700 overflow-hidden">
-          <div className="p-4 sm:p-8">
-            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-2 mb-4 sm:mb-6">
+          <div className="p-3 sm:p-4">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-2 mb-2 sm:mb-3">
               <div className="flex items-center gap-2">
-                <FileText size={18} className="text-rose-400" />
+                <FileText size={18} className="text-slate-400" />
                 <h2 className="text-xs sm:text-sm font-semibold text-slate-300 uppercase tracking-wide">
                   Deals Mentioned in Media
                 </h2>
               </div>
-              <div className="text-xs text-slate-500 sm:ml-auto">Updated: {lastRefreshed.toLocaleTimeString()}</div>
+              <div className="text-xs text-slate-500 sm:ml-auto">
+                Updated: {lastRefreshed.toLocaleDateString("en-US", { month: "short", day: "numeric" })}
+              </div>
             </div>
 
             {mediaDeals.length > 0 ? (
-              <div className="space-y-2 sm:space-y-3">
+              <div className="space-y-2">
                 {mediaDeals.map((deal) => (
                   <div
                     key={deal.id}
-                    className="border border-slate-700/50 rounded-lg p-3 sm:p-4 hover:bg-slate-700/20 transition-colors"
+                    className="border border-slate-700/50 rounded-lg p-2 sm:p-3 hover:bg-slate-700/20 transition-colors"
                   >
-                    <div className="flex justify-between items-start mb-2 gap-2">
+                    <div className="flex justify-between items-start mb-1 sm:mb-2 gap-2">
                       <div>
-                        <h3 className="font-semibold text-white text-sm sm:text-base">{deal.announcement}</h3>
-                        <p className="text-xs sm:text-sm text-slate-300 mt-1">{deal.details}</p>
+                        <h3 className="font-semibold text-white text-xs sm:text-sm">{deal.announcement}</h3>
+                        <p className="text-xs text-slate-300 mt-0.5 sm:mt-1">{deal.details}</p>
                       </div>
                       <div className="text-right flex-shrink-0">
-                        <div className="text-xs text-slate-400">{deal.date}</div>
+                        <div className="text-[10px] sm:text-xs text-slate-400">{deal.date}</div>
                       </div>
                     </div>
-                    <div className="flex gap-1 sm:gap-2 flex-wrap mt-2 sm:mt-3">
+                    <div className="flex gap-1 flex-wrap mt-1 sm:mt-2">
                       {deal.source.split(", ").map((src, idx) => (
-                        <div key={idx} className="text-xs bg-rose-500/20 text-rose-300 px-2 py-1 rounded">
+                        <div
+                          key={idx}
+                          className="text-[10px] sm:text-xs bg-slate-700/40 text-slate-400 px-1.5 py-0.5 rounded"
+                        >
                           {src}
                         </div>
                       ))}
@@ -603,7 +570,7 @@ export default function AILayersDashboard() {
                 ))}
               </div>
             ) : (
-              <div className="text-center py-6 sm:py-8 text-slate-400 text-sm">
+              <div className="text-center py-4 sm:py-6 text-slate-400 text-sm">
                 <p>No media coverage available for this layer</p>
               </div>
             )}

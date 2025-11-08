@@ -2,123 +2,110 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 
 export default function HomePage() {
-  const dashboardTags = [
-    { label: "Data Visualization", color: "blue" },
-    { label: "Finance", color: "purple" },
-    { label: "AI Infrastructure", color: "emerald" },
-  ]
+  const dashboardTags = [{ label: "Data Visualization" }, { label: "Finance" }]
 
-  const insightsTags = [
-    { label: "Research", color: "slate" },
-    { label: "Analysis", color: "amber" },
-    { label: "Economics", color: "rose" },
-  ]
-
-  const getTagClasses = (color: string) => {
-    const colorMap: Record<string, string> = {
-      blue: "bg-blue-500/10 text-blue-400 border-blue-500/20",
-      purple: "bg-purple-500/10 text-purple-400 border-purple-500/20",
-      emerald: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
-      slate: "bg-slate-500/10 text-slate-400 border-slate-500/20",
-      amber: "bg-amber-500/10 text-amber-400 border-amber-500/20",
-      rose: "bg-rose-500/10 text-rose-400 border-rose-500/20",
-    }
-    return colorMap[color] || colorMap.slate
-  }
+  const insightsTags = [{ label: "Research" }, { label: "Analysis" }]
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="mx-auto max-w-5xl px-4 py-16 md:py-24">
-        {/* Hero Quote Section */}
-        <div className="mb-16 md:mb-24">
-          <blockquote className="border-l-4 border-primary pl-6 md:pl-8">
-            <p className="text-balance text-2xl font-light leading-relaxed text-foreground md:text-3xl lg:text-4xl">
-              "Seek a fresh perspective by asking questions instead of relying on answers."
-            </p>
-            <footer className="mt-4 text-muted-foreground">— Roger Spitz</footer>
-          </blockquote>
+      <div className="mx-auto max-w-4xl px-4 py-8 md:py-16 lg:py-20">
+        <div className="mb-8 md:mb-12">
+          <p className="text-pretty text-sm leading-relaxed text-slate-300 md:text-base">
+            Testing hypotheses through human validation and first-principles analysis with help from LLMs.{" "}
+            <a
+              href="https://www.linkedin.com/in/lily-david-5a726628/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-400 underline decoration-slate-600 underline-offset-2 transition-colors hover:text-slate-200 hover:decoration-slate-400"
+            >
+              Open to hear your ideas
+            </a>
+            .
+          </p>
         </div>
 
-        {/* Recent Work Section */}
         <section>
-          <h2 className="mb-8 text-3xl font-semibold text-foreground md:text-4xl">Recent Work</h2>
+          <h2 className="mb-6 text-2xl font-medium text-slate-200 md:mb-8 md:text-3xl">Lily's recent work</h2>
 
-          <div className="space-y-6">
+          <div className="space-y-4 md:space-y-5">
             {/* Dashboard Link */}
             <Link
               href="/dashboard"
-              className="group block rounded-lg border border-border bg-card p-6 transition-all hover:border-primary/50 hover:bg-card/80 md:p-8"
+              className="group block rounded-lg border border-slate-800 bg-slate-900/50 p-4 transition-colors hover:border-slate-700 hover:bg-slate-900/70 md:p-6"
             >
-              <div className="flex items-start justify-between gap-4">
+              <div className="flex items-start justify-between gap-3">
                 <div className="flex-1">
-                  <div className="mb-3 flex flex-wrap gap-2">
+                  <div className="mb-2 flex flex-wrap gap-1.5 md:mb-3 md:gap-2">
                     {dashboardTags.map((tag) => (
                       <span
                         key={tag.label}
-                        className={`rounded-full px-3 py-1 text-xs font-medium border ${getTagClasses(tag.color)}`}
+                        className="rounded border border-slate-700/50 bg-slate-800/30 px-2 py-0.5 text-[10px] font-medium text-slate-400 md:text-xs"
                       >
                         {tag.label}
                       </span>
                     ))}
                   </div>
-                  <h3 className="mb-2 text-xl font-semibold text-foreground group-hover:text-primary md:text-2xl">
-                    Follow the Money
+                  <h3 className="mb-1.5 text-lg font-medium text-slate-200 md:mb-2 md:text-xl">
+                    Follow the Money trail
                   </h3>
-                  <p className="mb-3 text-sm text-muted-foreground md:text-base">
+                  <p className="mb-2 text-xs text-slate-500 md:mb-2.5 md:text-sm">
                     Revenue vs. contractual commitments across the 5-layer AI stack
                   </p>
-                  <p className="text-sm leading-relaxed text-foreground/80">
-                    Interactive dashboard tracking $400B in AI infrastructure spending. Visualize revenue performance,
-                    fulfillment rates, and contractual obligations across chip makers, hyperscalers, GPU cloud
-                    providers, foundation models, and distribution layers.
+                  <p className="text-sm leading-relaxed text-slate-400 md:text-base">
+                    Interactive dashboard tracking $400B in AI infrastructure spending.{" "}
+                    <span className="hidden md:inline">
+                      Visualize revenue performance, fulfillment rates, and contractual obligations across chip makers,
+                      hyperscalers, GPU cloud providers, foundation models, and distribution layers.
+                    </span>
                   </p>
                 </div>
-                <ArrowRight className="mt-1 h-5 w-5 flex-shrink-0 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary" />
+                <ArrowRight className="mt-1 h-4 w-4 flex-shrink-0 text-slate-600 transition-colors group-hover:text-slate-400 md:h-5 md:w-5" />
               </div>
             </Link>
 
             {/* Insights Link */}
             <Link
               href="/insights"
-              className="group block rounded-lg border border-border bg-card p-6 transition-all hover:border-primary/50 hover:bg-card/80 md:p-8"
+              className="group block rounded-lg border border-slate-800 bg-slate-900/50 p-4 transition-colors hover:border-slate-700 hover:bg-slate-900/70 md:p-6"
             >
-              <div className="flex items-start justify-between gap-4">
+              <div className="flex items-start justify-between gap-3">
                 <div className="flex-1">
-                  <div className="mb-3 flex flex-wrap gap-2">
+                  <div className="mb-2 flex flex-wrap gap-1.5 md:mb-3 md:gap-2">
                     {insightsTags.map((tag) => (
                       <span
                         key={tag.label}
-                        className={`rounded-full px-3 py-1 text-xs font-medium border ${getTagClasses(tag.color)}`}
+                        className="rounded border border-slate-700/50 bg-slate-800/30 px-2 py-0.5 text-[10px] font-medium text-slate-400 md:text-xs"
                       >
                         {tag.label}
                       </span>
                     ))}
                   </div>
-                  <h3 className="mb-2 text-xl font-semibold text-foreground group-hover:text-primary md:text-2xl">
+                  <h3 className="mb-1.5 text-lg font-medium text-slate-200 md:mb-2 md:text-xl">
                     The $280B Misalignment: Why AI Pricing Models Don't Work
                   </h3>
-                  <p className="mb-3 text-sm text-muted-foreground md:text-base">Research & Analysis</p>
-                  <p className="text-sm leading-relaxed text-foreground/80">
-                    OpenAI loses $11.5B/quarter. CoreWeave's debt eats 21% of revenue. Everyone except NVIDIA and
-                    distribution is unprofitable. A deep dive into where the AI economy breaks, why current models fail,
-                    and what fixes it.
+                  <p className="mb-2 text-xs text-slate-500 md:mb-2.5 md:text-sm">Research & Analysis</p>
+                  <p className="text-sm leading-relaxed text-slate-400 md:text-base">
+                    OpenAI loses $11.5B/quarter. CoreWeave's debt eats 21% of revenue.{" "}
+                    <span className="hidden md:inline">
+                      Everyone except NVIDIA and distribution is unprofitable. A deep dive into where the AI economy
+                      breaks, why current models fail, and what fixes it.
+                    </span>
                   </p>
                 </div>
-                <ArrowRight className="mt-1 h-5 w-5 flex-shrink-0 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary" />
+                <ArrowRight className="mt-1 h-4 w-4 flex-shrink-0 text-slate-600 transition-colors group-hover:text-slate-400 md:h-5 md:w-5" />
               </div>
             </Link>
           </div>
         </section>
 
-        {/* Footer Attribution */}
-        <footer className="mt-16 border-t border-border pt-8 text-center text-sm text-muted-foreground">
+        <footer className="mt-12 border-t border-slate-800 pt-6 text-center text-xs text-slate-500 md:mt-16 md:pt-8 md:text-sm">
           <p>
             Created by Lily David •{" "}
             <a
               href="https://creativecommons.org/licenses/by-sa/4.0/"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-foreground"
+              className="hover:text-slate-400"
             >
               CC BY-SA 4.0
             </a>
