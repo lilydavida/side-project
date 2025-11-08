@@ -2,6 +2,7 @@
 
 import { ArrowLeft } from "lucide-react"
 import Link from "next/link"
+import { PAGE_CONFIG } from "@/lib/page-config"
 
 export default function InsightsPage() {
   return (
@@ -19,7 +20,7 @@ export default function InsightsPage() {
           {/* Header */}
           <header className="mb-6 sm:mb-12 border-b border-slate-800 pb-4 sm:pb-8">
             <h1 className="text-2xl sm:text-5xl font-bold text-white mb-3 sm:mb-4 leading-tight">
-              The $280B Misalignment: Why existing Pricing Models don't encourage AI adoption
+              {PAGE_CONFIG.insights.title}
             </h1>
             <div className="text-slate-400 text-xs sm:text-sm">Lily David | November 2025</div>
           </header>
@@ -150,7 +151,7 @@ export default function InsightsPage() {
           {/* Layer 3 Deep Dive */}
           <section className="mb-6 sm:mb-12">
             <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
-            LLMs (Where The Losses Concentrate)
+              LLMs (Where The Losses Concentrate)
             </h2>
 
             <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 sm:mb-3 mt-4 sm:mt-6">
@@ -186,7 +187,7 @@ export default function InsightsPage() {
           {/* Layer 5 Deep Dive */}
           <section className="mb-6 sm:mb-12">
             <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
-             Enterprises (The Discovery Problem)
+              Enterprises (The Discovery Problem)
             </h2>
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-3 sm:mb-4">
               Primary research revealed a consistent pattern: AI agents haven't achieved the breakthrough everyone
@@ -303,7 +304,7 @@ export default function InsightsPage() {
           {/* Solution */}
           <section className="mb-6 sm:mb-12">
             <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
-             The Hypothesis: Outcome-Based Pricing
+              The Hypothesis: Outcome-Based Pricing
             </h2>
 
             <div className="space-y-4 sm:space-y-6">

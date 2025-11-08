@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card"
 import { TrendingUp, FileText } from "lucide-react"
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts"
 import Link from "next/link"
+import { PAGE_CONFIG } from "@/lib/page-config"
 
 const LAYERS = [
   {
@@ -334,11 +335,9 @@ export default function AILayersDashboard() {
       <div className="max-w-7xl mx-auto space-y-3 sm:space-y-8">
         <div className="text-center mb-3 sm:mb-12">
           <h1 className="text-2xl sm:text-5xl font-bold text-white mb-1 sm:mb-3 tracking-tight">
-            Follow the Money trail
+            {PAGE_CONFIG.dashboard.title}
           </h1>
-          <p className="text-xs sm:text-lg text-slate-400">
-            Revenue vs. contractual commitments across the 5-layer AI stack
-          </p>
+          <p className="text-xs sm:text-lg text-slate-400">{PAGE_CONFIG.dashboard.subtitle}</p>
         </div>
 
         <Card className="bg-slate-800/30 border-slate-700/50 p-3 sm:p-6 mb-3 sm:mb-6">

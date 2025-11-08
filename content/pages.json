@@ -1,0 +1,26 @@
+{
+  "pages": [
+    {
+      "id": "dashboard",
+      "title": "Follow the Money trail",
+      "subtitle": "Revenue vs. contractual commitments across the 5-layer AI stack",
+      "description": "Interactive dashboard tracking $400B in AI infrastructure spending. Visualize revenue performance, fulfillment rates, and contractual obligations across chip makers, hyperscalers, GPU cloud providers, LLMs, and distribution layers.",
+      "tags": ["AI Infrastructure", "Revenue Analytics", "Financial Data"],
+      "href": "/dashboard",
+      "published": true,
+      "createdAt": "2025-01-15",
+      "type": "dashboard"
+    },
+    {
+      "id": "insights",
+      "title": "The $280B Misalignment: Why existing Pricing Models don't encourage AI adoption",
+      "subtitle": "Research & Analysis",
+      "description": "OpenAI loses $11.5B/quarter. CoreWeave's debt eats 21% of revenue. Everyone except NVIDIA and distribution is unprofitable. A deep dive into where the AI economy breaks, why current models fail, and what fixes it.",
+      "tags": ["AI Economics", "Pricing Strategy", "Market Analysis"],
+      "href": "/insights",
+      "published": true,
+      "createdAt": "2025-01-15",
+      "type": "article"
+    }
+  ]
+}
