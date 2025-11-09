@@ -24,7 +24,7 @@ export default function HomePage() {
         </div>
 
         <section>
-          <h2 className="mb-6 text-2xl font-medium text-slate-200 md:mb-8 md:text-3xl">Lily's recent work</h2>
+          <h2 className="mb-6 text-2xl font-medium text-slate-200 md:mb-8 md:text-3xl">Lily's recent posts</h2>
 
           <div className="space-y-4 md:space-y-5">
             {pages.map((page) => (
