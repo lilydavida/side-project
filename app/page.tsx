@@ -10,7 +10,7 @@ export default function HomePage() {
       <div className="mx-auto max-w-4xl px-4 py-8 md:py-16 lg:py-20">
         <div className="mb-8 md:mb-12">
           <p className="text-pretty text-sm leading-relaxed text-slate-300 md:text-base">
-            Testing hypotheses with primary research and first-principle thinking{" "}
+            Testing hypotheses with primary research and first-principle thinking.{" "}
             <a
               href="https://www.linkedin.com/in/lily-david-5a726628/"
               target="_blank"
@@ -61,7 +61,6 @@ export default function HomePage() {
 
         <footer className="mt-12 border-t border-slate-800 pt-6 text-center text-xs text-slate-500 md:mt-16 md:pt-8 md:text-sm">
           <p>
-            Created by Lily David •{" "}
             <a
               href="https://creativecommons.org/licenses/by-sa/4.0/"
               target="_blank"

@@ -12,14 +12,14 @@
       "type": "dashboard"
     },
     {
-      "id": "insights",
-      "title": "The $280B Misalignment: Why existing Pricing Models don't encourage AI adoption",
-      "subtitle": "Research & Analysis",
-      "description": "OpenAI loses $11.5B/quarter. CoreWeave's debt eats 21% of revenue. Everyone except NVIDIA and distribution is unprofitable. A deep dive into where the AI economy breaks, why current models fail, and what fixes it.",
-      "tags": ["AI Economics", "Pricing Strategy", "Market Analysis"],
-      "href": "/insights",
+      "id": "pricing-analysis",
+      "title": "The $1.4 Trillion AI Mystery: Rethinking How Value Flows",
+      "subtitle": "Outcome-Based Pricing Research",
+      "description": "From Sam Altman's candid response to a $1.4T question to practical outcome-based pricing models. How hybrid approaches could realign incentives across the AI stack and make everyone profitable.",
+      "tags": ["Business Models", "Outcome Pricing", "Value Creation"],
+      "href": "/pricing-analysis",
       "published": true,
-      "createdAt": "2025-01-15",
+      "createdAt": "2025-01-20",
       "type": "article"
     }
   ]

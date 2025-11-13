@@ -15,4 +15,12 @@ export const PAGE_CONFIG = {
     tags: [{ label: "AI Economics" }, { label: "Pricing Strategy" }, { label: "Market Analysis" }],
     href: "/insights",
   },
+  pricingAnalysis: {
+    title: "The $1.4 Trillion AI Mystery: Rethinking How Value Flows",
+    subtitle: "Outcome-Based Pricing Research",
+    description:
+      "From Sam Altman's candid response to a $1.4T question to practical outcome-based pricing models. How hybrid approaches could realign incentives across the AI stack and make everyone profitable.",
+    tags: [{ label: "Business Models" }, { label: "Outcome Pricing" }, { label: "Value Creation" }],
+    href: "/pricing-analysis",
+  },
 } as const
