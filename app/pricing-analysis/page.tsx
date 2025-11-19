@@ -1,6 +1,6 @@
 "use client"
 
-import { ArrowLeft } from "lucide-react"
+import { ArrowLeft } from 'lucide-react'
 import Link from "next/link"
 
 export default function PricingAnalysisPage() {
@@ -21,7 +21,7 @@ export default function PricingAnalysisPage() {
             <h1 className="text-2xl sm:text-5xl font-bold text-white mb-3 sm:mb-4 leading-tight">
               The $1.4 Trillion AI Mystery: Rethinking How Value Flows
             </h1>
-            <div className="text-slate-400 text-xs sm:text-sm">Lily David | November 2025</div>
+            <div className="text-slate-400 text-xs sm:text-sm">November 2025</div>
           </header>
 
           {/* Introduction */}
@@ -482,7 +482,7 @@ export default function PricingAnalysisPage() {
           {/* Footer */}
           <footer className="mt-12 sm:mt-16 pt-6 sm:pt-8 border-t border-slate-800">
             <div className="text-xs sm:text-sm text-slate-500 text-center">
-              <p className="mb-2">Created by Lily David • November 2025</p>
+              <p className="mb-2">November 2025</p>
               <p>
                 Licensed under{" "}
                 <a

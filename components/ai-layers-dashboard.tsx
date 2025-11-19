@@ -2,10 +2,11 @@
 
 import { useState, useEffect } from "react"
 import { Card } from "@/components/ui/card"
-import { TrendingUp, FileText, ArrowLeft } from "lucide-react"
+import { TrendingUp, FileText, ArrowLeft } from 'lucide-react'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts"
 import Link from "next/link"
 import { PAGE_CONFIG } from "@/lib/page-config"
+import { fetchFinancialData } from "@/app/actions"
 
 const LAYERS = [
   {
@@ -296,6 +297,14 @@ const MEDIA_DEALS = {
   ],
 }
 
+const LAYER_TICKERS: Record<string, string[]> = {
+  chips: ["NVDA", "AMD", "INTC"],
+  hyperscalers: ["AMZN", "MSFT", "GOOGL"],
+  "gpu-resellers": [], // Mostly private
+  foundation: ["META", "GOOGL"], // OpenAI/Anthropic are private, using proxies
+  distribution: ["MSFT", "GOOGL", "CRM", "ADBE", "TEAM"],
+}
+
 const getFulfillmentColor = (rate: number) => {
   if (rate >= 90) return "#10b981"
   if (rate >= 75) return "#f59e0b"
@@ -304,20 +313,42 @@ const getFulfillmentColor = (rate: number) => {
 
 export default function AILayersDashboard() {
   const [selectedLayer, setSelectedLayer] = useState("hyperscalers")
-  const [lastRefreshed, setLastRefreshed] = useState<Date>(new Date())
+  const [layersData, setLayersData] = useState(LAYERS)
 
   useEffect(() => {
-    const refreshInterval = setInterval(
-      () => {
-        setLastRefreshed(new Date())
-      },
-      5 * 60 * 1000,
-    )
+    const loadData = async () => {
+      const data = await fetchFinancialData()
+      
+      setLayersData(currentLayers => {
+        return currentLayers.map(layer => {
+          if (layer.id === "chips") {
+            return {
+              ...layer,
+              companies: layer.companies.map(company => {
+                const symbol = company.name === "NVIDIA" ? "NVDA" : 
+                             company.name === "AMD" ? "AMD" : 
+                             company.name === "Intel" ? "INTC" : null
+                
+                if (symbol && data.has(symbol)) {
+                  const financial = data.get(symbol)
+                  return {
+                    ...company,
+                    revenue: financial.revenue,
+                  }
+                }
+                return company
+              })
+            }
+          }
+          return layer
+        })
+      })
+    }
 
-    return () => clearInterval(refreshInterval)
+    loadData()
   }, [])
 
-  const layer = LAYERS.find((l) => l.id === selectedLayer)!
+  const layer = layersData.find((l) => l.id === selectedLayer)!
 
   const chartData = layer.companies.map((c) => ({
     name: c.name,
@@ -328,7 +359,8 @@ export default function AILayersDashboard() {
   }))
 
   const deals = MATERIAL_DEALS[selectedLayer as keyof typeof MATERIAL_DEALS] || []
-  const mediaDeals = MEDIA_DEALS[selectedLayer as keyof typeof MEDIA_DEALS] || []
+  const staticMediaDeals = MEDIA_DEALS[selectedLayer as keyof typeof MEDIA_DEALS] || []
+  const mediaDeals = staticMediaDeals
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 px-3 sm:px-4 py-3 sm:py-12 font-sans">
@@ -359,7 +391,7 @@ export default function AILayersDashboard() {
 
         <div className="space-y-2 sm:space-y-4">
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-3">
-            {LAYERS.map((layer) => (
+            {layersData.map((layer) => (
               <button
                 key={layer.id}
                 onClick={() => setSelectedLayer(layer.id)}
@@ -459,7 +491,7 @@ export default function AILayersDashboard() {
 
         <div className="text-center">
           <Link
-            href="/insights"
+            href="/pricing-analysis"
             className="inline-block text-sm text-slate-400 hover:text-slate-200 transition-colors underline"
           >
             Explore why these commitment gaps exist and what fixes them →
@@ -542,9 +574,6 @@ export default function AILayersDashboard() {
                   Deals Mentioned in Media
                 </h2>
               </div>
-              <div className="text-xs text-slate-500 sm:ml-auto">
-                Updated: {lastRefreshed.toLocaleDateString("en-US", { month: "short", day: "numeric" })}
-              </div>
             </div>
 
             {mediaDeals.length > 0 ? (
@@ -556,7 +585,15 @@ export default function AILayersDashboard() {
                   >
                     <div className="flex justify-between items-start mb-1 sm:mb-2 gap-2">
                       <div>
-                        <h3 className="font-semibold text-white text-xs sm:text-sm">{deal.announcement}</h3>
+                        <h3 className="font-semibold text-white text-xs sm:text-sm">
+                          {deal.url ? (
+                            <a href={deal.url} target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">
+                              {deal.announcement}
+                            </a>
+                          ) : (
+                            deal.announcement
+                          )}
+                        </h3>
                         <p className="text-xs text-slate-300 mt-0.5 sm:mt-1">{deal.details}</p>
                       </div>
                       <div className="text-right flex-shrink-0">
@@ -564,7 +601,7 @@ export default function AILayersDashboard() {
                       </div>
                     </div>
                     <div className="flex gap-1 flex-wrap mt-1 sm:mt-2">
-                      {deal.source.split(", ").map((src, idx) => (
+                      {deal.source.split(", ").map((src: string, idx: number) => (
                         <div
                           key={idx}
                           className="text-[10px] sm:text-xs bg-slate-700/40 text-slate-400 px-1.5 py-0.5 rounded"
@@ -589,7 +626,7 @@ export default function AILayersDashboard() {
             Data aggregated from SEC filings and public disclosures • Last updated: {new Date().toLocaleDateString()}
           </p>
           <p className="text-slate-600">
-            Created by <span className="text-slate-500 font-medium">Lily David</span> • Licensed under{" "}
+            Licensed under{" "}
             <a
               href="https://creativecommons.org/licenses/by-sa/4.0/"
               target="_blank"
