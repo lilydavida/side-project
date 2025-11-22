@@ -18,7 +18,7 @@ export default function HomePage() {
           <div className="mb-6 flex items-end justify-between gap-4 md:mb-8">
             <h2 className="text-2xl font-medium text-slate-200 md:text-3xl">Lily's recent posts</h2>
             <a
-              href="https://www.linkedin.com/in/lily-david"
+              href="https://www.linkedin.com/in/lily-david-5a726628/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-xs text-slate-400 transition-colors hover:text-slate-200 md:text-sm"

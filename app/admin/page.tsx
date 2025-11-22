@@ -13,7 +13,7 @@ export default function AdminPage() {
     {
       id: "dashboard",
       title: "Follow the Money trail",
-      subtitle: "Revenue vs. contractual commitments across the 5-layer AI stack",
+      subtitle: "Revenue vs. Spending across the 4-layer AI stack",
       description: "Interactive dashboard tracking $400B in AI infrastructure spending.",
       tags: ["AI Infrastructure", "Revenue Analytics", "Financial Data"],
       href: "/dashboard",
