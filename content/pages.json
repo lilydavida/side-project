@@ -21,6 +21,17 @@
       "published": true,
       "createdAt": "2025-01-20",
       "type": "article"
+    },
+    {
+      "id": "confidence-game",
+      "title": "The Confidence Game: Why the Next Era of AI Belongs to Those Who Measure the Odds",
+      "subtitle": "From Black Box to Cockpit",
+      "description": "Why the winners of the next decade won't just be the companies with the smartest models, but those who can measure the probability of success. A deep dive into Confidence Engines and the Google opportunity.",
+      "tags": ["AI Governance", "Product Strategy", "Confidence Engineering"],
+      "href": "/confidence-game",
+      "published": true,
+      "createdAt": "2025-01-25",
+      "type": "article"
     }
   ]
 }

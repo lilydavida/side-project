@@ -23,4 +23,12 @@ export const PAGE_CONFIG = {
     tags: [{ label: "Business Models" }, { label: "Outcome Pricing" }, { label: "Value Creation" }],
     href: "/ai-pricing-economics",
   },
+  confidenceGame: {
+    title: "The Confidence Game: Why the Next Era of AI Belongs to Those Who Measure the Odds",
+    subtitle: "From Black Box to Cockpit",
+    description:
+      "Why the winners of the next decade won't just be the companies with the smartest models, but those who can measure the probability of success. A deep dive into Confidence Engines and the Google opportunity.",
+    tags: [{ label: "AI Governance" }, { label: "Product Strategy" }, { label: "Confidence Engineering" }],
+    href: "/confidence-game",
+  },
 } as const
