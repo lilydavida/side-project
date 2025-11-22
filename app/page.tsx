@@ -10,14 +10,14 @@ export default function HomePage() {
       <div className="mx-auto max-w-4xl px-4 py-8 md:py-16 lg:py-20">
         <div className="mb-8 md:mb-12">
           <p className="text-pretty text-sm leading-relaxed text-slate-300 md:text-base">
-            Testing hypotheses with primary research and first-principle thinking.{" "}
+            Studying how things work, Analysing behaviour and Creating to learn.{" "}
             <a
               href="https://www.linkedin.com/in/lily-david-5a726628/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-slate-400 underline decoration-slate-600 underline-offset-2 transition-colors hover:text-slate-200 hover:decoration-slate-400"
             >
-              Open to hear your ideas
+              What are you working on?
             </a>
             .
           </p>
