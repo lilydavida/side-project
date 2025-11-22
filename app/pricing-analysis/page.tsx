@@ -1,6 +1,6 @@
 "use client"
 
-import { ArrowLeft } from "lucide-react"
+import { ArrowLeft, ArrowRight } from "lucide-react"
 import Link from "next/link"
 
 export default function PricingAnalysisPage() {
@@ -27,8 +27,9 @@ export default function PricingAnalysisPage() {
           {/* Introduction */}
           <section className="mb-6 sm:mb-12">
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-3 sm:mb-4">
-             An OpenAI investor asked CEO
-              Sam Altman: "How does a company with $13B in revenue take on $1.4T in infrastructure commitments?" It was a moment of public honesty and disbelief about how AI's economic engine actually works.
+              An OpenAI investor asked CEO Sam Altman: "How does a company with $13B in revenue take on $1.4T in
+              infrastructure commitments?" It was a moment of public honesty and disbelief about how AI's economic
+              engine actually works.
             </p>
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
               It sent me on a two-week mission to figure out why do some players in AI make money hand over fist, while
@@ -38,63 +39,36 @@ export default function PricingAnalysisPage() {
 
           {/* Where Profits Live */}
           <section className="mb-6 sm:mb-12">
-            <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
-              Where the Profits (and Losses) Live
-            </h2>
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-3 sm:mb-4">
-              Recent industry data shows:
-            </p>
+            
 
-            <div className="overflow-x-auto mb-4 sm:mb-6">
-              <table className="w-full text-sm text-slate-300 border border-slate-800">
-                <thead>
-                  <tr className="border-b border-slate-800">
-                    <th className="text-left p-2 sm:p-3 bg-slate-900">Layer</th>
-                    <th className="text-left p-2 sm:p-3 bg-slate-900">Profitability Trend</th>
-                    <th className="text-left p-2 sm:p-3 bg-slate-900">Comments</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="border-b border-slate-800">
-                    <td className="p-2 sm:p-3">NVIDIA</td>
-                    <td className="p-2 sm:p-3">55% net margin</td>
-                    <td className="p-2 sm:p-3">Hardware profits are insulated</td>
-                  </tr>
-                  <tr className="border-b border-slate-800">
-                    <td className="p-2 sm:p-3">GPU Cloud</td>
-                    <td className="p-2 sm:p-3">Speculative</td>
-                    <td className="p-2 sm:p-3">Profitability depends on sustained GPU scarcity</td>
-                  </tr>
-                  <tr className="border-b border-slate-800">
-                    <td className="p-2 sm:p-3">LLMs</td>
-                    <td className="p-2 sm:p-3">Negative</td>
-                    <td className="p-2 sm:p-3">~$1.15 lost per $1 revenue at scale</td>
-                  </tr>
-                  <tr className="border-b border-slate-800">
-                    <td className="p-2 sm:p-3">Distribution</td>
-                    <td className="p-2 sm:p-3">50 to 75% gross margin</td>
-                    <td className="p-2 sm:p-3">Owning "the channel" wins</td>
-                  </tr>
-                  <tr>
-                    <td className="p-2 sm:p-3">Enterprises</td>
-                    <td className="p-2 sm:p-3">Struggling for ROI</td>
-                    <td className="p-2 sm:p-3">Only narrow use cases monetize</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+            <Link
+              href="/dashboard"
+              className="group block bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:bg-slate-900 hover:border-slate-700 transition-all mb-6"
+            >
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-blue-400 transition-colors">
+                    Explore the Interactive Ecosystem Dashboard
+                  </h3>
+                  <p className="text-slate-400 text-sm">
+                    View the live breakdown of revenue vs. commitments across Chips, GPU Cloud, LLMs, and Distribution
+                    layers.
+                  </p>
+                </div>
+                <ArrowRight
+                  className="text-slate-500 group-hover:text-blue-400 group-hover:translate-x-1 transition-all"
+                  size={20}
+                />
+              </div>
+            </Link>
 
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-              The bottom line: hardware suppliers and platform distributors secure margins up front or at scale.
-              Everyone else faces unpredictable returns, typically due to cost or usage based pricing models that miss
-              value delivered.
-            </p>
+           
           </section>
 
           {/* Cost Optimization */}
           <section className="mb-6 sm:mb-12">
             <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
-              Why Cost Optimization Alone Doesn't Solve It
+              Primary research nullifies the utilisation hypothesis
             </h2>
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-3 sm:mb-4">
               Prevailing logic blames low hardware utilization or inefficient deployment for losses further downstream.
@@ -113,7 +87,7 @@ export default function PricingAnalysisPage() {
               <li className="flex gap-2 sm:gap-3">
                 <span className="text-slate-500">•</span>
                 <span>
-                  <span className="font-semibold">Supply side:</span> Foundation Model Enterprise Sales head with
+                  <span className="font-semibold">Supply side:</span> Foundation Model Enterprise Lead with
                   experience deploying AI across retail, logistics and banking sectors
                 </span>
               </li>
@@ -130,23 +104,6 @@ export default function PricingAnalysisPage() {
               experiments to yield meaningful business returns. Their challenge is less "how to use 80% of our GPUs" and
               more "what's the fastest way to find a $10M win among $2M of discovery spend?" Cost-cutting helps, but
               discovering new value matters more.
-            </p>
-          </section>
-
-          {/* Pricing Reality */}
-          <section className="mb-6 sm:mb-12">
-            <h2 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">
-              Perhaps, Pricing Isn't Catching Up With Reality
-            </h2>
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-3 sm:mb-4">
-              Nearly everyone in the industry still charges based on resources.i.e. GPU-hours, tokens, or prepaid
-              bundles, neither of which reflect the real value of successful adoption. Current models decouple what
-              buyers pay from what they get. Sometimes heavy users get a great bargain at the provider's expense,
-              sometimes the opposite. But both sides feel uneasy.
-            </p>
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-              In fact, most 2025 enterprise AI contracts now combine several pricing approaches like usage, tiered,
-              hybrid, and nascent value-based resulting in confusion and volatile cost exposure.
             </p>
           </section>
 
@@ -196,8 +153,7 @@ export default function PricingAnalysisPage() {
             <div className="space-y-3 sm:space-y-4">
               <div>
                 <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-                  <span className="font-semibold">Usage-Based Model (OpenAI/Anthropic):</span> Pay per token or seconds
-                  of compute—aligns fees to activity, but can be volatile, hard to forecast, and risky for high-growth
+                  <span className="font-semibold">Usage-Based Model (OpenAI/Anthropic):</span> Pay per token aligns fees to activity. Its hard to forecast, and risky for high-growth
                   use cases.
                 </p>
               </div>
@@ -233,7 +189,9 @@ export default function PricingAnalysisPage() {
 
           {/* Hybrid Approach */}
           <section className="mb-6 sm:mb-12">
-            <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">The Hybrid Approach</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
+              The Hybrid Approach: Flat + Outcome based pricing
+            </h2>
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-3 sm:mb-4">
               Imagine a world where companies pay a flat fee to try as many experiments as they want. When they find a
               real winner, the provider earns a share. Everyone assumes some risk, but everyone stands to benefit when
