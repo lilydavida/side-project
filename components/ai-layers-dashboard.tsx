@@ -349,9 +349,6 @@ export default function AILayersDashboard() {
               <RefreshCw size={12} className={isRefreshing ? "animate-spin text-primary" : ""} />
               <span>{isRefreshing ? "Syncing Market Data..." : `Live Data: ${lastUpdate.toLocaleTimeString()}`}</span>
             </div>
-            <div className="text-[10px] text-muted-foreground text-right max-w-[200px]">
-              *Revenue: Annualized run rate (Q4 2024 × 4). Est. Spend: Annualized OpEx + Cost of Revenue.
-            </div>
           </div>
         </div>
 

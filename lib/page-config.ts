@@ -5,7 +5,7 @@ export const PAGE_CONFIG = {
     description:
       "Interactive dashboard tracking $400B in AI infrastructure spending. Visualize revenue performance, fulfillment rates, and contractual obligations across chip makers, hyperscalers, GPU cloud providers, LLMs, and distribution layers.",
     tags: [{ label: "AI Infrastructure" }, { label: "Revenue Analytics" }, { label: "Financial Data" }],
-    href: "/dashboard",
+    href: "/ai-infrastructure-unit-economics",
   },
   insights: {
     title: "The $280B Misalignment: Why existing Pricing Models don't encourage AI adoption",

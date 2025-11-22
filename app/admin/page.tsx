@@ -16,7 +16,7 @@ export default function AdminPage() {
       subtitle: "Revenue vs. Spending across the 4-layer AI stack",
       description: "Interactive dashboard tracking $400B in AI infrastructure spending.",
       tags: ["AI Infrastructure", "Revenue Analytics", "Financial Data"],
-      href: "/dashboard",
+      href: "/ai-infrastructure-unit-economics",
       published: true,
       createdAt: "2025-01-15",
       type: "dashboard",

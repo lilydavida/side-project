@@ -1,6 +1,6 @@
 "use client"
 
-import { ArrowLeft, ArrowRight } from "lucide-react"
+import { ArrowLeft, ArrowRight, Brain, Cloud, Cpu, Share2 } from "lucide-react"
 import Link from "next/link"
 
 export default function PricingAnalysisPage() {
@@ -40,23 +40,50 @@ export default function PricingAnalysisPage() {
           {/* Where Profits Live */}
           <section className="mb-6 sm:mb-12">
             <Link
-              href="/dashboard"
-              className="group block bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:bg-slate-900 hover:border-slate-700 transition-all mb-6"
+              href="/ai-infrastructure-unit-economics"
+              className="group block bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:bg-slate-900 hover:border-blue-500/30 hover:shadow-lg hover:shadow-blue-900/20 transition-all mb-6"
             >
-              <div className="flex items-center justify-between">
-                <div>
+              <div className="flex items-center justify-between gap-6">
+                <div className="flex-1">
+                  {/* Added layer icons to visually represent the connected ecosystem */}
+                  <div className="flex items-center gap-0.5 sm:gap-3 mb-4 text-slate-500 flex-wrap sm:flex-nowrap">
+                    <div className="flex items-center gap-0.5 sm:gap-2 px-1 py-0.5 sm:px-2 sm:py-1 rounded-md bg-slate-800/50 border border-slate-700/50">
+                      <Cpu className="text-purple-400 w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                      <span className="text-[10px] sm:text-xs font-medium text-slate-300 leading-none">Chips</span>
+                    </div>
+                    <ArrowRight className="text-slate-600 w-2 h-2 sm:w-3 sm:h-3" />
+                    <div className="flex items-center gap-0.5 sm:gap-2 px-1 py-0.5 sm:px-2 sm:py-1 rounded-md bg-slate-800/50 border border-slate-700/50">
+                      <Cloud className="text-blue-400 w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                      <span className="text-[10px] sm:text-xs font-medium text-slate-300 leading-none">Cloud</span>
+                    </div>
+                    <ArrowRight className="text-slate-600 w-2 h-2 sm:w-3 sm:h-3" />
+                    <div className="flex items-center gap-0.5 sm:gap-2 px-1 py-0.5 sm:px-2 sm:py-1 rounded-md bg-slate-800/50 border border-slate-700/50">
+                      <Brain className="text-pink-400 w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                      <span className="text-[10px] sm:text-xs font-medium text-slate-300 leading-none">Models</span>
+                    </div>
+                    <ArrowRight className="text-slate-600 w-2 h-2 sm:w-3 sm:h-3" />
+                    <div className="flex items-center gap-0.5 sm:gap-2 px-1 py-0.5 sm:px-2 sm:py-1 rounded-md bg-slate-800/50 border border-slate-700/50">
+                      <Share2 className="text-emerald-400 w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                      <span className="text-[10px] sm:text-xs font-medium text-slate-300 leading-none">Apps</span>
+                    </div>
+                  </div>
+
                   <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-blue-400 transition-colors">
-                    Explore AI ecosystem fulfillment heath Dashboard
+                    Explore AI ecosystem fulfillment health Dashboard
                   </h3>
                   <p className="text-slate-400 text-sm">
                     View the live breakdown of revenue vs. est. spend across Chips, GPU Cloud, LLMs, and Distribution
                     layers.
                   </p>
                 </div>
-                <ArrowRight
-                  className="text-slate-500 group-hover:text-blue-400 group-hover:translate-x-1 transition-all"
-                  size={20}
-                />
+
+                {/* Improved arrow visibility with a circle container and stronger hover effect */}
+                <div className="flex-shrink-0 p-3 rounded-full bg-slate-800 border border-slate-700 group-hover:bg-blue-500/10 group-hover:border-blue-500/50 transition-all">
+                  <ArrowRight
+                    className="text-slate-400 group-hover:text-blue-400 group-hover:translate-x-1 transition-transform"
+                    size={24}
+                  />
+                </div>
               </div>
             </Link>
           </section>
@@ -390,7 +417,10 @@ export default function PricingAnalysisPage() {
                 </p>
                 <p className="text-slate-400">
                   <span className="text-slate-500">10.</span>{" "}
-                  <Link href="/dashboard" className="text-slate-300 underline hover:text-white transition-colors">
+                  <Link
+                    href="/ai-infrastructure-unit-economics"
+                    className="text-slate-300 underline hover:text-white transition-colors"
+                  >
                     Follow the Money trail dashboard
                   </Link>{" "}
                   - Interactive financial tracking
