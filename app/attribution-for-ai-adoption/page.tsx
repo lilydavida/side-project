@@ -148,7 +148,7 @@ export default function ConfidenceGamePage() {
           {/* Google Opportunity */}
           <section className="mb-6 sm:mb-12">
             <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
-              The Blue Ocean: Why Google Should Own This Space
+             Why Google Should Own This Space
             </h2>
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
               Here is the irony: Google has all the parts to build this cockpit, but they are sold as separate airplane
