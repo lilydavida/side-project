@@ -29,6 +29,6 @@ export const PAGE_CONFIG = {
     description:
       "Why the winners of the next decade won't just be the companies with the smartest models, but those who can measure the probability of success. A deep dive into Confidence Engines and the Google opportunity.",
     tags: [{ label: "AI Governance" }, { label: "Product Strategy" }, { label: "Confidence Engineering" }],
-    href: "/confidence-game",
+    href: "/attribution-for-ai-adoption",
   },
 } as const

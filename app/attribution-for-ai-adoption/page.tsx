@@ -21,7 +21,7 @@ export default function ConfidenceGamePage() {
             <h1 className="text-2xl sm:text-5xl font-bold text-white mb-3 sm:mb-4 leading-tight">
               The Confidence Game: Why the Next Era of AI Belongs to Those Who Measure the Odds
             </h1>
-            <div className="text-slate-400 text-xs sm:text-sm">January 2025</div>
+            <div className="text-slate-400 text-xs sm:text-sm">November 2025</div>
           </header>
 
           {/* Hook */}
@@ -38,8 +38,8 @@ export default function ConfidenceGamePage() {
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
               Company ABC bridged this gap. They didn't try to force AI to be perfect. Instead, they built a system that
               made the probability visible and controllable. This is the story of how they turned a Central Event
-              Tracker into a "Confidence Engine" and why Google is sitting on an opportunity to do the
-              same for the rest of the world.
+              Tracker into a "Confidence Engine" and why Google is sitting on an opportunity to do the same for the rest
+              of the world.
             </p>
           </section>
 
@@ -49,15 +49,17 @@ export default function ConfidenceGamePage() {
               The Case Study: Company ABC’s "Confidence Engine"
             </h2>
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-3 sm:mb-4">
-              Company ABC faced a classic problem: Their ML engineers built a powerful recommendation model, but the
-              PM and Business teams did feel ready to turn it on fully. Why? Because if the model hallucinated or
-              optimized for the wrong metric, the business had no way to stop it until the damage was done.
+              Company ABC faced a classic problem: Their ML engineers built a powerful recommendation model, but the PM
+              and Business teams did feel ready to turn it on fully. Why? Because if the model hallucinated or optimized
+              for the wrong metric, the business had no way to stop it until the damage was done.
             </p>
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-3 sm:mb-4">
               ABC’s solution wasn’t better AI models. It was better infrastructure.
             </p>
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-3 sm:mb-4">
-              They built a Centralized Event Tracker. But, they didn't fall for the trap of "perfect attribution," which doesn't exist. instead, they solved for Consistency. They created a single, agreed-upon proxy for truth that captured the AI's prediction alongside the business outcome.
+              They built a Centralized Event Tracker. But, they didn't fall for the trap of "perfect attribution," which
+              doesn't exist. instead, they solved for Consistency. They created a single, agreed-upon proxy for truth
+              that captured the AI's prediction alongside the business outcome.
             </p>
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-3 sm:mb-4">
               This changed the conversation from "The AI is right/wrong" to "The AI is 80% confident."
@@ -74,7 +76,8 @@ export default function ConfidenceGamePage() {
                 <span className="text-slate-500">•</span>
                 <span>
                   <span className="font-semibold text-white">For the Business User:</span> It gave them a dashboard to
-                  see weighted attribution. If certain thresholds are hit. If the AI’s confidence dipped below a threshold, it could fallback to Rules-Based Pricing.
+                  see weighted attribution. If certain thresholds are hit. If the AI’s confidence dipped below a
+                  threshold, it could fallback to Rules-Based Pricing.
                 </span>
               </li>
             </ul>
@@ -97,13 +100,12 @@ export default function ConfidenceGamePage() {
               </div>
               <div className="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
                 <h3 className="font-semibold text-white mb-2">The Human</h3>
-                <p className="text-sm text-slate-400">
-                  Defines the risk tolerance
-                </p>
+                <p className="text-sm text-slate-400">Defines the risk tolerance</p>
               </div>
             </div>
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-              By keeping the human in the loop, ABC didn't just get "control." They got calibration. The business learned to trust the AI because the system explicitly told them when not to trust it.
+              By keeping the human in the loop, ABC didn't just get "control." They got calibration. The business
+              learned to trust the AI because the system explicitly told them when not to trust it.
             </p>
           </section>
 
@@ -199,16 +201,20 @@ export default function ConfidenceGamePage() {
               <li className="flex gap-2 sm:gap-3">
                 <span className="text-slate-500">•</span>
                 <span>
-                  <span className="font-semibold text-white">The Transparency Trap:</span> Google’s core business (Ads) relies on a degree of opacity ("trust our algorithm"). If they build a hyper-transparent attribution engine for their Cloud customers, they implicitly highlight the lack of transparency in their Ad ecosystem.
+                  <span className="font-semibold text-white">The Transparency Trap:</span> Google’s core business (Ads)
+                  relies on a degree of opacity ("trust our algorithm"). If they build a hyper-transparent attribution
+                  engine for their Cloud customers, they implicitly highlight the lack of transparency in their Ad
+                  ecosystem.
                 </span>
               </li>
               <li className="flex gap-2 sm:gap-3">
                 <span className="text-slate-500">•</span>
                 <span>
-                  <span className="font-semibold text-white">The "Good Enough" Fallacy:</span> Most enterprises are still struggling with basic data hygiene. Google is waiting for the market to mature before offering advanced governance tools.
+                  <span className="font-semibold text-white">The "Good Enough" Fallacy:</span> Most enterprises are
+                  still struggling with basic data hygiene. Google is waiting for the market to mature before offering
+                  advanced governance tools.
                 </span>
               </li>
-              
             </ul>
           </section>
 
@@ -246,13 +252,16 @@ export default function ConfidenceGamePage() {
           {/* Conclusion */}
           <section className="mb-6 sm:mb-12">
             <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
-             Conclusion: The Future belongs to the Translators
+              Conclusion: The Future belongs to the Translators
             </h2>
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-3 sm:mb-4">
-              The era of "blind trust" in AI is over. The winners of the next decade won't be the companies with the smartest models; they will be the companies that can translate probability into profit.
+              The era of "blind trust" in AI is over. The winners of the next decade won't be the companies with the
+              smartest models; they will be the companies that can translate probability into profit.
             </p>
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-              Tech giants like Google have a massive opportunity to standardize the infrastructure, but they are conflicted. Until they solve that, the advantage belongs to companies like ABC who are willing to build their own Confidence Engines to measure the risk.
+              Tech giants like Google have a massive opportunity to standardize the infrastructure, but they are
+              conflicted. Until they solve that, the advantage belongs to companies like ABC who are willing to build
+              their own Confidence Engines to measure the risk.
             </p>
           </section>
 
