@@ -1,6 +1,6 @@
 "use client"
 
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft } from "lucide-react"
 import Link from "next/link"
 
 export default function PricingAnalysisPage() {
@@ -63,9 +63,9 @@ export default function PricingAnalysisPage() {
                     <td className="p-2 sm:p-3">Hardware profits are insulated</td>
                   </tr>
                   <tr className="border-b border-slate-800">
-                    <td className="p-2 sm:p-3">Hyperscalers</td>
-                    <td className="p-2 sm:p-3">Positive, mixed</td>
-                    <td className="p-2 sm:p-3">Big cloud strong, niche GPU clouds lose</td>
+                    <td className="p-2 sm:p-3">GPU Cloud</td>
+                    <td className="p-2 sm:p-3">Speculative</td>
+                    <td className="p-2 sm:p-3">Profitability depends on sustained GPU scarcity</td>
                   </tr>
                   <tr className="border-b border-slate-800">
                     <td className="p-2 sm:p-3">LLMs</td>
@@ -147,15 +147,15 @@ export default function PricingAnalysisPage() {
               sometimes the opposite. But both sides feel uneasy.
             </p>
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-              In fact, most 2025 enterprise AI contracts now combine several pricing approaches like usage, tiered, hybrid, and nascent
-              value-based resulting in confusion and volatile cost exposure.
+              In fact, most 2025 enterprise AI contracts now combine several pricing approaches like usage, tiered,
+              hybrid, and nascent value-based resulting in confusion and volatile cost exposure.
             </p>
           </section>
 
           {/* Key Misalignments */}
           <section className="mb-6 sm:mb-12">
             <h2 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">
-              The hypothesis: Misaligned Incentives 
+              The hypothesis: Misaligned Incentives
             </h2>
 
             <div className="space-y-4 sm:space-y-6">
@@ -235,9 +235,7 @@ export default function PricingAnalysisPage() {
 
           {/* Hybrid Approach */}
           <section className="mb-6 sm:mb-12">
-            <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
-              The Hybrid Approach
-            </h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">The Hybrid Approach</h2>
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-3 sm:mb-4">
               Imagine a world where companies pay a flat fee to try as many experiments as they want. When they find a
               real winner, the provider earns a share. Everyone assumes some risk, but everyone stands to benefit when
