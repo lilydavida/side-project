@@ -31,7 +31,14 @@ export async function fetchFinancialData(): Promise<
       try {
         const response = await fetch(
           `https://financialmodelingprep.com/stable/income-statement?symbol=${symbol}&period=quarter&limit=1&apikey=${apiKey}`,
+          { next: { revalidate: 3600 } },
         )
+
+        if (response.status === 429) {
+          console.warn(`[v0] Rate limit reached for ${symbol}, using fallback`)
+          return null
+        }
+
         if (!response.ok) return null
         const data = await response.json()
         return data[0] // Get latest quarter

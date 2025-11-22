@@ -2,7 +2,18 @@
 
 import { useState, useEffect } from "react"
 import { Card } from "@/components/ui/card"
-import { TrendingUp, FileText, ArrowLeft, RefreshCw, Cpu, Server, Brain, AppWindow, ArrowRight } from "lucide-react"
+import {
+  TrendingUp,
+  FileText,
+  ArrowLeft,
+  RefreshCw,
+  Cpu,
+  Server,
+  Brain,
+  AppWindow,
+  ArrowRight,
+  Info,
+} from "lucide-react"
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts"
 import Link from "next/link"
 import { PAGE_CONFIG } from "@/lib/page-config"
@@ -274,7 +285,7 @@ export default function AILayersDashboard() {
 
     loadData()
 
-    const interval = setInterval(loadData, 30000)
+    const interval = setInterval(loadData, 300000)
     return () => clearInterval(interval)
   }, [])
 
@@ -293,73 +304,115 @@ export default function AILayersDashboard() {
   const summary = getLayerSummary(layer.id, layer.companies)
 
   return (
-    <div className="min-h-screen bg-background px-4 py-8 md:py-12 font-sans text-foreground overflow-x-hidden">
-      <div className="max-w-7xl mx-auto space-y-12">
-        {/* Header Section */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
-          <div>
+    <div className="min-h-screen bg-background/95 px-3 py-4 md:py-12 font-sans text-foreground overflow-x-hidden selection:bg-primary/20">
+      <div className="max-w-7xl mx-auto space-y-6 md:space-y-10">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-4 border-b border-border/40 pb-6 md:pb-8">
+          <div className="max-w-4xl">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-2 text-sm"
+              className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-4 md:mb-6 text-sm font-medium group"
             >
-              <ArrowLeft size={16} />
-              <span>Back to Home</span>
+              <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
+              <span>Back to Portfolio</span>
             </Link>
-            <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">{PAGE_CONFIG.dashboard.title}</h1>
-            <div className="max-w-3xl relative pl-6 border-l-4 border-primary/30 py-1">
-              <p className="text-lg md:text-xl font-medium leading-relaxed text-muted-foreground/90 italic">
-                "I spent two weeks mapping <span className="text-foreground font-bold not-italic">$400B</span> in AI
+
+            <div className="space-y-2 mb-4 md:mb-6">
+              <div className="inline-flex items-center px-2.5 py-0.5 rounded-full border border-primary/20 bg-primary/5 text-[10px] md:text-xs font-semibold text-primary uppercase tracking-wider">
+                Interactive Research Project
+              </div>
+              <h1 className="text-3xl md:text-6xl font-bold tracking-tight text-foreground text-balance">
+                {PAGE_CONFIG.dashboard.title}
+              </h1>
+            </div>
+
+            <div className="relative pl-4 md:pl-8 border-l-2 md:border-l-4 border-primary/40 py-1 md:py-2">
+              <p className="text-lg md:text-2xl font-medium leading-relaxed text-muted-foreground/90 italic text-balance">
+                "I spent two weeks mapping{" "}
+                <span className="text-foreground font-bold not-italic border-b-2 border-primary/30">$400B</span> in AI
                 infrastructure capital flows to answer two questions:"
               </p>
-              <ul className="mt-3 space-y-1 text-base md:text-lg font-medium text-foreground">
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+              <ul className="mt-3 md:mt-4 space-y-2 md:space-y-3">
+                <li className="flex items-start md:items-center gap-3 text-base md:text-lg font-medium text-foreground">
+                  <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5 md:mt-0">
+                    <span className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-primary" />
+                  </div>
                   Who's funding this buildout?
                 </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                <li className="flex items-start md:items-center gap-3 text-base md:text-lg font-medium text-foreground">
+                  <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5 md:mt-0">
+                    <span className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-primary" />
+                  </div>
                   Where do the unit economics land when everyone's scaling simultaneously?
                 </li>
               </ul>
             </div>
           </div>
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary/50 border border-border text-xs text-muted-foreground self-start md:self-center">
-            <RefreshCw size={12} className={isRefreshing ? "animate-spin" : ""} />
-            <span>{isRefreshing ? "Refreshing..." : `Updated: ${lastUpdate.toLocaleTimeString()}`}</span>
+
+          <div className="flex flex-col items-end gap-2 self-start md:self-end">
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-background border border-border shadow-sm text-xs font-medium text-muted-foreground">
+              <RefreshCw size={12} className={isRefreshing ? "animate-spin text-primary" : ""} />
+              <span>{isRefreshing ? "Syncing Market Data..." : `Live Data: ${lastUpdate.toLocaleTimeString()}`}</span>
+            </div>
+            <div className="text-[10px] text-muted-foreground text-right max-w-[200px]">
+              *Revenue metrics updated via FMP API. Private company data estimated from filings.
+            </div>
           </div>
         </div>
 
-        {/* Interactive Ecosystem Flow Map */}
-        <div className="relative py-8 overflow-x-auto">
-          <div className="absolute top-1/2 left-0 w-full h-1 bg-border -translate-y-1/2 hidden md:block z-0" />
-          <div className="flex flex-nowrap md:justify-between gap-4 md:gap-8 min-w-[800px] relative z-10 px-4">
+        <div className="relative py-4 md:py-8">
+          <div className="absolute top-1/2 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-border to-transparent -translate-y-1/2 hidden md:block z-0" />
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 relative z-10">
             {layersData.map((l, index) => {
               const Icon = l.icon
               const isSelected = selectedLayer === l.id
               return (
-                <div key={l.id} className="flex flex-col items-center gap-4 flex-1 min-w-[140px] group">
+                <div
+                  key={l.id}
+                  className="flex flex-col items-center gap-3 group cursor-pointer"
+                  onClick={() => setSelectedLayer(l.id)}
+                >
                   <button
-                    onClick={() => setSelectedLayer(l.id)}
-                    className={`relative w-16 h-16 md:w-20 md:h-20 rounded-2xl flex items-center justify-center transition-all duration-300 ${
+                    className={`relative w-full aspect-square md:w-24 md:h-24 rounded-xl md:rounded-3xl flex flex-col md:flex-row items-center justify-center transition-all duration-500 ${
                       isSelected
-                        ? `bg-gradient-to-br ${l.color} shadow-[0_0_30px_-5px_rgba(var(--primary),0.5)] scale-110 ring-2 ring-offset-2 ring-offset-background ring-white/20`
-                        : "bg-secondary hover:bg-secondary/80 border border-border hover:border-primary/50"
+                        ? `bg-gradient-to-br ${l.color} shadow-[0_10px_40px_-10px_rgba(var(--primary),0.3)] scale-[1.02] md:scale-110 ring-1 md:ring-4 ring-background`
+                        : "bg-card border border-muted hover:border-primary/30 hover:shadow-lg hover:-translate-y-1"
                     }`}
                   >
-                    <Icon size={32} className={isSelected ? "text-white" : "text-muted-foreground"} />
+                    <Icon
+                      size={24}
+                      className={`mb-2 md:mb-0 md:w-8 md:h-8 transition-all duration-300 ${isSelected ? "text-white scale-110" : "text-muted-foreground group-hover:text-foreground"}`}
+                    />
+
+                    {/* Mobile-only label inside the box for better space usage */}
+                    <span
+                      className={`md:hidden text-[10px] font-bold uppercase tracking-wider text-center px-2 leading-tight ${isSelected ? "text-white" : "text-muted-foreground"}`}
+                    >
+                      {l.name}
+                    </span>
+
+                    {isSelected && (
+                      <motion.div
+                        layoutId="activeIndicator"
+                        className="absolute -bottom-2 md:-bottom-3 left-1/2 -translate-x-1/2 w-1 md:w-1.5 h-1 md:h-1.5 rounded-full bg-foreground hidden md:block"
+                      />
+                    )}
+
                     {index < layersData.length - 1 && (
-                      <div className="absolute -right-8 top-1/2 -translate-y-1/2 text-muted-foreground/30 hidden md:block">
+                      <div className="absolute -right-4 top-1/2 -translate-y-1/2 text-muted-foreground/20 hidden md:block pointer-events-none z-[-1]">
                         <ArrowRight size={24} />
                       </div>
                     )}
                   </button>
-                  <div className="text-center space-y-1">
+
+                  {/* Desktop-only external label */}
+                  <div className="text-center space-y-1 hidden md:block">
                     <div
-                      className={`text-sm font-bold transition-colors ${isSelected ? "text-foreground" : "text-muted-foreground"}`}
+                      className={`text-sm md:text-lg font-bold transition-colors ${isSelected ? "text-foreground" : "text-muted-foreground group-hover:text-foreground"}`}
                     >
                       {l.name}
                     </div>
-                    <div className="text-[10px] text-muted-foreground max-w-[120px] mx-auto leading-tight">
+                    <div className="text-xs text-muted-foreground/80 max-w-[140px] mx-auto leading-snug text-balance">
                       {l.description}
                     </div>
                   </div>
@@ -369,39 +422,76 @@ export default function AILayersDashboard() {
           </div>
         </div>
 
-        {/* Detailed Metrics Section */}
         <AnimatePresence mode="wait">
           <motion.div
             key={selectedLayer}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-            className="grid grid-cols-1 lg:grid-cols-12 gap-6"
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="grid grid-cols-1 lg:grid-cols-12 gap-8"
           >
-            {/* Left Column: Charts & KPIs */}
-            <div className="lg:col-span-8 space-y-6">
-              {/* KPIs Row */}
-              <div className="grid grid-cols-3 gap-4">
-                <Card className="bg-secondary/30 border-border p-4 relative overflow-hidden group">
-                  <div className={`absolute inset-0 bg-gradient-to-br ${layer.color} opacity-5`} />
+            <div className="lg:col-span-8 space-y-6 md:space-y-8">
+              <Card className="bg-card border-border shadow-sm overflow-hidden relative">
+                <div className={`absolute top-0 left-0 w-1 h-full bg-gradient-to-b ${layer.color}`} />
+                <div className="p-5 md:p-8">
+                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                    <div className="flex items-center gap-3">
+                      <div className={`p-2 rounded-lg bg-secondary ${layer.accent}`}>
+                        <FileText size={20} />
+                      </div>
+                      <h3 className="text-lg font-bold uppercase tracking-wide text-foreground">Layer Analysis</h3>
+                    </div>
+                    <div className="flex items-center gap-3 px-4 py-1.5 rounded-full bg-secondary/50 border border-border/60 w-fit">
+                      <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Status</span>
+                      <span className={`w-1.5 h-1.5 rounded-full ${summary.healthColor} animate-pulse`} />
+                      <span className={`text-sm font-bold ${summary.healthColor}`}>{summary.health}</span>
+                    </div>
+                  </div>
+
+                  <div className="grid md:grid-cols-2 gap-8">
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                        Who's Funding?
+                      </div>
+                      <p className="text-base leading-relaxed font-medium text-foreground/90">{summary.funding}</p>
+                    </div>
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                        Unit Economics
+                      </div>
+                      <p className="text-base leading-relaxed font-medium text-foreground/90">{summary.economics}</p>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-6">
+                <Card className="bg-card/50 border-border p-3 md:p-5 relative overflow-hidden group hover:border-primary/20 transition-colors col-span-2 sm:col-span-1">
+                  <div className={`absolute inset-0 bg-gradient-to-br ${layer.color} opacity-[0.03]`} />
                   <div className="relative z-10">
-                    <div className="text-xs text-muted-foreground mb-1">Total Revenue</div>
-                    <div className="text-2xl font-bold">
+                    <div className="text-[10px] md:text-xs font-medium text-muted-foreground mb-1 md:mb-2 uppercase tracking-wider">
+                      Total Revenue
+                    </div>
+                    <div className="text-lg md:text-3xl font-bold tracking-tight">
                       ${layer.companies.reduce((sum, c) => sum + c.revenue, 0).toFixed(1)}B
                     </div>
                   </div>
                 </Card>
-                <Card className="bg-secondary/30 border-border p-4 relative overflow-hidden">
-                  <div className="text-xs text-muted-foreground mb-1">Total Commitments</div>
-                  <div className="text-2xl font-bold">
+                <Card className="bg-card/50 border-border p-4 md:p-5 relative overflow-hidden hover:border-primary/20 transition-colors">
+                  <div className="text-[10px] md:text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wider">
+                    Commitments
+                  </div>
+                  <div className="text-xl md:text-3xl font-bold tracking-tight">
                     ${layer.companies.reduce((sum, c) => sum + c.commitments, 0).toFixed(1)}B
                   </div>
                 </Card>
-                <Card className="bg-secondary/30 border-border p-4 relative overflow-hidden">
-                  <div className="text-xs text-muted-foreground mb-1">Revenue Delta</div>
+                <Card className="bg-card/50 border-border p-4 md:p-5 relative overflow-hidden hover:border-primary/20 transition-colors">
+                  <div className="text-[10px] md:text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wider">
+                    Revenue Delta
+                  </div>
                   <div
-                    className={`text-2xl font-bold ${
+                    className={`text-xl md:text-3xl font-bold tracking-tight ${
                       layer.companies.reduce((sum, c) => sum + c.revenue, 0) -
                         layer.companies.reduce((sum, c) => sum + c.commitments, 0) <
                       0
@@ -419,197 +509,198 @@ export default function AILayersDashboard() {
                 </Card>
               </div>
 
-              {/* Main Chart */}
-              <Card className="bg-card border-border overflow-hidden">
-                <div className="p-6 border-b border-border/50 flex justify-between items-center">
-                  <div className="flex items-center gap-2">
-                    <TrendingUp size={18} className={layer.accent} />
-                    <h2 className="text-sm font-semibold uppercase tracking-wider text-foreground">
-                      Revenue vs Commitments
-                    </h2>
-                  </div>
-                  <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                    <span className="inline-block w-2 h-2 rounded-full bg-primary/50" /> Revenue
-                    <span className="inline-block w-2 h-2 rounded-full bg-muted" /> Commitments
-                  </div>
+              <Card className="p-4 md:p-6 border-border bg-card/50">
+                <div className="mb-6">
+                  <h3 className="text-base md:text-lg font-bold mb-1">Revenue vs Commitments</h3>
+                  <p className="text-xs md:text-sm text-muted-foreground">
+                    Quarterly revenue compared to reported infrastructure commitments
+                  </p>
                 </div>
-                <div className="p-6">
-                  <ResponsiveContainer width="100%" height={300}>
-                    <BarChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                      <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" vertical={false} />
+                <div className="h-[250px] md:h-[300px] w-full">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={chartData} margin={{ top: 20, right: 0, left: -20, bottom: 0 }}>
+                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--border)" opacity={0.5} />
                       <XAxis
                         dataKey="name"
-                        stroke="var(--muted-foreground)"
-                        tick={{ fontSize: 12 }}
-                        tickLine={false}
                         axisLine={false}
-                        dy={10}
+                        tickLine={false}
+                        tick={({ x, y, payload }) => (
+                          <g transform={`translate(${x},${y})`}>
+                            <text
+                              x={0}
+                              y={0}
+                              dy={16}
+                              textAnchor="middle"
+                              fill="currentColor"
+                              className="text-[8px] md:text-xs font-medium fill-muted-foreground"
+                            >
+                              {/* Truncate long names on mobile */}
+                              {typeof window !== "undefined" && window.innerWidth < 768
+                                ? payload.value.length > 8
+                                  ? payload.value.substring(0, 6) + ".."
+                                  : payload.value
+                                : payload.value}
+                            </text>
+                          </g>
+                        )}
                       />
                       <YAxis
-                        stroke="var(--muted-foreground)"
-                        tick={{ fontSize: 12 }}
-                        tickLine={false}
                         axisLine={false}
+                        tickLine={false}
+                        tick={{ fill: "var(--muted-foreground)", fontSize: 10 }}
                         tickFormatter={(value) => `$${value}B`}
                       />
                       <Tooltip
+                        cursor={{ fill: "var(--secondary)", opacity: 0.5 }}
                         contentStyle={{
-                          backgroundColor: "var(--popover)",
+                          backgroundColor: "var(--background)",
                           borderColor: "var(--border)",
                           borderRadius: "8px",
-                          fontSize: "12px",
-                          boxShadow: "0 4px 12px rgba(0,0,0,0.5)",
+                          boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
                         }}
-                        itemStyle={{ color: "var(--foreground)" }}
-                        cursor={{ fill: "var(--muted)/0.2" }}
                       />
-                      <Bar dataKey="revenue" fill="var(--primary)" radius={[4, 4, 0, 0]} maxBarSize={50} />
-                      <Bar dataKey="commitments" fill="var(--muted)" radius={[4, 4, 0, 0]} maxBarSize={50} />
+                      <Bar
+                        dataKey="revenue"
+                        name="Revenue"
+                        fill="hsl(var(--primary))"
+                        radius={[4, 4, 0, 0]}
+                        fillOpacity={0.9}
+                      />
+                      <Bar
+                        dataKey="commitments"
+                        name="Commitments"
+                        fill="var(--muted-foreground)"
+                        fillOpacity={0.2}
+                        radius={[4, 4, 0, 0]}
+                      />
                     </BarChart>
                   </ResponsiveContainer>
                 </div>
               </Card>
+            </div>
 
-              {/* Layer Analysis Card */}
-              <Card className="bg-secondary/20 border-border overflow-hidden">
-                <div className="p-6">
-                  <div className="flex items-center gap-2 mb-4">
-                    <FileText size={18} className={layer.accent} />
-                    <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">Layer Analysis</h3>
-                  </div>
-
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
-                        Who's Funding?
-                      </div>
-                      <p className="text-sm leading-relaxed text-foreground/90">{summary.funding}</p>
+            <div className="lg:col-span-4 space-y-6 md:space-y-8">
+              <Card className="bg-card border-border h-full">
+                <div className="p-5 md:p-6 border-b border-border/50">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-lg bg-secondary text-primary">
+                      <FileText size={20} />
                     </div>
-
-                    <div className="space-y-2">
-                      <div className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
-                        Unit Economics
-                      </div>
-                      <p className="text-sm leading-relaxed text-foreground/90">{summary.economics}</p>
-                    </div>
+                    <h3 className="font-bold text-base md:text-lg">Material Contracts</h3>
                   </div>
-
-                  <div className="mt-6 p-4 bg-background/50 rounded-xl border border-border/50 flex items-center justify-between backdrop-blur-sm">
-                    <div className="text-sm font-bold text-foreground/80 uppercase tracking-wide">Ecosystem Status</div>
-                    <div
-                      className={`text-base md:text-lg font-bold ${summary.healthColor} flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-background shadow-sm border border-border/50`}
-                    >
-                      <div
-                        className={`w-2.5 h-2.5 rounded-full ${
-                          summary.health.includes("Healthy")
-                            ? "bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.4)]"
-                            : summary.health.includes("Scaling")
-                              ? "bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.4)]"
-                              : "bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.4)]"
-                        }`}
-                      />
-                      {summary.health}
+                </div>
+                <div className="p-0">
+                  {deals.length > 0 ? (
+                    <div className="divide-y divide-border/40">
+                      {deals.map((deal) => (
+                        <div key={deal.id} className="p-4 md:p-5 hover:bg-secondary/30 transition-colors">
+                          <div className="flex justify-between items-start mb-2">
+                            <div className="font-semibold text-sm md:text-base">{deal.company}</div>
+                            <div className="text-xs font-medium px-2 py-1 rounded-full bg-primary/10 text-primary">
+                              {deal.value}
+                            </div>
+                          </div>
+                          <div className="text-xs md:text-sm text-muted-foreground mb-3">
+                            Deal with <span className="text-foreground font-medium">{deal.customer}</span>
+                          </div>
+                          <div className="flex items-center gap-3 text-[10px] md:text-xs text-muted-foreground/80">
+                            <span className="flex items-center gap-1">
+                              <Info size={12} /> {deal.term}
+                            </span>
+                            <span>•</span>
+                            <span>{deal.source}</span>
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                  </div>
+                  ) : (
+                    <div className="p-8 text-center text-muted-foreground text-sm italic">
+                      No public material contracts disclosed for this period.
+                    </div>
+                  )}
                 </div>
               </Card>
 
-              {/* Fulfillment Status Bars */}
-              <Card className="bg-card border-border p-6">
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground mb-4">
-                  Fulfillment Health
-                </h3>
-                <div className="space-y-4">
+              <Card className="bg-card border-border p-5 md:p-6 md:col-span-2">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="p-2 rounded-lg bg-secondary text-primary">
+                    <TrendingUp size={20} />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-base md:text-lg">Fulfillment Health</h3>
+                    <p className="text-xs md:text-sm text-muted-foreground">
+                      % of commitments currently being met by revenue
+                    </p>
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
                   {layer.companies.map((company) => (
-                    <div key={company.name} className="group">
-                      <div className="flex justify-between items-center text-sm mb-1.5">
-                        <span className="font-medium text-foreground">{company.name}</span>
-                        <span className={`font-mono text-xs ${getFulfillmentColor(company.fulfillment)}`}>
+                    <div key={company.name} className="space-y-2">
+                      <div className="flex justify-between items-end">
+                        <span className="text-xs md:text-sm font-medium truncate pr-2">{company.name}</span>
+                        <span
+                          className="text-sm md:text-lg font-bold"
+                          style={{ color: getFulfillmentColor(company.fulfillment) }}
+                        >
                           {company.fulfillment}%
                         </span>
                       </div>
-                      <div className="h-2 bg-secondary rounded-full overflow-hidden">
+                      <div className="h-2.5 bg-secondary rounded-full overflow-hidden">
                         <motion.div
                           initial={{ width: 0 }}
                           animate={{ width: `${company.fulfillment}%` }}
-                          transition={{ duration: 1, ease: "easeOut" }}
-                          className="h-full"
-                          style={{ backgroundColor: getFulfillmentColor(company.fulfillment) }}
-                        />
+                          transition={{ duration: 0.8 }}
+                          className="h-full rounded-full relative overflow-hidden"
+                        >
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/20" />
+                        </motion.div>
                       </div>
                     </div>
                   ))}
                 </div>
               </Card>
             </div>
-
-            {/* Right Column: Context & Deals */}
-            <div className="lg:col-span-4 space-y-6">
-              <Card className="bg-gradient-to-br from-card to-secondary/50 border-border p-6">
-                <div className="flex items-center gap-2 mb-4 text-foreground">
-                  <div className={`p-2 rounded-lg bg-gradient-to-br ${layer.color} bg-opacity-20`}>
-                    <layer.icon size={20} className="text-white" />
-                  </div>
-                  <h3 className="font-bold text-lg">{layer.name}</h3>
-                </div>
-                <p className="text-muted-foreground text-sm leading-relaxed">{layer.description}</p>
-                <div className="mt-4 pt-4 border-t border-border/50 flex justify-between text-xs text-muted-foreground">
-                  <span>Companies: {layer.companies.length}</span>
-                  <span>Deals: {deals.length}</span>
-                </div>
-              </Card>
-
-              <div className="space-y-4">
-                <div className="flex items-center gap-2 px-1">
-                  <FileText size={16} className="text-muted-foreground" />
-                  <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                    Material Contracts
-                  </h3>
-                </div>
-                {deals.length > 0 ? (
-                  <div className="space-y-3">
-                    {deals.map((deal) => (
-                      <Card
-                        key={deal.id}
-                        className="p-4 border-border bg-card/50 hover:bg-card transition-colors group"
-                      >
-                        <div className="flex justify-between items-start mb-2">
-                          <div className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
-                            {deal.company}
-                          </div>
-                          <div className="text-[10px] text-muted-foreground bg-secondary px-1.5 py-0.5 rounded">
-                            {deal.date}
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2">
-                          <ArrowRight size={12} />
-                          <span>{deal.customer}</span>
-                        </div>
-                        <div className="flex justify-between items-center pt-2 border-t border-border/50 mt-2">
-                          <span className="text-xs font-medium text-foreground">{deal.value}</span>
-                          <span className="text-[10px] text-muted-foreground">{deal.term}</span>
-                        </div>
-                      </Card>
-                    ))}
-                  </div>
-                ) : (
-                  <div className="text-center py-8 text-muted-foreground text-sm bg-secondary/30 rounded-lg border border-dashed border-border">
-                    No public material contracts available
-                  </div>
-                )}
-              </div>
-
-              <div className="text-center pt-4">
-                <Link
-                  href="/pricing-analysis"
-                  className="inline-flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors border-b border-dashed border-muted-foreground/50 hover:border-foreground pb-0.5"
-                >
-                  View Pricing Analysis <ArrowRight size={10} />
-                </Link>
-              </div>
-            </div>
           </motion.div>
         </AnimatePresence>
+
+        {/* Deep Dive Analysis Link - Moved outside the main grid to prevent overlay */}
+        <div className="mt-12 md:mt-20 pb-12 md:pb-20 relative z-20">
+          <Link href="/pricing-analysis" className="block group">
+            <div className="relative overflow-hidden rounded-2xl md:rounded-3xl bg-foreground text-background p-6 md:p-12 transition-transform duration-500 hover:scale-[1.01]">
+              <div
+                className={`absolute top-0 right-0 w-[300px] h-[300px] bg-gradient-to-br ${layer.color} blur-[100px] opacity-20 rounded-full translate-x-1/3 -translate-y-1/3`}
+              />
+
+              <div className="relative z-10 max-w-3xl">
+                <div className="flex items-center gap-3 mb-4 md:mb-6">
+                  <div className="px-3 py-1 rounded-full bg-background/10 border border-background/20 text-[10px] md:text-xs font-bold tracking-wider uppercase">
+                    Deep Dive Analysis
+                  </div>
+                  <ArrowRight className="w-4 h-4 md:w-5 md:h-5 -rotate-45 group-hover:rotate-0 transition-transform duration-500" />
+                </div>
+
+                <h2 className="text-2xl md:text-5xl font-bold mb-4 md:mb-6 leading-tight text-balance">
+                  Read the full unit economics breakdown
+                </h2>
+
+                <p className="text-sm md:text-xl text-background/80 leading-relaxed max-w-2xl">
+                  My hypothesis: The Distribution and LLM layers must prove massive AI productivity gains to justify
+                  the CapEx. See how the margins improve as adoption scales.
+                </p>
+              </div>
+            </div>
+          </Link>
+        </div>
+
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 mt-12 text-xs text-muted-foreground">
+          <div>
+            © {new Date().getFullYear()} AI Infrastructure Map. Data aggregated from public filings and API sources.
+          </div>
+          <div className="flex items-center gap-6">
+            <span>Built with Next.js & Tailwind</span>
+            <span>Real-time FMP API Integration</span>
+          </div>
+        </div>
       </div>
     </div>
   )
