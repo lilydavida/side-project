@@ -21,6 +21,17 @@
       "published": true,
       "createdAt": "2025-01-20",
       "type": "article"
+    },
+    {
+      "id": "ai-pricing-economics",
+      "title": "The $1.4 Trillion AI Mystery: Rethinking How Value Flows",
+      "subtitle": "Outcome-Based Pricing Research",
+      "description": "From Sam Altman's candid response to a $1.4T question to practical outcome-based pricing models. How hybrid approaches could realign incentives across the AI stack and make everyone profitable.",
+      "tags": ["Business Models", "Outcome Pricing", "Value Creation"],
+      "href": "/ai-pricing-economics",
+      "published": true,
+      "createdAt": "2025-01-20",
+      "type": "article"
     }
   ]
 }

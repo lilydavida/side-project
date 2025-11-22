@@ -673,7 +673,7 @@ export default function AILayersDashboard() {
             </div>
             <div className="flex flex-col justify-center items-start md:items-end space-y-4">
               <Link
-                href="/pricing-analysis"
+                href="/ai-pricing-economics"
                 className="group flex flex-col gap-2 p-6 bg-primary/5 hover:bg-primary/10 border border-primary/20 rounded-xl transition-all hover:scale-[1.02] cursor-pointer w-full"
               >
                 <div className="flex items-center justify-between">

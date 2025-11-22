@@ -21,6 +21,6 @@ export const PAGE_CONFIG = {
     description:
       "From Sam Altman's candid response to a $1.4T question to practical outcome-based pricing models. How hybrid approaches could realign incentives across the AI stack and make everyone profitable.",
     tags: [{ label: "Business Models" }, { label: "Outcome Pricing" }, { label: "Value Creation" }],
-    href: "/pricing-analysis",
+    href: "/ai-pricing-economics",
   },
 } as const
