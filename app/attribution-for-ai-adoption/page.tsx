@@ -19,7 +19,7 @@ export default function ConfidenceGamePage() {
           {/* Header */}
           <header className="mb-6 sm:mb-12 border-b border-slate-800 pb-4 sm:pb-8">
             <h1 className="text-2xl sm:text-5xl font-bold text-white mb-3 sm:mb-4 leading-tight">
-              The Confidence Game: Why the Next Era of AI Belongs to Those Who Measure the Odds
+              Don't Trust AI. Measure It.
             </h1>
             <div className="text-slate-400 text-xs sm:text-sm">November 2025</div>
           </header>
@@ -58,7 +58,7 @@ export default function ConfidenceGamePage() {
             </p>
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-3 sm:mb-4">
               They built a Centralized Event Tracker. But, they didn't fall for the trap of "perfect attribution," which
-              doesn't exist. instead, they solved for Consistency. They created a single, agreed-upon proxy for truth
+              doesn't exist. Instead, they solved for Consistency. They created a single, agreed-upon proxy for truth
               that captured the AI's prediction alongside the business outcome.
             </p>
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-3 sm:mb-4">
@@ -83,32 +83,7 @@ export default function ConfidenceGamePage() {
             </ul>
           </section>
 
-          {/* Human-in-the-Loop */}
-          <section className="mb-6 sm:mb-12">
-            <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
-              Why Human-in-the-Loop Builds Credibility (Not Just Control)
-            </h2>
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-3 sm:mb-4">
-              We often think "Human-in-the-Loop" means a human rubber-stamping every decision. That doesn't scale.
-            </p>
-            <div className="grid sm:grid-cols-2 gap-4 mb-4">
-              <div className="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
-                <h3 className="font-semibold text-white mb-2">The System</h3>
-                <p className="text-sm text-slate-400">
-                  Optimised for speed. Processes millions of signals in milliseconds.
-                </p>
-              </div>
-              <div className="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
-                <h3 className="font-semibold text-white mb-2">The Human</h3>
-                <p className="text-sm text-slate-400">Defines the risk tolerance</p>
-              </div>
-            </div>
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-              By keeping the human in the loop, ABC didn't just get "control." They got calibration. The business
-              learned to trust the AI because the system explicitly told them when not to trust it.
-            </p>
-          </section>
-
+          
           {/* The Fork in the Road */}
           <section className="mb-6 sm:mb-12">
             <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
