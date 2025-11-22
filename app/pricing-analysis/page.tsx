@@ -28,8 +28,8 @@ export default function PricingAnalysisPage() {
           <section className="mb-6 sm:mb-12">
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-3 sm:mb-4">
               An OpenAI investor asked CEO Sam Altman: "How does a company with $13B in revenue take on $1.4T in
-              infrastructure commitments?" It was a moment of public honesty and disbelief about how AI's economic
-              engine actually works.
+              infrastructure spend?" It was a moment of public honesty and disbelief about how AI's economic engine
+              actually works.
             </p>
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
               It sent me on a two-week mission to figure out why do some players in AI make money hand over fist, while
@@ -39,8 +39,6 @@ export default function PricingAnalysisPage() {
 
           {/* Where Profits Live */}
           <section className="mb-6 sm:mb-12">
-            
-
             <Link
               href="/dashboard"
               className="group block bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:bg-slate-900 hover:border-slate-700 transition-all mb-6"
@@ -51,7 +49,7 @@ export default function PricingAnalysisPage() {
                     Explore AI ecosystem fulfillment heath Dashboard
                   </h3>
                   <p className="text-slate-400 text-sm">
-                    View the live breakdown of revenue vs. commitments across Chips, GPU Cloud, LLMs, and Distribution
+                    View the live breakdown of revenue vs. est. spend across Chips, GPU Cloud, LLMs, and Distribution
                     layers.
                   </p>
                 </div>
@@ -61,15 +59,11 @@ export default function PricingAnalysisPage() {
                 />
               </div>
             </Link>
-
-           
           </section>
 
           {/* Cost Optimization */}
           <section className="mb-6 sm:mb-12">
-            <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
-              Falsified hypothesis
-            </h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">Falsified hypothesis</h2>
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-3 sm:mb-4">
               Prevailing logic blames low hardware utilization or inefficient deployment for losses further downstream.
             </p>
@@ -87,8 +81,8 @@ export default function PricingAnalysisPage() {
               <li className="flex gap-2 sm:gap-3">
                 <span className="text-slate-500">•</span>
                 <span>
-                  <span className="font-semibold">Supply side:</span> Foundation Model Enterprise Lead with
-                  experience deploying AI across retail, logistics and banking sectors
+                  <span className="font-semibold">Supply side:</span> Foundation Model Enterprise Lead with experience
+                  deploying AI across retail, logistics and banking sectors
                 </span>
               </li>
               <li className="flex gap-2 sm:gap-3">
@@ -132,8 +126,6 @@ export default function PricingAnalysisPage() {
                   Pricing is built on resource consumption, not business outcomes.
                 </p>
               </div>
-
-              
             </div>
           </section>
 
@@ -144,8 +136,8 @@ export default function PricingAnalysisPage() {
             <div className="space-y-3 sm:space-y-4">
               <div>
                 <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-                  <span className="font-semibold">Usage-Based Model (OpenAI/Anthropic):</span> Pay per token aligns fees to activity. Its hard to forecast, and risky for high-growth
-                  use cases.
+                  <span className="font-semibold">Usage-Based Model (OpenAI/Anthropic):</span> Pay per token aligns fees
+                  to activity. Its hard to forecast, and risky for high-growth use cases.
                 </p>
               </div>
 
@@ -220,8 +212,6 @@ export default function PricingAnalysisPage() {
               </li>
             </ul>
           </section>
-
-          
 
           {/* Case Study */}
           <section className="mb-6 sm:mb-12">

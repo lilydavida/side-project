@@ -3,8 +3,8 @@
     {
       "id": "dashboard",
       "title": "Follow the Money trail",
-      "subtitle": "Revenue vs. contractual commitments across the 5-layer AI stack",
-      "description": "Interactive dashboard tracking $400B in AI infrastructure spending. Visualize revenue performance, fulfillment rates, and contractual obligations across chip makers, hyperscalers, GPU cloud providers, LLMs, and distribution layers.",
+      "subtitle": "Revenue vs. estimated spend across the 4-layer AI stack",
+      "description": "Interactive dashboard tracking $400B in AI infrastructure spending. Visualize revenue performance, fulfillment rates, and estimated spend across chip makers, GPU cloud providers, LLMs, and distribution layers.",
       "tags": ["AI Infrastructure", "Revenue Analytics", "Financial Data"],
       "href": "/dashboard",
       "published": true,

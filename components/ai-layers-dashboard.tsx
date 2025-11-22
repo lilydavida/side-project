@@ -2,18 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Card } from "@/components/ui/card"
-import {
-  TrendingUp,
-  FileText,
-  ArrowLeft,
-  RefreshCw,
-  Cpu,
-  Server,
-  Brain,
-  AppWindow,
-  ArrowRight,
-  Info,
-} from "lucide-react"
+import { FileText, ArrowLeft, RefreshCw, Cpu, Server, Brain, AppWindow, ArrowRight, Info } from "lucide-react"
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts"
 import Link from "next/link"
 import { PAGE_CONFIG } from "@/lib/page-config"
@@ -266,6 +255,10 @@ export default function AILayersDashboard() {
                 return {
                   ...company,
                   revenue: Number.parseFloat((financial.revenue * ratio).toFixed(1)),
+                  commitments:
+                    financial.commitments > 0
+                      ? Number.parseFloat(financial.commitments.toFixed(1))
+                      : company.commitments,
                 }
               }
             }
@@ -294,10 +287,13 @@ export default function AILayersDashboard() {
   const chartData = layer.companies.map((c) => ({
     name: c.name,
     revenue: c.revenue,
-    commitments: c.commitments,
+    spend: c.commitments, // Mapping 'commitments' data to 'spend' for the chart
     gap: c.revenue - c.commitments,
     fulfillment: c.fulfillment,
   }))
+
+  console.log("[v0] Chart Data for", selectedLayer, ":", chartData)
+  console.log("[v0] Layer companies:", layer.companies)
 
   const deals = MATERIAL_DEALS[selectedLayer as keyof typeof MATERIAL_DEALS] || []
 
@@ -320,27 +316,27 @@ export default function AILayersDashboard() {
               <div className="inline-flex items-center px-2.5 py-0.5 rounded-full border border-primary/20 bg-primary/5 text-[10px] md:text-xs font-semibold text-primary uppercase tracking-wider">
                 Interactive Research Project
               </div>
-              <h1 className="text-3xl md:text-6xl font-bold tracking-tight text-foreground text-balance">
+              <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground text-balance">
                 {PAGE_CONFIG.dashboard.title}
               </h1>
             </div>
 
-            <div className="relative pl-4 md:pl-8 border-l-2 md:border-l-4 border-primary/40 py-1 md:py-2">
-              <p className="text-lg md:text-2xl font-medium leading-relaxed text-muted-foreground/90 italic text-balance">
+            <div className="relative pl-4 md:pl-6 border-l-2 md:border-l-3 border-primary/40 py-1 md:py-2">
+              <p className="text-base md:text-lg lg:text-xl font-medium leading-relaxed text-muted-foreground/90 italic text-balance">
                 "I spent two weeks mapping{" "}
                 <span className="text-foreground font-bold not-italic border-b-2 border-primary/30">$400B</span> in AI
                 infrastructure capital flows to answer two questions:"
               </p>
-              <ul className="mt-3 md:mt-4 space-y-2 md:space-y-3">
-                <li className="flex items-start md:items-center gap-3 text-base md:text-lg font-medium text-foreground">
-                  <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5 md:mt-0">
-                    <span className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-primary" />
+              <ul className="mt-3 md:mt-4 space-y-2">
+                <li className="flex items-start md:items-center gap-3 text-sm md:text-base font-medium text-foreground">
+                  <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5 md:mt-0">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                   </div>
                   Who's funding this buildout?
                 </li>
-                <li className="flex items-start md:items-center gap-3 text-base md:text-lg font-medium text-foreground">
-                  <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5 md:mt-0">
-                    <span className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-primary" />
+                <li className="flex items-start md:items-center gap-3 text-sm md:text-base font-medium text-foreground">
+                  <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5 md:mt-0">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                   </div>
                   Where do the unit economics land when everyone's scaling simultaneously?
                 </li>
@@ -354,7 +350,7 @@ export default function AILayersDashboard() {
               <span>{isRefreshing ? "Syncing Market Data..." : `Live Data: ${lastUpdate.toLocaleTimeString()}`}</span>
             </div>
             <div className="text-[10px] text-muted-foreground text-right max-w-[200px]">
-              *Revenue metrics updated via FMP API. Private company data estimated from filings.
+              *Revenue: Annualized run rate (Q4 2024 × 4). Est. Spend: Annualized OpEx + Cost of Revenue.
             </div>
           </div>
         </div>
@@ -438,9 +434,11 @@ export default function AILayersDashboard() {
                   <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
                     <div className="flex items-center gap-3">
                       <div className={`p-2 rounded-lg bg-secondary ${layer.accent}`}>
-                        <FileText size={20} />
+                        <FileText size={18} />
                       </div>
-                      <h3 className="text-lg font-bold uppercase tracking-wide text-foreground">Layer Analysis</h3>
+                      <h3 className="text-base md:text-lg font-bold uppercase tracking-wide text-foreground">
+                        Layer Analysis
+                      </h3>
                     </div>
                     <div className="flex items-center gap-3 px-4 py-1.5 rounded-full bg-secondary/50 border border-border/60 w-fit">
                       <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Status</span>
@@ -470,8 +468,8 @@ export default function AILayersDashboard() {
                 <Card className="bg-card/50 border-border p-3 md:p-5 relative overflow-hidden group hover:border-primary/20 transition-colors col-span-2 sm:col-span-1">
                   <div className={`absolute inset-0 bg-gradient-to-br ${layer.color} opacity-[0.03]`} />
                   <div className="relative z-10">
-                    <div className="text-[10px] md:text-xs font-medium text-muted-foreground mb-1 md:mb-2 uppercase tracking-wider">
-                      Total Revenue
+                    <div className="text-[10px] md:text-xs font-medium text-muted-foreground uppercase tracking-wider mb-1">
+                      Revenue (Annual)
                     </div>
                     <div className="text-lg md:text-3xl font-bold tracking-tight">
                       ${layer.companies.reduce((sum, c) => sum + c.revenue, 0).toFixed(1)}B
@@ -479,15 +477,15 @@ export default function AILayersDashboard() {
                   </div>
                 </Card>
                 <Card className="bg-card/50 border-border p-4 md:p-5 relative overflow-hidden hover:border-primary/20 transition-colors">
-                  <div className="text-[10px] md:text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wider">
-                    Commitments
+                  <div className="text-[10px] md:text-xs font-medium text-muted-foreground uppercase tracking-wider mb-1">
+                    Est. Spend (Annual)
                   </div>
                   <div className="text-xl md:text-3xl font-bold tracking-tight">
                     ${layer.companies.reduce((sum, c) => sum + c.commitments, 0).toFixed(1)}B
                   </div>
                 </Card>
                 <Card className="bg-card/50 border-border p-4 md:p-5 relative overflow-hidden hover:border-primary/20 transition-colors">
-                  <div className="text-[10px] md:text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wider">
+                  <div className="text-[10px] md:text-xs font-medium text-muted-foreground uppercase tracking-wider mb-1">
                     Revenue Delta
                   </div>
                   <div
@@ -511,67 +509,88 @@ export default function AILayersDashboard() {
 
               <Card className="p-4 md:p-6 border-border bg-card/50">
                 <div className="mb-6">
-                  <h3 className="text-base md:text-lg font-bold mb-1">Revenue vs Commitments</h3>
-                  <p className="text-xs md:text-sm text-muted-foreground">
-                    Quarterly revenue compared to reported infrastructure commitments
+                  <h3 className="text-base md:text-lg font-bold mb-1">Revenue vs Est. Spend (Annualized, $B)</h3>
+                  <p className="text-xs md:text-sm text-muted-foreground mb-3">
+                    *Revenue: Annualized run rate (Q4 2024 × 4). Est. Spend: Annualized OpEx + Cost of Revenue.
                   </p>
+                  <div className="flex items-center gap-4 text-xs md:text-sm font-medium">
+                    <div className="flex items-center gap-2">
+                      <span className="w-3 h-3 rounded-sm bg-[#7c3aed]" />
+                      <span>Revenue (Inflow)</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="w-3 h-3 rounded-sm bg-[#06b6d4]" style={{ opacity: 0.6 }} />
+                      <span>Est. Spend (Outflow)</span>
+                    </div>
+                  </div>
                 </div>
-                <div className="h-[250px] md:h-[300px] w-full">
+                <div className="h-[300px] w-full">
                   <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={chartData} margin={{ top: 20, right: 0, left: -20, bottom: 0 }}>
-                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--border)" opacity={0.5} />
+                    <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                      <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="hsl(var(--border))" />
                       <XAxis
                         dataKey="name"
                         axisLine={false}
                         tickLine={false}
-                        tick={({ x, y, payload }) => (
-                          <g transform={`translate(${x},${y})`}>
-                            <text
-                              x={0}
-                              y={0}
-                              dy={16}
-                              textAnchor="middle"
-                              fill="currentColor"
-                              className="text-[8px] md:text-xs font-medium fill-muted-foreground"
-                            >
-                              {/* Truncate long names on mobile */}
-                              {typeof window !== "undefined" && window.innerWidth < 768
-                                ? payload.value.length > 8
-                                  ? payload.value.substring(0, 6) + ".."
-                                  : payload.value
-                                : payload.value}
-                            </text>
-                          </g>
-                        )}
+                        tick={{ fill: "#9ca3af", fontSize: 12 }}
+                        dy={10}
+                        tickFormatter={(value) => (value.length > 10 ? `${value.substring(0, 8)}...` : value)}
                       />
                       <YAxis
                         axisLine={false}
                         tickLine={false}
-                        tick={{ fill: "var(--muted-foreground)", fontSize: 10 }}
+                        tick={{ fill: "#9ca3af", fontSize: 12 }}
                         tickFormatter={(value) => `$${value}B`}
                       />
                       <Tooltip
-                        cursor={{ fill: "var(--secondary)", opacity: 0.5 }}
-                        contentStyle={{
-                          backgroundColor: "var(--background)",
-                          borderColor: "var(--border)",
-                          borderRadius: "8px",
-                          boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+                        cursor={{ fill: "hsl(var(--muted) / 0.2)" }}
+                        content={({ active, payload, label }) => {
+                          if (active && payload && payload.length) {
+                            return (
+                              <div className="bg-popover border border-border p-3 rounded-lg shadow-lg">
+                                <p className="font-bold mb-2">{label}</p>
+                                <div className="space-y-1 text-sm">
+                                  <div className="flex items-center justify-between gap-4 text-chart-1">
+                                    <span>Revenue:</span>
+                                    <span className="font-mono font-bold">${payload[0].value}B</span>
+                                  </div>
+                                  <div className="flex items-center justify-between gap-4 text-[#06b6d4]">
+                                    <span>Est. Spend:</span>
+                                    <span className="font-mono font-bold">${payload[1].value}B</span>
+                                  </div>
+                                  <div className="pt-2 mt-2 border-t border-border flex items-center justify-between gap-4">
+                                    <span className="text-muted-foreground">Delta:</span>
+                                    <span
+                                      className={`font-mono font-bold ${
+                                        (payload[0].value as number) - (payload[1].value as number) > 0
+                                          ? "text-emerald-500"
+                                          : "text-red-500"
+                                      }`}
+                                    >
+                                      {((payload[0].value as number) - (payload[1].value as number) > 0 ? "+" : "") +
+                                        ((payload[0].value as number) - (payload[1].value as number)).toFixed(1)}
+                                      B
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                            )
+                          }
+                          return null
                         }}
                       />
                       <Bar
                         dataKey="revenue"
-                        name="Revenue"
-                        fill="hsl(var(--primary))"
+                        fill="#7c3aed" // Purple (chart-1)
                         radius={[4, 4, 0, 0]}
-                        fillOpacity={0.9}
+                        barSize={40}
                       />
                       <Bar
-                        dataKey="commitments"
-                        name="Commitments"
-                        fill="var(--muted-foreground)"
-                        fillOpacity={0.2}
+                        dataKey="spend"
+                        fill="#06b6d4" // Cyan (chart-2)
+                        opacity={0.6}
                         radius={[4, 4, 0, 0]}
+                        barSize={40}
                       />
                     </BarChart>
                   </ResponsiveContainer>
@@ -620,77 +639,55 @@ export default function AILayersDashboard() {
                   )}
                 </div>
               </Card>
-
-              <Card className="bg-card border-border p-5 md:p-6 md:col-span-2">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="p-2 rounded-lg bg-secondary text-primary">
-                    <TrendingUp size={20} />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-base md:text-lg">Fulfillment Health</h3>
-                    <p className="text-xs md:text-sm text-muted-foreground">
-                      % of commitments currently being met by revenue
-                    </p>
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-                  {layer.companies.map((company) => (
-                    <div key={company.name} className="space-y-2">
-                      <div className="flex justify-between items-end">
-                        <span className="text-xs md:text-sm font-medium truncate pr-2">{company.name}</span>
-                        <span
-                          className="text-sm md:text-lg font-bold"
-                          style={{ color: getFulfillmentColor(company.fulfillment) }}
-                        >
-                          {company.fulfillment}%
-                        </span>
-                      </div>
-                      <div className="h-2.5 bg-secondary rounded-full overflow-hidden">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          animate={{ width: `${company.fulfillment}%` }}
-                          transition={{ duration: 0.8 }}
-                          className="h-full rounded-full relative overflow-hidden"
-                        >
-                          <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/20" />
-                        </motion.div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </Card>
             </div>
           </motion.div>
         </AnimatePresence>
 
-        {/* Deep Dive Analysis Link - Moved outside the main grid to prevent overlay */}
-        <div className="mt-12 md:mt-20 pb-12 md:pb-20 relative z-20">
-          <Link href="/pricing-analysis" className="block group">
-            <div className="relative overflow-hidden rounded-2xl md:rounded-3xl bg-foreground text-background p-6 md:p-12 transition-transform duration-500 hover:scale-[1.01]">
-              <div
-                className={`absolute top-0 right-0 w-[300px] h-[300px] bg-gradient-to-br ${layer.color} blur-[100px] opacity-20 rounded-full translate-x-1/3 -translate-y-1/3`}
-              />
-
-              <div className="relative z-10 max-w-3xl">
-                <div className="flex items-center gap-3 mb-4 md:mb-6">
-                  <div className="px-3 py-1 rounded-full bg-background/10 border border-background/20 text-[10px] md:text-xs font-bold tracking-wider uppercase">
-                    Deep Dive Analysis
-                  </div>
-                  <ArrowRight className="w-4 h-4 md:w-5 md:h-5 -rotate-45 group-hover:rotate-0 transition-transform duration-500" />
-                </div>
-
-                <h2 className="text-2xl md:text-5xl font-bold mb-4 md:mb-6 leading-tight text-balance">
-                  Read the full unit economics breakdown
-                </h2>
-
-                <p className="text-sm md:text-xl text-background/80 leading-relaxed max-w-2xl">
-                  My hypothesis: The Distribution and LLM layers must prove massive AI productivity gains to justify
-                  the CapEx. See how the margins improve as adoption scales.
+        {/* Added market dynamics analysis section with link to pricing page */}
+        <Card className="bg-card/30 border-border/60 p-6 md:p-8 relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-1 h-full bg-primary/50" />
+          <div className="grid md:grid-cols-3 gap-8 items-center">
+            <div className="md:col-span-2 space-y-4">
+              <h3 className="text-xl font-bold flex items-center gap-2">
+                <Info className="text-primary" size={20} />
+                The Core Economic Challenge
+              </h3>
+              <div className="space-y-4 text-muted-foreground leading-relaxed">
+                <p>
+                  At its core, the AI infrastructure stack is built on big upfront spending—companies borrow money or
+                  sign long-term contracts to buy thousands of GPUs and build huge data centers before knowing if enough
+                  users will actually pay to use them.
+                </p>
+                <p>
+                  Cloud providers and AI model companies hope that future business will cover these costs, but there’s
+                  no guarantee, since most customers’ usage is unpredictable and contracts don’t always line up with
+                  real demand. This creates a gap: money goes out fast, but steady income comes in slowly (or sometimes
+                  not at all).
+                </p>
+                <p className="font-medium text-foreground/90">
+                  Only the chip makers and platforms that collect money right away are guaranteed to profit. Everyone
+                  else is stuck in a cycle where they keep spending and borrowing, hoping growth will catch up to their
+                  commitments—if not, they risk running out of cash and must restructure or get acquired.
                 </p>
               </div>
             </div>
-          </Link>
-        </div>
+            <div className="flex flex-col justify-center items-start md:items-end space-y-4">
+              <Link
+                href="/pricing-analysis"
+                className="group flex flex-col gap-2 p-6 bg-primary/5 hover:bg-primary/10 border border-primary/20 rounded-xl transition-all hover:scale-[1.02] cursor-pointer w-full"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-bold uppercase tracking-wider text-primary">Deep Dive Analysis</span>
+                  <ArrowRight size={20} className="text-primary group-hover:translate-x-1 transition-transform" />
+                </div>
+                <span className="text-lg font-bold text-foreground">Misaligned incentives in the AI ecosystem </span>
+                <span className="text-sm text-muted-foreground">
+                  Explore where profits live and why pricing might not be catching up with reality.
+                </span>
+              </Link>
+            </div>
+          </div>
+        </Card>
 
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 mt-12 text-xs text-muted-foreground">
           <div>

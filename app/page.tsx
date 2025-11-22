@@ -10,21 +10,22 @@ export default function HomePage() {
       <div className="mx-auto max-w-4xl px-4 py-8 md:py-16 lg:py-20">
         <div className="mb-8 md:mb-12">
           <p className="text-pretty text-sm leading-relaxed text-slate-300 md:text-base">
-            Studying how things work, Analysing behaviour and Creating to learn.{" "}
-            <a
-              href="https://www.linkedin.com/in/lily-david-5a726628/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-slate-400 underline decoration-slate-600 underline-offset-2 transition-colors hover:text-slate-200 hover:decoration-slate-400"
-            >
-              What are you working on?
-            </a>
-            .
+            Studying how things work, Analysing behaviour and Creating to learn.
           </p>
         </div>
 
         <section>
-          <h2 className="mb-6 text-2xl font-medium text-slate-200 md:mb-8 md:text-3xl">Lily's recent posts</h2>
+          <div className="mb-6 flex items-end justify-between gap-4 md:mb-8">
+            <h2 className="text-2xl font-medium text-slate-200 md:text-3xl">Lily's recent posts</h2>
+            <a
+              href="https://www.linkedin.com/in/lily-david"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-slate-400 transition-colors hover:text-slate-200 md:text-sm"
+            >
+              Connect on LinkedIn <ArrowRight className="inline h-3 w-3 md:h-4 md:w-4" />
+            </a>
+          </div>
 
           <div className="space-y-4 md:space-y-5">
             {pages.map((page) => (

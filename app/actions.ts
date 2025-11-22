@@ -1,7 +1,7 @@
 "use server"
 
 export async function fetchFinancialData(): Promise<
-  Record<string, { revenue: number; price: number; volume: number }>
+  Record<string, { revenue: number; commitments: number; price: number; volume: number }>
 > {
   const apiKey = process.env.FMP_API_KEY
 
@@ -11,7 +11,7 @@ export async function fetchFinancialData(): Promise<
   }
 
   const symbols = ["NVDA", "AMD", "INTC", "GOOGL", "MSFT", "META", "CRM", "ADBE", "TEAM", "AMZN"]
-  const result: Record<string, { revenue: number; price: number; volume: number }> = {}
+  const result: Record<string, { revenue: number; commitments: number; price: number; volume: number }> = {}
 
   const AI_REVENUE_RATIOS: Record<string, number> = {
     NVDA: 0.87, // Data Center
@@ -54,12 +54,18 @@ export async function fetchFinancialData(): Promise<
       if (financials && financials.symbol) {
         const symbol = financials.symbol
         const totalRevenue = financials.revenue / 1000000000 // Convert to Billions
+        const netIncome = financials.netIncome / 1000000000 // Convert to Billions
         const ratio = AI_REVENUE_RATIOS[symbol] || 0.1
 
+        // If NetIncome is negative, commitments = Revenue + Loss = Total Spending
+        const impliedCommitments = (totalRevenue - netIncome) * ratio * 4 // Annualize
+        const annualizedRevenue = totalRevenue * ratio * 4
+
         result[symbol] = {
-          revenue: Number.parseFloat((totalRevenue * ratio).toFixed(1)),
-          price: 0, // Not needed for this view
-          volume: 0, // Not needed
+          revenue: Number.parseFloat(annualizedRevenue.toFixed(1)),
+          commitments: Number.parseFloat(impliedCommitments.toFixed(1)),
+          price: 0,
+          volume: 0,
         }
       }
     })
@@ -78,18 +84,71 @@ export async function fetchFinancialData(): Promise<
   }
 }
 
-function getStaticFinancialData(): Record<string, { revenue: number; price: number; volume: number }> {
+function getStaticFinancialData(): Record<
+  string,
+  { revenue: number; commitments: number; price: number; volume: number }
+> {
   return {
-    NVDA: { revenue: 26.3, price: 140.5, volume: 45000000 }, // ~87% of 30B
-    AMD: { revenue: 3.5, price: 145.2, volume: 25000000 }, // Data Center Segment
-    INTC: { revenue: 3.0, price: 22.8, volume: 35000000 }, // DCAI Segment
-    GOOGL: { revenue: 10.3, price: 175.3, volume: 20000000 }, // Cloud
-    MSFT: { revenue: 26.7, price: 425.8, volume: 18000000 }, // Intelligent Cloud
-    META: { revenue: 0.8, price: 580.2, volume: 12000000 }, // Est
-    CRM: { revenue: 0.9, price: 345.6, volume: 5000000 }, // Est
-    ADBE: { revenue: 0.5, price: 525.4, volume: 3000000 }, // Est
-    TEAM: { revenue: 0.2, price: 215.7, volume: 2000000 }, // Est
-    AMZN: { revenue: 25.0, price: 180.0, volume: 30000000 }, // AWS
+    NVDA: {
+      revenue: 198.4,
+      commitments: 95.2, // Est. costs (~48% margin)
+      price: 140.5,
+      volume: 45000000,
+    },
+    AMD: {
+      revenue: 18.4,
+      commitments: 16.2, // Lower margin
+      price: 145.2,
+      volume: 25000000,
+    },
+    INTC: {
+      revenue: 13.7,
+      commitments: 18.5, // Loss making -> higher commitments
+      price: 22.8,
+      volume: 35000000,
+    },
+    GOOGL: {
+      revenue: 45.0,
+      commitments: 32.0, // High capex/costs
+      price: 175.3,
+      volume: 20000000,
+    },
+    MSFT: {
+      revenue: 118.3,
+      commitments: 75.0, // High margin but high capex
+      price: 425.8,
+      volume: 18000000,
+    },
+    META: {
+      revenue: 4.1,
+      commitments: 3.5,
+      price: 580.2,
+      volume: 12000000,
+    },
+    CRM: {
+      revenue: 4.1,
+      commitments: 3.2,
+      price: 345.6,
+      volume: 5000000,
+    },
+    ADBE: {
+      revenue: 2.4,
+      commitments: 1.5,
+      price: 525.4,
+      volume: 3000000,
+    },
+    TEAM: {
+      revenue: 1.0,
+      commitments: 1.1, // Investing for growth
+      price: 215.7,
+      volume: 2000000,
+    },
+    AMZN: {
+      revenue: 122.5,
+      commitments: 95.0, // AWS margins are ~30%, so 70% costs
+      price: 180.0,
+      volume: 30000000,
+    },
   }
 }
 
