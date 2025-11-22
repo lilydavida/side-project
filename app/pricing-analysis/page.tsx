@@ -27,10 +27,8 @@ export default function PricingAnalysisPage() {
           {/* Introduction */}
           <section className="mb-6 sm:mb-12">
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-3 sm:mb-4">
-              Sometimes, a single question can hang over an entire industry. In late 2025, an OpenAI investor asked CEO
-              Sam Altman: "How does a company with $13B in revenue take on $1.4T in infrastructure commitments?" Altman,
-              caught off-guard, famously replied, "Happy to find a buyer for your shares." It was a moment of public
-              honesty and disbelief about how AI's economic engine actually works.
+             An OpenAI investor asked CEO
+              Sam Altman: "How does a company with $13B in revenue take on $1.4T in infrastructure commitments?" It was a moment of public honesty and disbelief about how AI's economic engine actually works.
             </p>
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
               It sent me on a two-week mission to figure out why do some players in AI make money hand over fist, while
