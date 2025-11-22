@@ -10,7 +10,7 @@ export default function HomePage() {
       <div className="mx-auto max-w-4xl px-4 py-8 md:py-16 lg:py-20">
         <div className="mb-8 md:mb-12">
           <p className="text-pretty text-sm leading-relaxed text-slate-300 md:text-base">
-            Studying how things work, Analysing behaviour and Creating to learn.
+            Studying how things work, Analysing behaviour and Writing to learn.
           </p>
         </div>
 
