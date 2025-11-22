@@ -48,7 +48,7 @@ export default function PricingAnalysisPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-blue-400 transition-colors">
-                    Explore the Interactive Ecosystem Dashboard
+                    Explore AI ecosystem fulfillment heath Dashboard
                   </h3>
                   <p className="text-slate-400 text-sm">
                     View the live breakdown of revenue vs. commitments across Chips, GPU Cloud, LLMs, and Distribution
@@ -68,7 +68,7 @@ export default function PricingAnalysisPage() {
           {/* Cost Optimization */}
           <section className="mb-6 sm:mb-12">
             <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
-              Primary research nullifies the utilisation hypothesis
+              Falsified hypothesis
             </h2>
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-3 sm:mb-4">
               Prevailing logic blames low hardware utilization or inefficient deployment for losses further downstream.
@@ -110,7 +110,7 @@ export default function PricingAnalysisPage() {
           {/* Key Misalignments */}
           <section className="mb-6 sm:mb-12">
             <h2 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">
-              The hypothesis: Misaligned Incentives
+              Working hypothesis: Misaligned Incentives
             </h2>
 
             <div className="space-y-4 sm:space-y-6">
@@ -133,16 +133,7 @@ export default function PricingAnalysisPage() {
                 </p>
               </div>
 
-              <div>
-                <h3 className="text-lg sm:text-xl font-semibold text-white mb-2 sm:mb-3">
-                  3. Scaling Promises vs. Cost Realities
-                </h3>
-                <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-                  VCs and providers expected SaaS-like margin expansion as AI scales. But with variable, usage-driven
-                  models, costs often grow linearly or worse. Pure API metering limits margin, while flat subscriptions
-                  risk adverse selection or price wars, especially for LLM APIs.
-                </p>
-              </div>
+              
             </div>
           </section>
 
@@ -190,7 +181,7 @@ export default function PricingAnalysisPage() {
           {/* Hybrid Approach */}
           <section className="mb-6 sm:mb-12">
             <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
-              The Hybrid Approach: Flat + Outcome based pricing
+              The Hybrid solution: Flat + Outcome based pricing
             </h2>
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-3 sm:mb-4">
               Imagine a world where companies pay a flat fee to try as many experiments as they want. When they find a
@@ -230,22 +221,7 @@ export default function PricingAnalysisPage() {
             </ul>
           </section>
 
-          {/* Modern Pilot */}
-          <section className="mb-6 sm:mb-12">
-            <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
-              What Would a Modern Pilot Look Like?
-            </h2>
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-3 sm:mb-4">
-              Instead of obsessing over per-GPU or API price, it would start with a 3–6 month "exploration
-              retainer".i.e. a flat cost, unlimited use within reason. If a use case wins, shift to a negotiated
-              production contract where the provider takes a defined share of business impact, whether productivity
-              boost, cost reduction, or incremental profit.
-            </p>
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-              This approach is gaining ground in sectors where measurement is robust and attribution is trusted (e.g.,
-              ecommerce recommendations, developer tools, game feature monetization).
-            </p>
-          </section>
+          
 
           {/* Case Study */}
           <section className="mb-6 sm:mb-12">
