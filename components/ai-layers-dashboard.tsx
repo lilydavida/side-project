@@ -178,24 +178,20 @@ const getLayerSummary = (layerId: string, companies: any[]) => {
 
   switch (layerId) {
     case "chips":
-      fundingSource = "Hyperscaler CapEx is aggressively funding this layer, creating an immediate cash injection."
-      economicsStatus =
-        "Unit economics are exceptional, with hardware demand far outstripping supply, leading to massive pricing power and immediate profitability."
+      fundingSource = "Hyperscaler CapEx (aggressive cash injection)."
+      economicsStatus = "Exceptional: Demand > Supply = Pricing Power."
       break
     case "gpu-resellers":
-      fundingSource = "Venture debt and specialized asset financing are driving the hardware acquisition."
-      economicsStatus =
-        "Arbitrage-based economics. Profitability depends entirely on sustained GPU scarcity and high rental yields."
+      fundingSource = "Venture debt & specialized asset financing."
+      economicsStatus = "Arbitrage: Profit depends on sustained scarcity."
       break
     case "foundation":
-      fundingSource = "Strategic cloud credits and massive VC rounds are subsidizing the compute costs."
-      economicsStatus =
-        "Unit economics are effectively negative. High training and inference costs are currently subsidized to capture market share."
+      fundingSource = "Cloud credits & massive VC subsidies."
+      economicsStatus = "Negative: Training costs subsidized for market share."
       break
     case "distribution":
-      fundingSource = "Enterprise IT budgets and consumer subscriptions are starting to flow in."
-      economicsStatus =
-        "Unit economics are improving but fragile. The challenge is proving that AI productivity gains justify the higher seat costs."
+      fundingSource = "Enterprise IT budgets & consumer subscriptions."
+      economicsStatus = "Improving but fragile: Productivity must justify cost."
       break
     default:
       fundingSource = "Capital flows are diverse."
@@ -302,47 +298,32 @@ export default function AILayersDashboard() {
   return (
     <div className="min-h-screen bg-background/95 px-3 py-4 md:py-12 font-sans text-foreground overflow-x-hidden selection:bg-primary/20">
       <div className="max-w-7xl mx-auto space-y-6 md:space-y-10">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-4 border-b border-border/40 pb-6 md:pb-8">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-2 border-b border-border/40 pb-4 md:pb-6">
           <div className="max-w-4xl">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-4 md:mb-6 text-sm font-medium group"
+              className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-2 md:mb-4 text-sm font-medium group"
             >
               <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
               <span>Back to home</span>
             </Link>
 
-            <div className="space-y-2 mb-4 md:mb-6">
+            <div className="space-y-1 mb-2">
               <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground text-balance">
                 {PAGE_CONFIG.dashboard.title}
               </h1>
             </div>
 
-            <div className="relative pl-4 md:pl-6 border-l-2 md:border-l-3 border-primary/40 py-1 md:py-2">
-              <p className="text-base md:text-lg lg:text-xl font-medium leading-relaxed text-muted-foreground/90 italic text-balance">
-                "I spent two weeks mapping{" "}
-                <span className="text-foreground font-bold not-italic border-b-2 border-primary/30">$400B</span> in AI
-                infrastructure capital flows to answer two questions:"
+            <div className="relative pl-4 border-l-2 border-primary/40 py-1">
+              <p className="text-sm md:text-base font-medium leading-relaxed text-muted-foreground/90 text-balance max-w-xl">
+                Tracking <span className="text-foreground font-bold">$400B</span> in AI capital flows to reveal who
+                funds the buildout and the resulting unit economics.
               </p>
-              <ul className="mt-3 md:mt-4 space-y-2">
-                <li className="flex items-start md:items-center gap-3 text-sm md:text-base font-medium text-foreground">
-                  <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5 md:mt-0">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-                  </div>
-                  Who's funding this buildout?
-                </li>
-                <li className="flex items-start md:items-center gap-3 text-sm md:text-base font-medium text-foreground">
-                  <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5 md:mt-0">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-                  </div>
-                  Where do the unit economics land when everyone's scaling simultaneously?
-                </li>
-              </ul>
             </div>
           </div>
 
           <div className="flex flex-col items-end gap-2 self-start md:self-end">
-            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-background border border-border shadow-sm text-xs font-medium text-muted-foreground">
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-background border border-border shadow-sm text-[10px] md:text-xs font-medium text-muted-foreground">
               <RefreshCw size={12} className={isRefreshing ? "animate-spin text-primary" : ""} />
               <span>{isRefreshing ? "Syncing Market Data..." : `Live Data: ${lastUpdate.toLocaleTimeString()}`}</span>
             </div>
@@ -421,23 +402,10 @@ export default function AILayersDashboard() {
           >
             <div className="lg:col-span-8 order-1 lg:order-3">
               <Card className="p-4 md:p-6 border-border bg-card/50">
-                <div className="mb-6">
-                  <h3 className="text-base md:text-lg font-bold mb-1">Revenue vs Est. Spend (Annualized, $B)</h3>
-                  <p className="text-xs md:text-sm text-muted-foreground mb-3">
-                    *Revenue: Annualized run rate (Q4 2024 × 4). Est. Spend: Annualized OpEx + Cost of Revenue.
-                  </p>
-                  <div className="flex items-center gap-4 text-xs md:text-sm font-medium">
-                    <div className="flex items-center gap-2">
-                      <span className="w-3 h-3 rounded-sm bg-[#7c3aed]" />
-                      <span>Revenue (Inflow)</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="w-3 h-3 rounded-sm bg-[#06b6d4]" style={{ opacity: 0.6 }} />
-                      <span>Est. Spend (Outflow)</span>
-                    </div>
-                  </div>
+                <div className="mb-4">
+                  <h3 className="text-base md:text-lg font-bold">Revenue vs Est. Spend (Annualized, $B)</h3>
                 </div>
-                <div className="h-[250px] md:h-[300px] w-full">
+                <div className="h-[250px] md:h-[300px] w-full mb-4">
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart data={chartData} margin={{ top: 20, right: 10, left: 0, bottom: 5 }}>
                       <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="hsl(var(--border))" />
@@ -492,26 +460,31 @@ export default function AILayersDashboard() {
                           return null
                         }}
                       />
-                      <Bar
-                        dataKey="revenue"
-                        fill="#7c3aed" // Purple (chart-1)
-                        radius={[4, 4, 0, 0]}
-                        barSize={30}
-                      />
-                      <Bar
-                        dataKey="spend"
-                        fill="#06b6d4" // Cyan (chart-2)
-                        opacity={0.6}
-                        radius={[4, 4, 0, 0]}
-                        barSize={30}
-                      />
+                      <Bar dataKey="revenue" fill="#7c3aed" radius={[4, 4, 0, 0]} maxBarSize={50} />
+                      <Bar dataKey="spend" fill="#06b6d4" fillOpacity={0.6} radius={[4, 4, 0, 0]} maxBarSize={50} />
                     </BarChart>
                   </ResponsiveContainer>
+                </div>
+
+                <div className="space-y-2">
+                  <div className="flex items-center gap-4 text-xs md:text-sm font-medium">
+                    <div className="flex items-center gap-2">
+                      <span className="w-3 h-3 rounded-sm bg-[#7c3aed]" />
+                      <span>Revenue (Inflow)</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="w-3 h-3 rounded-sm bg-[#06b6d4]" style={{ opacity: 0.6 }} />
+                      <span>Est. Spend (Outflow)</span>
+                    </div>
+                  </div>
+                  <p className="text-[10px] md:text-xs text-muted-foreground">
+                    *Revenue: Annualized run rate (Q4 2024 × 4). Est. Spend: Annualized OpEx + Cost of Revenue.
+                  </p>
                 </div>
               </Card>
             </div>
 
-            <div className="lg:col-span-8 order-2 lg:order-2">
+            <div className="lg:col-span-8 order-3 lg:order-2">
               <div className="grid grid-cols-3 gap-2 md:gap-6">
                 <Card className="bg-card/50 border-border p-3 md:p-5 relative overflow-hidden hover:border-primary/20 transition-colors">
                   <div className="text-[9px] md:text-xs font-medium text-muted-foreground uppercase tracking-wider mb-1">
@@ -556,39 +529,35 @@ export default function AILayersDashboard() {
             <div className="lg:col-span-8 order-3 lg:order-1">
               <Card className="bg-card border-border shadow-sm overflow-hidden relative h-full">
                 <div className={`absolute top-0 left-0 w-1 h-full bg-gradient-to-b ${layer.color}`} />
-                <div className="p-5 md:p-8">
-                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                <div className="p-4 md:p-5">
+                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
                     <div className="flex items-center gap-3">
-                      <div className={`p-2 rounded-lg bg-secondary ${layer.accent}`}>
-                        <FileText size={18} />
+                      <div className={`p-1.5 rounded-lg bg-secondary ${layer.accent}`}>
+                        <FileText size={16} />
                       </div>
-                      <h3 className="text-base md:text-lg font-bold uppercase tracking-wide text-foreground">
-                        Layer Analysis
-                      </h3>
+                      <h3 className="text-base font-bold uppercase tracking-wide text-foreground">Layer Analysis</h3>
                     </div>
-                    <div className="flex items-center gap-3 px-4 py-1.5 rounded-full bg-secondary/50 border border-border/60 w-fit">
-                      <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Status</span>
+                    <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/50 border border-border/60 w-fit">
+                      <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wider">
+                        Status
+                      </span>
                       <span className={`w-1.5 h-1.5 rounded-full ${summary.healthColor} animate-pulse`} />
-                      <span className={`text-sm font-bold ${summary.healthColor}`}>{summary.health}</span>
+                      <span className={`text-xs font-bold ${summary.healthColor}`}>{summary.health}</span>
                     </div>
                   </div>
 
-                  <div className="grid md:grid-cols-2 gap-6 md:gap-8">
-                    <div className="space-y-2 md:space-y-3">
-                      <div className="flex items-center gap-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                  <div className="flex flex-col gap-3">
+                    <div className="flex flex-col md:flex-row md:items-baseline gap-1 md:gap-2">
+                      <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider whitespace-nowrap min-w-[100px]">
                         Who's Funding?
-                      </div>
-                      <p className="text-sm md:text-base leading-relaxed font-medium text-foreground/90">
-                        {summary.funding}
-                      </p>
+                      </span>
+                      <p className="text-sm font-medium text-foreground/90">{summary.funding}</p>
                     </div>
-                    <div className="space-y-2 md:space-y-3">
-                      <div className="flex items-center gap-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                    <div className="flex flex-col md:flex-row md:items-baseline gap-1 md:gap-2">
+                      <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider whitespace-nowrap min-w-[100px]">
                         Unit Economics
-                      </div>
-                      <p className="text-sm md:text-base leading-relaxed font-medium text-foreground/90">
-                        {summary.economics}
-                      </p>
+                      </span>
+                      <p className="text-sm font-medium text-foreground/90">{summary.economics}</p>
                     </div>
                   </div>
                 </div>
@@ -596,8 +565,8 @@ export default function AILayersDashboard() {
             </div>
 
             <div className="lg:col-span-12 order-4 lg:order-5">
-              <Card className="bg-card/30 border-border/60 p-5 md:p-8 relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-1 h-full bg-primary/50" />
+              <Card className="bg-secondary/20 border-primary/10 p-5 md:p-8 relative overflow-hidden backdrop-blur-sm">
+                <div className="absolute top-0 left-0 w-1 h-full bg-primary/30" />
                 <div className="grid md:grid-cols-3 gap-6 md:gap-8 items-center">
                   <div className="md:col-span-2 space-y-4">
                     <h3 className="text-lg md:text-xl font-bold flex items-center gap-2">
