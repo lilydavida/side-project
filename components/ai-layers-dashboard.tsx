@@ -71,89 +71,6 @@ const LAYERS = [
   },
 ]
 
-const MATERIAL_DEALS = {
-  chips: [
-    {
-      id: 1,
-      company: "NVIDIA",
-      customer: "Multiple Hyperscalers",
-      value: "$15B+",
-      term: "Annual",
-      date: "2024-01",
-      source: "10-Q Filing",
-    },
-    {
-      id: 2,
-      company: "AMD",
-      customer: "AWS & Microsoft",
-      value: "$2B+",
-      term: "Multi-year",
-      date: "2023-06",
-      source: "Press Release",
-    },
-  ],
-  "gpu-resellers": [
-    {
-      id: 6,
-      company: "CoreWeave",
-      customer: "Multiple Enterprises",
-      value: "$500M+",
-      term: "Multi-year",
-      date: "2024-06",
-      source: "Press Release",
-    },
-  ],
-  foundation: [
-    {
-      id: 7,
-      company: "OpenAI",
-      customer: "Microsoft",
-      value: "$10B (invest)",
-      term: "5 years",
-      date: "2023-11",
-      source: "Press Release",
-    },
-    {
-      id: 8,
-      company: "Anthropic",
-      customer: "AWS & Google",
-      value: "$2B+ each",
-      term: "Multi-year",
-      date: "2024-09",
-      source: "8-K Filing",
-    },
-  ],
-  distribution: [
-    {
-      id: 12,
-      company: "Microsoft Copilot",
-      customer: "Microsoft 365 Enterprise",
-      value: "$20B+",
-      term: "Annual",
-      date: "2024-06",
-      source: "Earnings Call",
-    },
-    {
-      id: 13,
-      company: "Google Workspace AI",
-      customer: "Google Workspace Users",
-      value: "$15B+",
-      term: "Subscription",
-      date: "2024-05",
-      source: "Google I/O",
-    },
-    {
-      id: 14,
-      company: "Salesforce Einstein",
-      customer: "Salesforce Customers",
-      value: "$5B+",
-      term: "Annual",
-      date: "2024-04",
-      source: "Dreamforce 2024",
-    },
-  ],
-}
-
 const LAYER_TICKERS: Record<string, string[]> = {
   chips: ["NVDA", "AMD", "INTC"],
   "gpu-resellers": [], // Mostly private
@@ -290,8 +207,6 @@ export default function AILayersDashboard() {
 
   console.log("[v0] Chart Data for", selectedLayer, ":", chartData)
   console.log("[v0] Layer companies:", layer.companies)
-
-  const deals = MATERIAL_DEALS[selectedLayer as keyof typeof MATERIAL_DEALS] || []
 
   const summary = getLayerSummary(layer.id, layer.companies)
 
@@ -581,7 +496,7 @@ export default function AILayersDashboard() {
                       </p>
                       <p>
                         Cloud providers and AI model companies hope that future business will cover these costs, but
-                        there’s no guarantee, since most customers’ usage is unpredictable and contracts don’t always
+                        there's no guarantee, since most customers' usage is unpredictable and contracts don't always
                         line up with real demand. This creates a gap: money goes out fast, but steady income comes in
                         slowly (or sometimes not at all).
                       </p>
@@ -612,49 +527,6 @@ export default function AILayersDashboard() {
                       </span>
                     </Link>
                   </div>
-                </div>
-              </Card>
-            </div>
-
-            <div className="lg:col-span-4 lg:row-span-3 order-5 lg:order-4 h-full">
-              <Card className="bg-card border-border h-full">
-                <div className="p-4 md:p-6 border-b border-border/50">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-secondary text-primary">
-                      <FileText size={20} />
-                    </div>
-                    <h3 className="font-bold text-base md:text-lg">Material Contracts</h3>
-                  </div>
-                </div>
-                <div className="p-0">
-                  {deals.length > 0 ? (
-                    <div className="divide-y divide-border/40">
-                      {deals.map((deal) => (
-                        <div key={deal.id} className="p-4 md:p-5 hover:bg-secondary/30 transition-colors">
-                          <div className="flex justify-between items-start mb-2">
-                            <div className="font-semibold text-sm md:text-base">{deal.company}</div>
-                            <div className="text-xs font-medium px-2 py-1 rounded-full bg-primary/10 text-primary">
-                              {deal.value}
-                            </div>
-                          </div>
-                          <div className="text-xs md:text-sm text-muted-foreground mb-3">
-                            Deal with <span className="text-foreground font-medium">{deal.customer}</span>
-                          </div>
-                          <div className="flex items-center gap-3 text-[10px] md:text-xs text-muted-foreground/80">
-                            <span className="flex items-center gap-1">
-                              <Info size={12} /> {deal.term}
-                            </span>
-                            <span>•</span>
-                            <span>{deal.source}</span>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <div className="p-8 text-center text-muted-foreground text-sm italic">
-                      No public material contracts disclosed for this period.
-                    </div>
-                  )}
                 </div>
               </Card>
             </div>
