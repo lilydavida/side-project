@@ -248,18 +248,18 @@ export default function AILayersDashboard() {
         <div className="relative py-4 md:py-8">
           <div className="absolute top-1/2 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-border to-transparent -translate-y-1/2 hidden md:block z-0" />
 
-          <div className="grid grid-cols-4 md:grid-cols-4 gap-2 md:gap-6 relative z-10">
+          <div className="grid grid-cols-4 md:grid-cols-4 gap-2 md:gap-4 relative z-10 max-w-4xl mx-auto">
             {layersData.map((l, index) => {
               const Icon = l.icon
               const isSelected = selectedLayer === l.id
               return (
                 <div
                   key={l.id}
-                  className="flex flex-col items-center gap-3 group cursor-pointer"
+                  className="flex flex-col items-center gap-2 group cursor-pointer"
                   onClick={() => setSelectedLayer(l.id)}
                 >
                   <button
-                    className={`relative w-full aspect-square md:w-24 md:h-24 rounded-xl md:rounded-3xl flex flex-col md:flex-row items-center justify-center transition-all duration-500 ${
+                    className={`relative w-full aspect-square md:w-20 md:h-20 rounded-xl md:rounded-2xl flex flex-col md:flex-row items-center justify-center transition-all duration-500 ${
                       isSelected
                         ? `bg-gradient-to-br ${l.color} shadow-[0_10px_40px_-10px_rgba(var(--primary),0.3)] scale-[1.02] md:scale-110 ring-1 md:ring-4 ring-background`
                         : "bg-card border border-muted hover:border-primary/30 hover:shadow-lg hover:-translate-y-1"
@@ -285,18 +285,18 @@ export default function AILayersDashboard() {
 
                     {index < layersData.length - 1 && (
                       <div className="absolute -right-4 top-1/2 -translate-y-1/2 text-muted-foreground/20 hidden md:block pointer-events-none z-[-1]">
-                        <ArrowRight size={24} />
+                        <ArrowRight size={20} />
                       </div>
                     )}
                   </button>
 
-                  <div className="text-center space-y-1 hidden md:block">
+                  <div className="text-center space-y-0.5 hidden md:block">
                     <div
-                      className={`text-sm md:text-lg font-bold transition-colors ${isSelected ? "text-foreground" : "text-muted-foreground group-hover:text-foreground"}`}
+                      className={`text-sm md:text-base font-bold transition-colors ${isSelected ? "text-foreground" : "text-muted-foreground group-hover:text-foreground"}`}
                     >
                       {l.name}
                     </div>
-                    <div className="text-xs text-muted-foreground/80 max-w-[140px] mx-auto leading-snug text-balance">
+                    <div className="text-[10px] text-muted-foreground/80 max-w-[120px] mx-auto leading-snug text-balance">
                       {l.description}
                     </div>
                   </div>
@@ -313,10 +313,11 @@ export default function AILayersDashboard() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8"
+            className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6"
           >
-            <div className="lg:col-span-8 order-1 lg:order-3">
-              <Card className="p-4 md:p-6 border-border bg-card/50">
+            {/* Chart Section */}
+            <div className="lg:col-span-8 order-1">
+              <Card className="p-4 md:p-6 border-border bg-card/50 h-full">
                 <div className="mb-4">
                   <h3 className="text-base md:text-lg font-bold">Revenue vs Est. Spend (Annualized, $B)</h3>
                 </div>
@@ -381,7 +382,7 @@ export default function AILayersDashboard() {
                   </ResponsiveContainer>
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-2 mt-4">
                   <div className="flex items-center gap-4 text-xs md:text-sm font-medium">
                     <div className="flex items-center gap-2">
                       <span className="w-3 h-3 rounded-sm bg-[#7c3aed]" />
@@ -399,7 +400,44 @@ export default function AILayersDashboard() {
               </Card>
             </div>
 
-            <div className="lg:col-span-8 order-3 lg:order-2">
+            {/* Layer Analysis Section */}
+            <div className="lg:col-span-4 order-3 lg:order-2">
+              <Card className="bg-card border-border shadow-sm overflow-hidden relative h-full">
+                <div className={`absolute top-0 left-0 w-1 h-full bg-gradient-to-b ${layer.color}`} />
+                <div className="p-4 md:p-5 flex flex-col justify-center h-full">
+                  <div className="flex items-center justify-between gap-4 mb-4">
+                    <div className="flex items-center gap-3">
+                      <div className={`p-1.5 rounded-lg bg-secondary ${layer.accent}`}>
+                        <FileText size={16} />
+                      </div>
+                      <h3 className="text-base font-bold uppercase tracking-wide text-foreground">Layer Analysis</h3>
+                    </div>
+                    <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/50 border border-border/60 w-fit">
+                      <span className={`w-1.5 h-1.5 rounded-full ${summary.healthColor} animate-pulse`} />
+                      <span className={`text-xs font-bold ${summary.healthColor}`}>{summary.health}</span>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    <div className="flex flex-col gap-1">
+                      <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">
+                        Who's Funding?
+                      </span>
+                      <p className="text-sm font-medium text-foreground/90 leading-tight">{summary.funding}</p>
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">
+                        Unit Economics
+                      </span>
+                      <p className="text-sm font-medium text-foreground/90 leading-tight">{summary.economics}</p>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            </div>
+
+            {/* KPI Cards Section */}
+            <div className="lg:col-span-12 order-2 lg:order-3">
               <div className="grid grid-cols-3 gap-2 md:gap-6">
                 <Card className="bg-card/50 border-border p-3 md:p-5 relative overflow-hidden hover:border-primary/20 transition-colors">
                   <div className="text-[9px] md:text-xs font-medium text-muted-foreground uppercase tracking-wider mb-1">
@@ -441,45 +479,8 @@ export default function AILayersDashboard() {
               </div>
             </div>
 
-            <div className="lg:col-span-8 order-3 lg:order-1">
-              <Card className="bg-card border-border shadow-sm overflow-hidden relative h-full">
-                <div className={`absolute top-0 left-0 w-1 h-full bg-gradient-to-b ${layer.color}`} />
-                <div className="p-4 md:p-5">
-                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
-                    <div className="flex items-center gap-3">
-                      <div className={`p-1.5 rounded-lg bg-secondary ${layer.accent}`}>
-                        <FileText size={16} />
-                      </div>
-                      <h3 className="text-base font-bold uppercase tracking-wide text-foreground">Layer Analysis</h3>
-                    </div>
-                    <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-secondary/50 border border-border/60 w-fit">
-                      <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wider">
-                        Status
-                      </span>
-                      <span className={`w-1.5 h-1.5 rounded-full ${summary.healthColor} animate-pulse`} />
-                      <span className={`text-xs font-bold ${summary.healthColor}`}>{summary.health}</span>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col gap-3">
-                    <div className="flex flex-col md:flex-row md:items-baseline gap-1 md:gap-2">
-                      <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider whitespace-nowrap min-w-[100px]">
-                        Who's Funding?
-                      </span>
-                      <p className="text-sm font-medium text-foreground/90">{summary.funding}</p>
-                    </div>
-                    <div className="flex flex-col md:flex-row md:items-baseline gap-1 md:gap-2">
-                      <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider whitespace-nowrap min-w-[100px]">
-                        Unit Economics
-                      </span>
-                      <p className="text-sm font-medium text-foreground/90">{summary.economics}</p>
-                    </div>
-                  </div>
-                </div>
-              </Card>
-            </div>
-
-            <div className="lg:col-span-12 order-4 lg:order-5">
+            {/* Core Economic Challenge Section */}
+            <div className="lg:col-span-12 order-4">
               <Card className="bg-secondary/20 border-primary/10 p-5 md:p-8 relative overflow-hidden backdrop-blur-sm">
                 <div className="absolute top-0 left-0 w-1 h-full bg-primary/30" />
                 <div className="grid md:grid-cols-3 gap-6 md:gap-8 items-center">
