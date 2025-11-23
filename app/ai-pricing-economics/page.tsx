@@ -185,7 +185,7 @@ export default function PricingAnalysisPage() {
               <div>
                 <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
                   <span className="font-semibold">Early Experiments with Outcome Pricing:</span> A few vendors—in
-                  gaming, fintech, and ecommerce are piloting agreements that let clients pay for measurable results:
+                  gaming, fintech, and ecommerce—are piloting agreements that let clients pay for measurable results:
                   percent of incremental sales, cost savings, or productivity gains.
                 </p>
               </div>

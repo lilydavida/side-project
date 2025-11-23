@@ -481,55 +481,38 @@ export default function AILayersDashboard() {
 
             {/* Core Economic Challenge Section */}
             <div className="lg:col-span-12 order-4">
-              <Card className="bg-secondary/20 border-primary/10 p-5 md:p-8 relative overflow-hidden backdrop-blur-sm">
-                <div className="absolute top-0 left-0 w-1 h-full bg-primary/30" />
-                <div className="grid md:grid-cols-3 gap-6 md:gap-8 items-center">
-                  <div className="md:col-span-2 space-y-4">
-                    <h3 className="text-lg md:text-xl font-bold flex items-center gap-2">
-                      <Info className="text-primary" size={20} />
-                      The Core Economic Challenge
-                    </h3>
-                    <div className="space-y-3 md:space-y-4 text-sm md:text-base text-muted-foreground leading-relaxed">
-                      <p>
-                        At its core, the AI infrastructure stack is built on big upfront spending—companies borrow money
-                        or sign long-term contracts to buy thousands of GPUs and build huge data centers before knowing
-                        if enough users will actually pay to use them.
-                      </p>
-                      <p>
-                        Cloud providers and AI model companies hope that future business will cover these costs, but
-                        there's no guarantee, since most customers' usage is unpredictable and contracts don't always
-                        line up with real demand. This creates a gap: money goes out fast, but steady income comes in
-                        slowly (or sometimes not at all).
-                      </p>
-                      <p className="font-medium text-foreground/90">
-                        Only the chip makers and platforms that collect money right away are guaranteed to profit.
-                        Everyone else is stuck in a cycle where they keep spending and borrowing, hoping growth will
-                        catch up to their commitments—if not, they risk running out of cash and must restructure or get
-                        acquired.
-                      </p>
+              <div className="bg-secondary/20 backdrop-blur-sm border border-primary/10 rounded-xl p-4 md:p-6 mb-8 max-w-4xl mx-auto">
+                <div className="flex flex-col md:flex-row gap-6 items-start">
+                  <div className="flex-1 space-y-4">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="p-1.5 rounded-lg bg-primary/10 text-primary">
+                        <Info size={18} />
+                      </div>
+                      <h3 className="text-lg font-bold text-foreground">The Core Economic Challenge</h3>
+                    </div>
+                    <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                      At its core, the AI infrastructure stack is built on big upfront spending - companies borrow money
+                      or sign long-term contracts to buy thousands of GPUs and build huge data centers before knowing if
+                      enough users will actually pay to use them. Cloud providers and AI model companies hope that
+                      future business will cover these costs, but there’s no guarantee, since most customers’ usage is
+                      unpredictable and contracts don’t always line up with real demand. This creates a gap: money goes
+                      out fast, but steady income comes in slowly (or sometimes not at all). Only the chip makers and
+                      platforms that collect money right away are guaranteed to profit. Everyone else is stuck in a
+                      cycle where they keep spending and borrowing, hoping growth will catch up to their commitments -
+                      if not, they risk running out of cash and must restructure or get acquired.
+                    </p>
+                    <div className="flex justify-end pt-2">
+                      <Link
+                        href="/ai-pricing-economics"
+                        className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary/80 transition-colors group"
+                      >
+                        Read the full Pricing Analysis
+                        <ArrowRight size={16} className="text-primary group-hover:translate-x-1 transition-transform" />
+                      </Link>
                     </div>
                   </div>
-                  <div className="flex flex-col justify-center items-start md:items-end space-y-4 w-full">
-                    <Link
-                      href="/ai-pricing-economics"
-                      className="group flex flex-col gap-2 p-5 md:p-6 bg-primary/5 hover:bg-primary/10 border border-primary/20 rounded-xl transition-all hover:scale-[1.02] cursor-pointer w-full"
-                    >
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs md:text-sm font-bold uppercase tracking-wider text-primary">
-                          Deep Dive Analysis
-                        </span>
-                        <ArrowRight size={20} className="text-primary group-hover:translate-x-1 transition-transform" />
-                      </div>
-                      <span className="text-base md:text-lg font-bold text-foreground">
-                        Misaligned incentives in the AI ecosystem{" "}
-                      </span>
-                      <span className="text-xs md:text-sm text-muted-foreground">
-                        Explore where profits live and why pricing might not be catching up with reality.
-                      </span>
-                    </Link>
-                  </div>
                 </div>
-              </Card>
+              </div>
             </div>
           </motion.div>
         </AnimatePresence>
