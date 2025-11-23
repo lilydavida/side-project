@@ -309,13 +309,10 @@ export default function AILayersDashboard() {
               className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-4 md:mb-6 text-sm font-medium group"
             >
               <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
-              <span>Back to Portfolio</span>
+              <span>Back to home</span>
             </Link>
 
             <div className="space-y-2 mb-4 md:mb-6">
-              <div className="inline-flex items-center px-2.5 py-0.5 rounded-full border border-primary/20 bg-primary/5 text-[10px] md:text-xs font-semibold text-primary uppercase tracking-wider">
-                Interactive Research Project
-              </div>
               <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground text-balance">
                 {PAGE_CONFIG.dashboard.title}
               </h1>
@@ -355,7 +352,7 @@ export default function AILayersDashboard() {
         <div className="relative py-4 md:py-8">
           <div className="absolute top-1/2 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-border to-transparent -translate-y-1/2 hidden md:block z-0" />
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 relative z-10">
+          <div className="grid grid-cols-4 md:grid-cols-4 gap-2 md:gap-6 relative z-10">
             {layersData.map((l, index) => {
               const Icon = l.icon
               const isSelected = selectedLayer === l.id
@@ -374,12 +371,11 @@ export default function AILayersDashboard() {
                   >
                     <Icon
                       size={24}
-                      className={`mb-2 md:mb-0 md:w-8 md:h-8 transition-all duration-300 ${isSelected ? "text-white scale-110" : "text-muted-foreground group-hover:text-foreground"}`}
+                      className={`mb-1 md:mb-0 w-5 h-5 md:w-8 md:h-8 transition-all duration-300 ${isSelected ? "text-white scale-110" : "text-muted-foreground group-hover:text-foreground"}`}
                     />
 
-                    {/* Mobile-only label inside the box for better space usage */}
                     <span
-                      className={`md:hidden text-[10px] font-bold uppercase tracking-wider text-center px-2 leading-tight ${isSelected ? "text-white" : "text-muted-foreground"}`}
+                      className={`md:hidden text-[9px] font-bold uppercase tracking-wider text-center px-1 leading-tight ${isSelected ? "text-white" : "text-muted-foreground"}`}
                     >
                       {l.name}
                     </span>
@@ -398,7 +394,6 @@ export default function AILayersDashboard() {
                     )}
                   </button>
 
-                  {/* Desktop-only external label */}
                   <div className="text-center space-y-1 hidden md:block">
                     <div
                       className={`text-sm md:text-lg font-bold transition-colors ${isSelected ? "text-foreground" : "text-muted-foreground group-hover:text-foreground"}`}
@@ -422,88 +417,9 @@ export default function AILayersDashboard() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="grid grid-cols-1 lg:grid-cols-12 gap-8"
+            className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8"
           >
-            <div className="lg:col-span-8 space-y-6 md:space-y-8">
-              <Card className="bg-card border-border shadow-sm overflow-hidden relative">
-                <div className={`absolute top-0 left-0 w-1 h-full bg-gradient-to-b ${layer.color}`} />
-                <div className="p-5 md:p-8">
-                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-                    <div className="flex items-center gap-3">
-                      <div className={`p-2 rounded-lg bg-secondary ${layer.accent}`}>
-                        <FileText size={18} />
-                      </div>
-                      <h3 className="text-base md:text-lg font-bold uppercase tracking-wide text-foreground">
-                        Layer Analysis
-                      </h3>
-                    </div>
-                    <div className="flex items-center gap-3 px-4 py-1.5 rounded-full bg-secondary/50 border border-border/60 w-fit">
-                      <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Status</span>
-                      <span className={`w-1.5 h-1.5 rounded-full ${summary.healthColor} animate-pulse`} />
-                      <span className={`text-sm font-bold ${summary.healthColor}`}>{summary.health}</span>
-                    </div>
-                  </div>
-
-                  <div className="grid md:grid-cols-2 gap-8">
-                    <div className="space-y-3">
-                      <div className="flex items-center gap-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                        Who's Funding?
-                      </div>
-                      <p className="text-base leading-relaxed font-medium text-foreground/90">{summary.funding}</p>
-                    </div>
-                    <div className="space-y-3">
-                      <div className="flex items-center gap-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                        Unit Economics
-                      </div>
-                      <p className="text-base leading-relaxed font-medium text-foreground/90">{summary.economics}</p>
-                    </div>
-                  </div>
-                </div>
-              </Card>
-
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-6">
-                <Card className="bg-card/50 border-border p-3 md:p-5 relative overflow-hidden group hover:border-primary/20 transition-colors col-span-2 sm:col-span-1">
-                  <div className={`absolute inset-0 bg-gradient-to-br ${layer.color} opacity-[0.03]`} />
-                  <div className="relative z-10">
-                    <div className="text-[10px] md:text-xs font-medium text-muted-foreground uppercase tracking-wider mb-1">
-                      Revenue (Annual)
-                    </div>
-                    <div className="text-lg md:text-3xl font-bold tracking-tight">
-                      ${layer.companies.reduce((sum, c) => sum + c.revenue, 0).toFixed(1)}B
-                    </div>
-                  </div>
-                </Card>
-                <Card className="bg-card/50 border-border p-4 md:p-5 relative overflow-hidden hover:border-primary/20 transition-colors">
-                  <div className="text-[10px] md:text-xs font-medium text-muted-foreground uppercase tracking-wider mb-1">
-                    Est. Spend (Annual)
-                  </div>
-                  <div className="text-xl md:text-3xl font-bold tracking-tight">
-                    ${layer.companies.reduce((sum, c) => sum + c.commitments, 0).toFixed(1)}B
-                  </div>
-                </Card>
-                <Card className="bg-card/50 border-border p-4 md:p-5 relative overflow-hidden hover:border-primary/20 transition-colors">
-                  <div className="text-[10px] md:text-xs font-medium text-muted-foreground uppercase tracking-wider mb-1">
-                    Revenue Delta
-                  </div>
-                  <div
-                    className={`text-xl md:text-3xl font-bold tracking-tight ${
-                      layer.companies.reduce((sum, c) => sum + c.revenue, 0) -
-                        layer.companies.reduce((sum, c) => sum + c.commitments, 0) <
-                      0
-                        ? "text-destructive"
-                        : "text-emerald-500"
-                    }`}
-                  >
-                    $
-                    {(
-                      layer.companies.reduce((sum, c) => sum + c.revenue, 0) -
-                      layer.companies.reduce((sum, c) => sum + c.commitments, 0)
-                    ).toFixed(1)}
-                    B
-                  </div>
-                </Card>
-              </div>
-
+            <div className="lg:col-span-8 order-1 lg:order-3">
               <Card className="p-4 md:p-6 border-border bg-card/50">
                 <div className="mb-6">
                   <h3 className="text-base md:text-lg font-bold mb-1">Revenue vs Est. Spend (Annualized, $B)</h3>
@@ -521,22 +437,22 @@ export default function AILayersDashboard() {
                     </div>
                   </div>
                 </div>
-                <div className="h-[300px] w-full">
+                <div className="h-[250px] md:h-[300px] w-full">
                   <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                    <BarChart data={chartData} margin={{ top: 20, right: 10, left: 0, bottom: 5 }}>
                       <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="hsl(var(--border))" />
                       <XAxis
                         dataKey="name"
                         axisLine={false}
                         tickLine={false}
-                        tick={{ fill: "#9ca3af", fontSize: 12 }}
+                        tick={{ fill: "#9ca3af", fontSize: 10 }}
                         dy={10}
-                        tickFormatter={(value) => (value.length > 10 ? `${value.substring(0, 8)}...` : value)}
+                        tickFormatter={(value) => (value.length > 8 ? `${value.substring(0, 6)}...` : value)}
                       />
                       <YAxis
                         axisLine={false}
                         tickLine={false}
-                        tick={{ fill: "#9ca3af", fontSize: 12 }}
+                        tick={{ fill: "#9ca3af", fontSize: 10 }}
                         tickFormatter={(value) => `$${value}B`}
                       />
                       <Tooltip
@@ -580,14 +496,14 @@ export default function AILayersDashboard() {
                         dataKey="revenue"
                         fill="#7c3aed" // Purple (chart-1)
                         radius={[4, 4, 0, 0]}
-                        barSize={40}
+                        barSize={30}
                       />
                       <Bar
                         dataKey="spend"
                         fill="#06b6d4" // Cyan (chart-2)
                         opacity={0.6}
                         radius={[4, 4, 0, 0]}
-                        barSize={40}
+                        barSize={30}
                       />
                     </BarChart>
                   </ResponsiveContainer>
@@ -595,9 +511,145 @@ export default function AILayersDashboard() {
               </Card>
             </div>
 
-            <div className="lg:col-span-4 space-y-6 md:space-y-8">
+            <div className="lg:col-span-8 order-2 lg:order-2">
+              <div className="grid grid-cols-3 gap-2 md:gap-6">
+                <Card className="bg-card/50 border-border p-3 md:p-5 relative overflow-hidden hover:border-primary/20 transition-colors">
+                  <div className="text-[9px] md:text-xs font-medium text-muted-foreground uppercase tracking-wider mb-1">
+                    Revenue (Annual)
+                  </div>
+                  <div className="text-sm md:text-3xl font-bold tracking-tight truncate">
+                    ${layer.companies.reduce((sum, c) => sum + c.revenue, 0).toFixed(1)}B
+                  </div>
+                </Card>
+                <Card className="bg-card/50 border-border p-3 md:p-5 relative overflow-hidden hover:border-primary/20 transition-colors">
+                  <div className="text-[9px] md:text-xs font-medium text-muted-foreground uppercase tracking-wider mb-1">
+                    Est. Spend (Annual)
+                  </div>
+                  <div className="text-sm md:text-3xl font-bold tracking-tight truncate">
+                    ${layer.companies.reduce((sum, c) => sum + c.commitments, 0).toFixed(1)}B
+                  </div>
+                </Card>
+                <Card className="bg-card/50 border-border p-3 md:p-5 relative overflow-hidden hover:border-primary/20 transition-colors ring-1 ring-border">
+                  <div className="text-[9px] md:text-xs font-medium text-muted-foreground uppercase tracking-wider mb-1">
+                    Revenue Delta
+                  </div>
+                  <div
+                    className={`text-sm md:text-3xl font-bold tracking-tight truncate ${
+                      layer.companies.reduce((sum, c) => sum + c.revenue, 0) -
+                        layer.companies.reduce((sum, c) => sum + c.commitments, 0) <
+                      0
+                        ? "text-destructive"
+                        : "text-emerald-500"
+                    }`}
+                  >
+                    $
+                    {(
+                      layer.companies.reduce((sum, c) => sum + c.revenue, 0) -
+                      layer.companies.reduce((sum, c) => sum + c.commitments, 0)
+                    ).toFixed(1)}
+                    B
+                  </div>
+                </Card>
+              </div>
+            </div>
+
+            <div className="lg:col-span-8 order-3 lg:order-1">
+              <Card className="bg-card border-border shadow-sm overflow-hidden relative h-full">
+                <div className={`absolute top-0 left-0 w-1 h-full bg-gradient-to-b ${layer.color}`} />
+                <div className="p-5 md:p-8">
+                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                    <div className="flex items-center gap-3">
+                      <div className={`p-2 rounded-lg bg-secondary ${layer.accent}`}>
+                        <FileText size={18} />
+                      </div>
+                      <h3 className="text-base md:text-lg font-bold uppercase tracking-wide text-foreground">
+                        Layer Analysis
+                      </h3>
+                    </div>
+                    <div className="flex items-center gap-3 px-4 py-1.5 rounded-full bg-secondary/50 border border-border/60 w-fit">
+                      <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Status</span>
+                      <span className={`w-1.5 h-1.5 rounded-full ${summary.healthColor} animate-pulse`} />
+                      <span className={`text-sm font-bold ${summary.healthColor}`}>{summary.health}</span>
+                    </div>
+                  </div>
+
+                  <div className="grid md:grid-cols-2 gap-6 md:gap-8">
+                    <div className="space-y-2 md:space-y-3">
+                      <div className="flex items-center gap-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                        Who's Funding?
+                      </div>
+                      <p className="text-sm md:text-base leading-relaxed font-medium text-foreground/90">
+                        {summary.funding}
+                      </p>
+                    </div>
+                    <div className="space-y-2 md:space-y-3">
+                      <div className="flex items-center gap-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                        Unit Economics
+                      </div>
+                      <p className="text-sm md:text-base leading-relaxed font-medium text-foreground/90">
+                        {summary.economics}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            </div>
+
+            <div className="lg:col-span-12 order-4 lg:order-5">
+              <Card className="bg-card/30 border-border/60 p-5 md:p-8 relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-1 h-full bg-primary/50" />
+                <div className="grid md:grid-cols-3 gap-6 md:gap-8 items-center">
+                  <div className="md:col-span-2 space-y-4">
+                    <h3 className="text-lg md:text-xl font-bold flex items-center gap-2">
+                      <Info className="text-primary" size={20} />
+                      The Core Economic Challenge
+                    </h3>
+                    <div className="space-y-3 md:space-y-4 text-sm md:text-base text-muted-foreground leading-relaxed">
+                      <p>
+                        At its core, the AI infrastructure stack is built on big upfront spending—companies borrow money
+                        or sign long-term contracts to buy thousands of GPUs and build huge data centers before knowing
+                        if enough users will actually pay to use them.
+                      </p>
+                      <p>
+                        Cloud providers and AI model companies hope that future business will cover these costs, but
+                        there’s no guarantee, since most customers’ usage is unpredictable and contracts don’t always
+                        line up with real demand. This creates a gap: money goes out fast, but steady income comes in
+                        slowly (or sometimes not at all).
+                      </p>
+                      <p className="font-medium text-foreground/90">
+                        Only the chip makers and platforms that collect money right away are guaranteed to profit.
+                        Everyone else is stuck in a cycle where they keep spending and borrowing, hoping growth will
+                        catch up to their commitments—if not, they risk running out of cash and must restructure or get
+                        acquired.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex flex-col justify-center items-start md:items-end space-y-4 w-full">
+                    <Link
+                      href="/ai-pricing-economics"
+                      className="group flex flex-col gap-2 p-5 md:p-6 bg-primary/5 hover:bg-primary/10 border border-primary/20 rounded-xl transition-all hover:scale-[1.02] cursor-pointer w-full"
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs md:text-sm font-bold uppercase tracking-wider text-primary">
+                          Deep Dive Analysis
+                        </span>
+                        <ArrowRight size={20} className="text-primary group-hover:translate-x-1 transition-transform" />
+                      </div>
+                      <span className="text-base md:text-lg font-bold text-foreground">
+                        Misaligned incentives in the AI ecosystem{" "}
+                      </span>
+                      <span className="text-xs md:text-sm text-muted-foreground">
+                        Explore where profits live and why pricing might not be catching up with reality.
+                      </span>
+                    </Link>
+                  </div>
+                </div>
+              </Card>
+            </div>
+
+            <div className="lg:col-span-4 lg:row-span-3 order-5 lg:order-4 h-full">
               <Card className="bg-card border-border h-full">
-                <div className="p-5 md:p-6 border-b border-border/50">
+                <div className="p-4 md:p-6 border-b border-border/50">
                   <div className="flex items-center gap-3">
                     <div className="p-2 rounded-lg bg-secondary text-primary">
                       <FileText size={20} />
@@ -640,53 +692,7 @@ export default function AILayersDashboard() {
           </motion.div>
         </AnimatePresence>
 
-        {/* Added market dynamics analysis section with link to pricing page */}
-        <Card className="bg-card/30 border-border/60 p-6 md:p-8 relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-1 h-full bg-primary/50" />
-          <div className="grid md:grid-cols-3 gap-8 items-center">
-            <div className="md:col-span-2 space-y-4">
-              <h3 className="text-xl font-bold flex items-center gap-2">
-                <Info className="text-primary" size={20} />
-                The Core Economic Challenge
-              </h3>
-              <div className="space-y-4 text-muted-foreground leading-relaxed">
-                <p>
-                  At its core, the AI infrastructure stack is built on big upfront spending—companies borrow money or
-                  sign long-term contracts to buy thousands of GPUs and build huge data centers before knowing if enough
-                  users will actually pay to use them.
-                </p>
-                <p>
-                  Cloud providers and AI model companies hope that future business will cover these costs, but there’s
-                  no guarantee, since most customers’ usage is unpredictable and contracts don’t always line up with
-                  real demand. This creates a gap: money goes out fast, but steady income comes in slowly (or sometimes
-                  not at all).
-                </p>
-                <p className="font-medium text-foreground/90">
-                  Only the chip makers and platforms that collect money right away are guaranteed to profit. Everyone
-                  else is stuck in a cycle where they keep spending and borrowing, hoping growth will catch up to their
-                  commitments—if not, they risk running out of cash and must restructure or get acquired.
-                </p>
-              </div>
-            </div>
-            <div className="flex flex-col justify-center items-start md:items-end space-y-4">
-              <Link
-                href="/ai-pricing-economics"
-                className="group flex flex-col gap-2 p-6 bg-primary/5 hover:bg-primary/10 border border-primary/20 rounded-xl transition-all hover:scale-[1.02] cursor-pointer w-full"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-bold uppercase tracking-wider text-primary">Deep Dive Analysis</span>
-                  <ArrowRight size={20} className="text-primary group-hover:translate-x-1 transition-transform" />
-                </div>
-                <span className="text-lg font-bold text-foreground">Misaligned incentives in the AI ecosystem </span>
-                <span className="text-sm text-muted-foreground">
-                  Explore where profits live and why pricing might not be catching up with reality.
-                </span>
-              </Link>
-            </div>
-          </div>
-        </Card>
-
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 mt-12 text-xs text-muted-foreground">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 mt-8 md:mt-12 text-xs text-muted-foreground">
           <div>
             © {new Date().getFullYear()} AI Infrastructure Map. Data aggregated from public filings and API sources.
           </div>
