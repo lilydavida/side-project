@@ -2,7 +2,7 @@
   "pages": [
     {
       "id": "dashboard",
-      "title": "Follow the Money trail",
+      "title": "Tracing AI Capital Flows from Capex to Unit Economics",
       "subtitle": "Revenue vs. estimated spend across the 4-layer AI stack",
       "description": "Interactive dashboard tracking $400B in AI infrastructure spending. Visualize revenue performance, fulfillment rates, and estimated spend across chip makers, GPU cloud providers, LLMs, and distribution layers.",
       "tags": ["AI Infrastructure", "Revenue Analytics", "Financial Data"],
@@ -13,7 +13,7 @@
     },
     {
       "id": "ai-pricing-economics",
-      "title": "The $1.4 Trillion AI Mystery: Rethinking How Value Flows",
+      "title": "Stop Counting TFLOPs, Start Tracking Dollars",
       "subtitle": "Outcome-Based Pricing Research",
       "description": "From Sam Altman's candid response to a $1.4T question to practical outcome-based pricing models. How hybrid approaches could realign incentives across the AI stack and make everyone profitable.",
       "tags": ["Business Models", "Outcome Pricing", "Value Creation"],
@@ -24,7 +24,7 @@
     },
     {
       "id": "attribution-for-ai-adoption",
-      "title": "Don't Trust AI. Measure It.",
+      "title": "The \"Human-in-the-Loop\" Advantage: Why Hybrid Systems Win",
       "subtitle": "From Black Box to Cockpit",
       "description": "Why the winners of the next decade won't just be the companies with the smartest models, but those who can measure the probability of success. A deep dive into Confidence Engines and the Google opportunity.",
       "tags": ["AI Governance", "Product Strategy", "Confidence Engineering"],

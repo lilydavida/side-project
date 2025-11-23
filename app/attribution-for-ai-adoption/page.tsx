@@ -18,8 +18,8 @@ export default function ConfidenceGamePage() {
         <article className="prose prose-invert prose-slate max-w-none">
           {/* Header */}
           <header className="mb-6 sm:mb-12 border-b border-slate-800 pb-4 sm:pb-8">
-            <h1 className="text-2xl sm:text-5xl font-bold text-white mb-3 sm:mb-4 leading-tight">
-              Don't Trust AI. Measure It.
+            <h1 className="text-3xl sm:text-5xl font-bold text-white mb-3 sm:mb-4 leading-tight">
+              The "Human-in-the-Loop" Advantage: Why Hybrid Systems Win
             </h1>
             <div className="text-slate-400 text-xs sm:text-sm">November 2025</div>
           </header>
@@ -83,7 +83,6 @@ export default function ConfidenceGamePage() {
             </ul>
           </section>
 
-          
           {/* The Fork in the Road */}
           <section className="mb-6 sm:mb-12">
             <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
@@ -94,48 +93,19 @@ export default function ConfidenceGamePage() {
               from the noise:
             </p>
 
-            <div className="overflow-x-auto mb-6 rounded-lg border border-slate-800">
-              <table className="w-full text-left text-sm">
-                <thead className="bg-slate-900 text-slate-300">
-                  <tr>
-                    <th className="p-3 sm:p-4 font-semibold border-b border-slate-800">Feature</th>
-                    <th className="p-3 sm:p-4 font-semibold border-b border-slate-800 w-[40%]">Strategic Outcomes</th>
-                    <th className="p-3 sm:p-4 font-semibold border-b border-slate-800 w-[40%]">
-                      Commoditized Outcomes
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-800 bg-slate-900/30">
-                  <tr>
-                    <td className="p-3 sm:p-4 font-medium text-slate-300">Examples</td>
-                    <td className="p-3 sm:p-4 text-slate-400">Pricing, Homepage Rank</td>
-                    <td className="p-3 sm:p-4 text-slate-400">Spam Filter, Tier 1 Support</td>
-                  </tr>
-                  <tr>
-                    <td className="p-3 sm:p-4 font-medium text-slate-300">The Goal</td>
-                    <td className="p-3 sm:p-4 text-slate-400">Maximizing Revenue / Brand Equity</td>
-                    <td className="p-3 sm:p-4 text-slate-400">Minimizing Cost / Speed</td>
-                  </tr>
-                  <tr>
-                    <td className="p-3 sm:p-4 font-medium text-slate-300">The Risk</td>
-                    <td className="p-3 sm:p-4 text-slate-400">High. A bad prediction costs millions.</td>
-                    <td className="p-3 sm:p-4 text-slate-400">Low. A bad prediction is an annoyance.</td>
-                  </tr>
-                  <tr>
-                    <td className="p-3 sm:p-4 font-medium text-slate-300">The Model</td>
-                    <td className="p-3 sm:p-4 text-slate-400">
-                      Probabilistic & Transparent. We need to see the weights.
-                    </td>
-                    <td className="p-3 sm:p-4 text-slate-400">Deterministic & Opaque. We just need the result.</td>
-                  </tr>
-                  <tr>
-                    <td className="p-3 sm:p-4 font-medium text-slate-300">Pricing</td>
-                    <td className="p-3 sm:p-4 text-slate-400">Outcome-based (Attribution Heavy).</td>
-                    <td className="p-3 sm:p-4 text-slate-400">Usage-based (Volume Heavy).</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+            {/* Concise summary text per user request */}
+            <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-6">
+              <strong>Commoditized Outcomes</strong> (like spam filters or tier 1 support) prioritize speed and low
+              cost. The risk is low—a bad prediction is just an annoyance—so we can accept deterministic, opaque models
+              where we simply need the result.
+            </p>
+            <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-6">
+              In contrast, <strong>Strategic Outcomes</strong> (like pricing or homepage ranking) aim to maximize
+              revenue and brand equity. The risk here is high; a bad prediction costs millions. Therefore, these require
+              probabilistic, transparent models where we can see the weights. Pricing for these strategic decisions
+              should be outcome-based (attribution heavy), whereas commodity tasks fit better with usage-based (volume
+              heavy) pricing.
+            </p>
 
             <div className="bg-blue-900/10 border border-blue-900/30 p-4 rounded-lg">
               <p className="text-sm sm:text-base text-blue-200 font-medium text-center">
@@ -147,9 +117,7 @@ export default function ConfidenceGamePage() {
 
           {/* Google Opportunity */}
           <section className="mb-6 sm:mb-12">
-            <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
-             Why Google Should Own This Space
-            </h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">Why Google Should Own This Space</h2>
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
               Here is the irony: Google has all the parts to build this cockpit, but they are sold as separate airplane
               parts.

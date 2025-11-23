@@ -19,7 +19,7 @@ export default function PricingAnalysisPage() {
           {/* Header */}
           <header className="mb-6 sm:mb-12 border-b border-slate-800 pb-4 sm:pb-8">
             <h1 className="text-2xl sm:text-5xl font-bold text-white mb-3 sm:mb-4 leading-tight">
-              The $1.4 Trillion AI Mystery: Rethinking How Value Flows
+              Stop Counting TFLOPs, Start Tracking Dollars
             </h1>
             <div className="text-slate-400 text-xs sm:text-sm">November 2025</div>
           </header>

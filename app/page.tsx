@@ -48,9 +48,8 @@ export default function HomePage() {
                     </div>
                     <h3 className="mb-1.5 text-lg font-medium text-slate-200 md:mb-2 md:text-xl">{page.title}</h3>
                     <p className="mb-2 text-xs text-slate-500 md:mb-2.5 md:text-sm">{page.subtitle}</p>
-                    <p className="text-sm leading-relaxed text-slate-400 md:text-base">
-                      {page.description.split(".")[0]}.{" "}
-                      <span className="hidden md:inline">{page.description.split(".").slice(1).join(".")}</span>
+                    <p className="text-sm leading-relaxed text-slate-400 md:text-base line-clamp-3 md:line-clamp-none">
+                      {page.description}
                     </p>
                   </div>
                   <ArrowRight className="mt-1 h-4 w-4 flex-shrink-0 text-slate-600 transition-colors group-hover:text-slate-400 md:h-5 md:w-5" />

@@ -1,6 +1,6 @@
 export const PAGE_CONFIG = {
   dashboard: {
-    title: "Follow the Money trail",
+    title: "Tracing AI Capital Flows from Capex to Unit Economics",
     subtitle: "Revenue vs. contractual commitments across the 5-layer AI stack",
     description:
       "Interactive dashboard tracking $400B in AI infrastructure spending. Visualize revenue performance, fulfillment rates, and contractual obligations across chip makers, hyperscalers, GPU cloud providers, LLMs, and distribution layers.",
