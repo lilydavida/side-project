@@ -13,7 +13,7 @@
     },
     {
       "id": "ai-pricing-economics",
-      "title": "Stop Counting TFLOPs, Start Tracking Dollars",
+      "title": "Stop Chasing CUDs, Start Tracking Dollars",
       "subtitle": "Outcome-Based Pricing Research",
       "description": "From Sam Altman's candid response to a $1.4T question to practical outcome-based pricing models. How hybrid approaches could realign incentives across the AI stack and make everyone profitable.",
       "tags": ["Business Models", "Outcome Pricing", "Value Creation"],
@@ -29,7 +29,7 @@
       "description": "Why the winners of the next decade won't just be the companies with the smartest models, but those who can measure the probability of success. A deep dive into Confidence Engines and the Google opportunity.",
       "tags": ["AI Governance", "Product Strategy", "Confidence Engineering"],
       "href": "/attribution-for-ai-adoption",
-      "published": true,
+      "published": false,
       "createdAt": "2025-11-22",
       "type": "article"
     }

@@ -35,21 +35,17 @@ export default function ConfidenceGamePage() {
               This creates a fundamental friction. Engineers want models to run autonomously to scale. Business leaders
               are terrified to let a "black box" make high-stakes decisions based on a probability curve they can't see.
             </p>
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-              Company ABC bridged this gap. They didn't try to force AI to be perfect. Instead, they built a system that
-              made the probability visible and controllable. This is the story of how they turned a Central Event
-              Tracker into a "Confidence Engine" and why Google is sitting on an opportunity to do the same for the rest
-              of the world.
-            </p>
           </section>
+
+          
 
           {/* The Case Study */}
           <section className="mb-6 sm:mb-12">
             <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
-              The Case Study: Company ABC’s "Confidence Engine"
+              The Case Study: Retailer ABC's "Confidence Engine"
             </h2>
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-3 sm:mb-4">
-              Company ABC faced a classic problem: Their ML engineers built a powerful recommendation model, but the PM
+              Retailer ABC faced a classic problem: Their ML engineers built a powerful recommendation model, but the PM
               and Business teams did feel ready to turn it on fully. Why? Because if the model hallucinated or optimized
               for the wrong metric, the business had no way to stop it until the damage was done.
             </p>
@@ -88,23 +84,13 @@ export default function ConfidenceGamePage() {
             <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
               The Fork in the Road: Strategic vs. Commodity
             </h2>
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-6">
-              Not every decision needs this level of scrutiny. We must apply First Principles to separate the signal
-              from the noise:
-            </p>
-
-            {/* Concise summary text per user request */}
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-6">
-              <strong>Commoditized Outcomes</strong> (like spam filters or tier 1 support) prioritize speed and low
-              cost. The risk is low—a bad prediction is just an annoyance—so we can accept deterministic, opaque models
-              where we simply need the result.
+            <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-4">
+              <strong>Commoditized Outcomes</strong> (spam filters, tier 1 support) prioritize speed and low cost. Low
+              risk means we accept opaque models and usage-based pricing.
             </p>
             <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-6">
-              In contrast, <strong>Strategic Outcomes</strong> (like pricing or homepage ranking) aim to maximize
-              revenue and brand equity. The risk here is high; a bad prediction costs millions. Therefore, these require
-              probabilistic, transparent models where we can see the weights. Pricing for these strategic decisions
-              should be outcome-based (attribution heavy), whereas commodity tasks fit better with usage-based (volume
-              heavy) pricing.
+              <strong>Strategic Outcomes</strong> (pricing, homepage ranking) maximize revenue and brand equity. High
+              risk demands transparent, probabilistic models with outcome-based pricing tied to attribution.
             </p>
 
             <div className="bg-blue-900/10 border border-blue-900/30 p-4 rounded-lg">
