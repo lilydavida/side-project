@@ -242,54 +242,212 @@ export default function PricingAnalysisPage() {
 
           {/* Case Study */}
           <section className="mb-6 sm:mb-12">
-            <h2 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">Case Study: Ecommerce</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">
+              Case Study: Mid-Market Fashion Retailer ($350M Annual Revenue)
+            </h2>
 
-            <div className="space-y-3 sm:space-y-4">
+            <div className="space-y-4 sm:space-y-6">
+              {/* Company Profile */}
               <div>
-                <h3 className="text-base sm:text-lg font-semibold text-white mb-2">Current Pricing:</h3>
-                <p className="text-sm sm:text-base text-slate-300">
-                  $450K/year (recommendations $200K + chatbot $100K + fraud detection $150K)
-                </p>
+                <h3 className="text-base sm:text-lg font-semibold text-white mb-2 sm:mb-3">Company Profile</h3>
+                <ul className="space-y-1.5 sm:space-y-2 text-sm sm:text-base text-slate-300">
+                  <li>• Annual Revenue: $350M (65% online, 35% in-store)</li>
+                  <li>• Monthly Site Visits: 2.5M</li>
+                  <li>• Average Order Value: $85</li>
+                  <li>• Customer Service Volume: ~15,000 tickets/month</li>
+                </ul>
               </div>
 
+              {/* The Challenge */}
               <div>
-                <h3 className="text-base sm:text-lg font-semibold text-white mb-2">Outcome-Based Pricing:</h3>
-                <p className="text-sm sm:text-base text-slate-300 mb-2 sm:mb-3">
-                  <span className="font-semibold">Exploration:</span> $50K/month × 3 months = $150K
-                </p>
-                <p className="text-sm sm:text-base text-slate-300 mb-2 sm:mb-3">
-                  Retailer tests recommendations, chatbots, fraud detection across product catalog
-                </p>
-                <p className="text-sm sm:text-base text-slate-300 mb-2 sm:mb-3">
-                  <span className="font-semibold">Production outcomes measured:</span>
+                <h3 className="text-base sm:text-lg font-semibold text-white mb-2 sm:mb-3">The Challenge</h3>
+                <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-2 sm:mb-3">
+                  The retailer had legacy systems and limited AI capabilities:
                 </p>
                 <ul className="space-y-1.5 sm:space-y-2 text-sm sm:text-base text-slate-300 ml-4 sm:ml-6 mb-2 sm:mb-3">
-                  <li>• Recommendations: $5M incremental sales (10% lift on $50M segment)</li>
-                  <li>• Chatbot: $500K cost savings (50,000 tickets deflected × $10)</li>
-                  <li>• Fraud detection: $2M fraud prevented</li>
-                  <li>• Total value: $7.5M annually</li>
+                  <li>• Basic rule-based product recommendations (2+ years old)</li>
+                  <li>• Human-staffed customer service with no AI triage</li>
+                  <li>• Fraud detection via third-party service with high false-positive rate (8%)</li>
                 </ul>
+                <p className="text-sm sm:text-base text-slate-300">
+                  <span className="font-semibold">Previous Annual Spend on Tech:</span> $450K across these three areas
+                </p>
+              </div>
+
+              {/* The Test */}
+              <div>
+                <h3 className="text-base sm:text-lg font-semibold text-white mb-2 sm:mb-3">
+                  The Test: 6-Month Pilot (Q1–Q2 2024)
+                </h3>
                 <p className="text-sm sm:text-base text-slate-300 mb-2 sm:mb-3">
-                  <span className="font-semibold">Pricing:</span>
+                  <span className="font-semibold">Investment:</span> $150K ($25K/month × 6 months)
+                </p>
+                <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-2 sm:mb-3">
+                  The retailer deployed three AI tools in a controlled pilot:
                 </p>
                 <ul className="space-y-1.5 sm:space-y-2 text-sm sm:text-base text-slate-300 ml-4 sm:ml-6">
-                  <li>• Recommendations: 8% = $400K (vs $200K SaaS)</li>
-                  <li>• Chatbot: 40% = $200K (vs $100K per-seat)</li>
-                  <li>• Fraud detection: 15% = $300K (vs $150K infrastructure)</li>
-                  <li>• Total: $900K tied to $7.5M value = 8× ROI</li>
+                  <li>• AI Recommendations on 50% of product detail pages (A/B tested)</li>
+                  <li>• AI Chatbot handling Tier-1 inquiries (order tracking, returns policy)</li>
+                  <li>• Enhanced Fraud Detection with ML-based scoring</li>
                 </ul>
               </div>
 
-              <div className="bg-slate-900 rounded-lg p-4 sm:p-6 mt-4 sm:mt-6">
+              {/* Measurement Approach */}
+              <div>
+                <h3 className="text-base sm:text-lg font-semibold text-white mb-2 sm:mb-3">Measurement Approach</h3>
+                <div className="space-y-3 text-sm sm:text-base text-slate-300">
+                  <div>
+                    <p className="font-semibold mb-1.5">Recommendations (A/B Test):</p>
+                    <ul className="space-y-1 ml-4 sm:ml-6">
+                      <li>• Control Group: 50% of users saw legacy recommendations</li>
+                      <li>• Treatment Group: 50% saw AI-powered recommendations</li>
+                      <li>• Metric: Conversion rate and revenue per session</li>
+                      <li>• Duration: 12 weeks of continuous testing</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="font-semibold mb-1.5">Chatbot (Controlled Rollout):</p>
+                    <ul className="space-y-1 ml-4 sm:ml-6">
+                      <li>• Baseline: Pre-pilot ticket volume and cost per ticket</li>
+                      <li>• Test Period: 3 months of chatbot handling simple queries, with human escalation</li>
+                      <li>• Metric: Deflection rate, customer satisfaction (CSAT), cost per resolution</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="font-semibold mb-1.5">Fraud Detection (Pre/Post Comparison):</p>
+                    <ul className="space-y-1 ml-4 sm:ml-6">
+                      <li>• Baseline: 6 months of fraud data prior to pilot (Q3–Q4 2023)</li>
+                      <li>• Test Period: 6 months with new system (Q1–Q2 2024)</li>
+                      <li>• Metric: False positive rate, actual fraud losses, operational overhead</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Results */}
+              <div>
+                <h3 className="text-base sm:text-lg font-semibold text-white mb-2 sm:mb-3">
+                  Results (6-Month Pilot Period)
+                </h3>
+                <div className="space-y-3 text-sm sm:text-base text-slate-300">
+                  <div>
+                    <p className="font-semibold mb-1.5">1. AI Recommendations</p>
+                    <ul className="space-y-1 ml-4 sm:ml-6">
+                      <li>• Conversion Lift: +3.2% (with ±0.8% confidence interval)</li>
+                      <li>• Revenue Impact: ~$1.8M incremental revenue over 6 months</li>
+                      <li className="text-slate-400 text-xs sm:text-sm">
+                        Calculation: $350M × 65% online × 50% exposed × 3.2% lift = ~$1.8M
+                      </li>
+                      <li>• Annualized Projection: $3.6M (assuming sustained lift)</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="font-semibold mb-1.5">2. AI Chatbot</p>
+                    <ul className="space-y-1 ml-4 sm:ml-6">
+                      <li>• Tickets Deflected: 2,400/month (16% of total volume)</li>
+                      <li className="ml-4">- 80% deflection for simple queries (tracking, FAQs)</li>
+                      <li className="ml-4">- 5% deflection for complex queries (account issues, disputes)</li>
+                      <li>• Cost Savings: ~$180K/year</li>
+                      <li className="text-slate-400 text-xs sm:text-sm">
+                        Calculation: 2,400 tickets × 12 months × $6.25 per ticket = $180K
+                      </li>
+                      <li>• CSAT Impact: Neutral (4.2/5 vs 4.3/5 for human agents)</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="font-semibold mb-1.5">3. Fraud Detection</p>
+                    <ul className="space-y-1 ml-4 sm:ml-6">
+                      <li>• False Positive Reduction: 8% → 4% (50% improvement)</li>
+                      <li>• Operational Savings: $90K/year (less manual review time)</li>
+                      <li>• Fraud Losses: $420K (6 months) vs $460K (prior 6 months)</li>
+                      <li>• Net Benefit: ~$40K reduction + $90K operational savings = $130K/year</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Total Measured Value */}
+              <div className="bg-slate-900 rounded-lg p-4 sm:p-6">
+                <h3 className="text-base sm:text-lg font-semibold text-white mb-3 sm:mb-4">
+                  Total Measured Value (First Year)
+                </h3>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm sm:text-base text-left">
+                    <thead>
+                      <tr className="border-b border-slate-700">
+                        <th className="pb-2 text-slate-300">Category</th>
+                        <th className="pb-2 text-slate-300">Value</th>
+                        <th className="pb-2 text-slate-300">Confidence Level</th>
+                      </tr>
+                    </thead>
+                    <tbody className="text-slate-300">
+                      <tr className="border-b border-slate-800">
+                        <td className="py-2">Recommendations</td>
+                        <td className="py-2">$3.6M/year</td>
+                        <td className="py-2">High (A/B tested)</td>
+                      </tr>
+                      <tr className="border-b border-slate-800">
+                        <td className="py-2">Chatbot</td>
+                        <td className="py-2">$180K/year</td>
+                        <td className="py-2">Medium (assumes sustained deflection)</td>
+                      </tr>
+                      <tr className="border-b border-slate-800">
+                        <td className="py-2">Fraud Detection</td>
+                        <td className="py-2">$130K/year</td>
+                        <td className="py-2">Medium (small sample size for fraud events)</td>
+                      </tr>
+                      <tr className="font-semibold">
+                        <td className="pt-2">Total</td>
+                        <td className="pt-2">$3.91M/year</td>
+                        <td className="pt-2"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* Pricing Comparison */}
+              <div>
+                <h3 className="text-base sm:text-lg font-semibold text-white mb-2 sm:mb-3">Pricing Comparison</h3>
+                <div className="space-y-3 sm:space-y-4 text-sm sm:text-base text-slate-300">
+                  <div>
+                    <p className="font-semibold mb-1.5">Previous SaaS Model (Flat-Rate):</p>
+                    <ul className="space-y-1 ml-4 sm:ml-6">
+                      <li>• Total: $450K/year</li>
+                      <li>• No attribution, no performance guarantees</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="font-semibold mb-1.5">New Outcome-Based Model:</p>
+                    <p className="mb-2">
+                      <span className="font-semibold">Exploration Phase:</span> $150K (6-month pilot)
+                    </p>
+                    <p className="mb-1.5">
+                      <span className="font-semibold">Production Pricing (Year 1):</span>
+                    </p>
+                    <ul className="space-y-1 ml-4 sm:ml-6">
+                      <li>• Recommendations: 6% of incremental revenue = $216K</li>
+                      <li>• Chatbot: 35% of cost savings = $63K</li>
+                      <li>• Fraud Detection: 20% of combined savings = $26K</li>
+                      <li className="font-semibold pt-1">• Total: $305K/year</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Why It Works */}
+              <div className="bg-slate-900 rounded-lg p-4 sm:p-6">
                 <h3 className="text-base sm:text-lg font-semibold text-white mb-2 sm:mb-3">Why It Works:</h3>
-                <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-2 sm:mb-3">
-                  Retailer pays 2× more ($900K vs $450K) because proven $7.5M value. CFO can justify: "$900K generates
-                  $7.5M return" vs "$450K with unclear ROI."
+                <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-3">
+                  Despite paying slightly less ($305K vs $450K), the retailer achieved $3.91M in measurable value with
+                  outcome-based pricing. The exploration phase ($150K) de-risked deployment, and production fees scaled
+                  with proven results. The CFO can now justify spend with: "$305K generated $3.91M return" vs "$450K
+                  with unclear ROI."
                 </p>
-                <p className="text-sm sm:text-base text-slate-300">
-                  <span className="font-semibold">Market Evidence:</span> Dynamic Yield (acquired by Mastercard for
-                  $300M) offers performance-based pricing. Affirm charges percentage of GMV. Retailers paying 2-3× when
-                  tied to revenue outcomes.
+                <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+                  <span className="font-semibold">Key Success Factors:</span> Clear A/B testing, granular tracking,
+                  multi-month measurement windows, and willingness to share upside. The pilot model allowed both sides
+                  to learn before committing to full-scale deployment.
                 </p>
               </div>
             </div>
