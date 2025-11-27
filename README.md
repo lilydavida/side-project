@@ -1,30 +1,35 @@
-# Live data infographic
+# Side Project
 
-*Automatically synced with your [v0.app](https://v0.app) deployments*
+What I build when I'm not at work.
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/lilydavida-gmailcoms-projects/v0-live-data-infographic)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/vegZJSrHEol)
+## The Idea
 
-## Overview
+Work through hard questions by building things:
 
-This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
+- **Start with confusion** - Pick domains I don't fully understand
+- **Build to learn** - Interactive tools and real data, not summaries
+- **Show the reasoning** - Trace the path, include the wrong turns
 
-## Deployment
+## Current: AI Infrastructure Economics
 
-Your project is live at:
+Following the money through the AI stack - who's spending, who's earning, where the math breaks.
 
-**[https://vercel.com/lilydavida-gmailcoms-projects/v0-live-data-infographic](https://vercel.com/lilydavida-gmailcoms-projects/v0-live-data-infographic)**
+| Piece | Format | Question |
+|-------|--------|----------|
+| Tracing AI Capital Flows | Dashboard | Who actually profits in AI infrastructure? |
+| Stop Chasing CUDs | Article | What if pricing reflected outcomes, not compute? |
 
-## Build your app
+## Process
 
-Continue building your app on:
+1. Find where conventional wisdom is thin
+2. Build something that forces clarity
+3. Pressure test with real numbers
+4. Write up what I learned (and where I was wrong)
 
-**[https://v0.app/chat/vegZJSrHEol](https://v0.app/chat/vegZJSrHEol)**
+## Stack
 
-## How It Works
+Next.js / Tailwind / Recharts / Financial Markets API
 
-1. Create and modify your project using [v0.app](https://v0.app)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+## Say Hi
+
+[LinkedIn](https://www.linkedin.com/in/lilyzhang18)
