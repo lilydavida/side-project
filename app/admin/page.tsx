@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Link from "next/link"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -30,6 +31,17 @@ export default function AdminPage() {
       href: "/insights",
       published: true,
       createdAt: "2025-01-15",
+      type: "article",
+    },
+    {
+      id: "aeo-case-study",
+      title: "The Death of Keyword Search",
+      subtitle: "Case Study: K-Beauty Catalog",
+      description: "See why standard search fails and how AEO fixes it with semantic understanding.",
+      tags: ["AEO", "E-commerce", "Search", "Case Study"],
+      href: "/aeo-case-study",
+      published: true,
+      createdAt: "2025-02-09",
       type: "article",
     },
   ])
@@ -151,7 +163,7 @@ export default function AdminPage() {
           {pages.map((page) => (
             <Card key={page.id} className="border-slate-800 bg-slate-900/50 p-4">
               <div className="flex items-start justify-between">
-                <div className="flex-1">
+                <Link href={page.href} className="flex-1 hover:opacity-80 transition-opacity">
                   <div className="mb-2 flex items-center gap-2">
                     <h3 className="text-lg font-medium text-slate-200">{page.title}</h3>
                     <span
@@ -171,8 +183,8 @@ export default function AdminPage() {
                       </span>
                     ))}
                   </div>
-                </div>
-                <div className="flex gap-2">
+                </Link>
+                <div className="flex gap-2" onClick={(e) => e.stopPropagation()}>
                   <Button size="sm" variant="ghost" onClick={() => togglePublished(page.id)} className="h-8 w-8 p-0">
                     {page.published ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}
                   </Button>
