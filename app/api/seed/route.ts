@@ -24,7 +24,17 @@ export async function GET() {
     'Sensitive, Alcohol-Free (marketing claim), Winter'
   ];
 
-  const products = [];
+  const products: {
+    title: string;
+    vendor: string;
+    product_type: string;
+    body_html: string;
+    tags: string;
+    option1_name: string;
+    option1_value: string;
+    price: number;
+    aeo_status: string;
+  }[] = [];
 
   // 🚀 Generate 1,000 Messy Products
   for (let i = 0; i < 1000; i++) {
@@ -40,15 +50,21 @@ export async function GET() {
       tags: messy_tags[Math.floor(Math.random() * messy_tags.length)],
       option1_name: Math.random() > 0.5 ? 'Size' : 'Volume', // Inconsistent naming
       option1_value: Math.random() > 0.5 ? '50ml' : '1.69 fl oz', // Inconsistent units
-      price: (Math.random() * 50 + 10).toFixed(2),
+      // Use a numeric price to match typical Supabase numeric/float columns
+      price: parseFloat((Math.random() * 50 + 10).toFixed(2)),
       aeo_status: 'raw' // Ready for optimization
     });
   }
 
   // ⚡️ Bulk Insert (Batched to respect Supabase limits)
-  const { error } = await supabase.from('aeo_demo_products').insert(products);
-
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  const BATCH_SIZE = 200;
+  for (let i = 0; i < products.length; i += BATCH_SIZE) {
+    const batch = products.slice(i, i + BATCH_SIZE);
+    const { error } = await supabase.from('aeo_demo_products').insert(batch);
+    if (error) {
+      return NextResponse.json({ error: error.message, batchStart: i }, { status: 500 });
+    }
+  }
 
   return NextResponse.json({ 
     message: '✅ Successfully seeded 1,000 messy products!', 
