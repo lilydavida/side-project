@@ -86,7 +86,8 @@ export async function processAuditStep(auditId: string): Promise<{
       // 🧠 PHASE 2: ANALYZING (The "Brain")
       case "analyzing": {
         const model = genAI.getGenerativeModel({
-          model: "gemini-1.5-flash",
+          // Use a currently available Gemini model
+          model: "gemini-2.0-flash",
         });
 
         // Keep payload reasonable for the model
