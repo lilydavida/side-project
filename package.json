@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@emotion/is-prop-valid": "latest",
+    "@google/genai": "^1.41.0",
     "@google/generative-ai": "^0.24.1",
     "@hookform/resolvers": "^3.10.0",
     "@radix-ui/react-accordion": "1.2.2",
@@ -41,7 +42,7 @@
     "@radix-ui/react-tooltip": "1.1.6",
     "@supabase/supabase-js": "latest",
     "@tavily/core": "^0.7.1",
-    "@vercel/analytics": "latest",
+    "@vercel/analytics": "^1.6.1",
     "autoprefixer": "^10.4.20",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
