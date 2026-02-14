@@ -1,165 +1,110 @@
 "use server";
 
-import { createClient } from "@/utils/supabase/server"; // uses your shared Supabase helper
+import { createClient } from "@/utils/supabase/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { tavily } from "@tavily/core";
 
-type AuditStatus = "pending" | "scouting" | "analyzing" | "complete" | "failed";
+const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY!);
+const tv = tavily({ apiKey: process.env.TAVILY_API_KEY });
 
-interface AuditRow {
-  id: string;
-  status: AuditStatus;
-  keyword: string;
-  location: string | null;
-  brand_name: string;
-  search_data: unknown | null;
-  ai_analysis: unknown | null;
+const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
+/**
+ * 🛠️ DYNAMIC MODEL DISCOVERY (2026 Fix)
+ * Fetches the list of models your key is authorized to use.
+ */
+async function getBestModel() {
+  try {
+    const url = `https://generativelanguage.googleapis.com/v1/models?key=${process.env.GOOGLE_API_KEY}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    const names: string[] = data.models?.map((m: any) => m.name) || [];
+
+    // 2026 Preference Order: Gemini 3 > Gemini 2.5 > Gemini 2.0
+    const selected = 
+      names.find(n => n.includes("gemini-3-flash")) || 
+      names.find(n => n.includes("gemini-2.5-flash")) || 
+      names.find(n => n.includes("gemini-2.0-flash")) ||
+      "models/gemini-1.5-flash"; // Final fallback string
+
+    const finalName = selected.replace("models/", "");
+    console.log(`🚀 Auditor using discovered model: ${finalName}`);
+    return genAI.getGenerativeModel({ model: finalName });
+  } catch (err) {
+    // If discovery fails, try the newest stable alias
+    return genAI.getGenerativeModel({ model: "gemini-3-flash" });
+  }
 }
 
-const googleApiKey = process.env.GOOGLE_API_KEY;
-const tavilyApiKey = process.env.TAVILY_API_KEY;
-
-if (!googleApiKey) {
-  throw new Error("GOOGLE_API_KEY is not set");
-}
-if (!tavilyApiKey) {
-  throw new Error("TAVILY_API_KEY is not set");
-}
-
-const genAI = new GoogleGenerativeAI(googleApiKey);
-const tv = tavily({ apiKey: tavilyApiKey });
-
-export async function processAuditStep(auditId: string): Promise<{
-  success: boolean;
-  status: AuditStatus | null;
-}> {
+export async function processAuditStep(auditId: string) {
   const supabase = createClient();
+  const { data: job } = await supabase.from("audits").select("*").eq("id", auditId).single();
 
-  // 1. Fetch job
-  const { data: job, error } = await supabase
-    .from("audits")
-    .select("*")
-    .eq("id", auditId)
-    .single<AuditRow>();
-
-  if (error) {
-    console.error("❌ Failed to load audit job:", error);
-    return { success: false, status: null };
-  }
-
-  if (!job || job.status === "complete" || job.status === "failed") {
-    return { success: true, status: job?.status ?? null };
-  }
+  if (!job || job.status !== "pending") return { success: true };
 
   try {
-    switch (job.status) {
-      // 🕵️ PHASE 1: SCOUTING (The "Eyes")
-      case "pending": {
-        await supabase
-          .from("audits")
-          .update({ status: "scouting" as AuditStatus })
-          .eq("id", auditId);
+    const query = `${job.brand_name} ${job.category || ""} ${job.keyword}`;
+    const searchResult = await tv.search(query, { search_depth: "basic", max_results: 5 });
 
-        const query = [job.keyword, job.location]
-          .filter(Boolean)
-          .join(" near ");
-
-        console.log(`🕵️ AI engine optimisation Agent scouting: ${query}`);
-
-        const searchResult = await tv.search(query, {
-          search_depth: "basic",
-          include_answer: true,
-          max_results: 5,
-        });
-
-        await supabase
-          .from("audits")
-          .update({
-            status: "analyzing" as AuditStatus,
-            search_data: searchResult,
-          })
-          .eq("id", auditId);
-
-        return { success: true, status: "analyzing" };
-      }
-
-      // 🧠 PHASE 2: ANALYZING (The "Brain")
-      case "analyzing": {
-        const model = genAI.getGenerativeModel({
-          // Use a currently available Gemini model
-          model: "gemini-2.0-flash",
-        });
-
-        // Keep payload reasonable for the model
-        const serializedSearchData = JSON.stringify(job.search_data ?? "", null, 2).slice(0, 8000);
-
-        const prompt = `
-Role: AI engine optimisation Auditor.
-Task: Analyze these search results to see if the brand "${job.brand_name}" appears prominently.
-
-Search Context:
-- Keyword: "${job.keyword}"
-- Location: "${job.location ?? "N/A"}"
-
-Search Results JSON:
-${serializedSearchData}
-
-Return strictly valid JSON with this structure (no markdown, no comments):
-
-{
-  "is_visible": boolean,
-  "sentiment": string,
-  "pricing_accuracy": string,
-  "missing_topics": string[],
-  "geo_score": number
-}
-        `.trim();
-
-        const result = await model.generateContent(prompt);
-        let text = result.response.text().trim();
-
-        // Strip possible fences if the model adds them anyway
-        text = text.replace(/|```/g, "").trim();
-
-        let analysis: unknown;
-        try {
-          analysis = JSON.parse(text);
-        } catch (parseError) {
-          console.error("❌ Failed to parse AI engine optimisation analysis JSON:", {
-            text,
-            parseError,
-          });
-          analysis = {
-            is_visible: false,
-            sentiment: "unknown",
-            pricing_accuracy: "unknown",
-            missing_topics: [],
-            geo_score: 0,
-          };
-        }
-
-        await supabase
-          .from("audits")
-          .update({
-            status: "complete" as AuditStatus,
-            ai_analysis: analysis,
-          })
-          .eq("id", auditId);
-
-        return { success: true, status: "complete" };
-      }
-
-      default:
-        // If we add more states later, keep this safe
-        return { success: true, status: job.status };
-    }
-  } catch (error) {
-    console.error("❌ AI engine optimisation Agent failed:", error);
-    await supabase
-      .from("audits")
-      .update({ status: "failed" as AuditStatus })
+    await supabase.from("audits")
+      .update({ status: "analyzing", search_data: searchResult })
       .eq("id", auditId);
 
-    return { success: false, status: "failed" };
+    return { success: true };
+  } catch (err) {
+    await supabase.from("audits").update({ status: "failed" }).eq("id", auditId);
+    return { success: false };
+  }
+}
+
+export async function generateDeepAudit(auditIds: string[], retryCount = 0): Promise<any> {
+  const supabase = createClient();
+  const { data: jobs } = await supabase.from("audits").select("*").in("id", auditIds);
+
+  if (!jobs || jobs.length === 0) return null;
+
+  try {
+    const model = await getBestModel();
+    const brand = jobs[0].brand_name;
+
+    const context = jobs.map(j => ({
+      keyword: j.keyword,
+      results: JSON.stringify(j.search_data).slice(0, 2500)
+    }));
+
+    const prompt = `
+      Perform a Brand Visibility Audit for "${brand}".
+      Return ONLY valid JSON:
+      {
+        "scores": { "findability": 0-100, "clarity": 0-100, "completeness": 0-100, "overall": 0-100 },
+        "test_queries": ["query1", "query2"],
+        "issues": [{ "title": "string", "description": "string", "severity": "high" }],
+        "optimized_content": { 
+          "llms_txt": "markdown here",
+          "optimized_catalog_csv": "CSV data here"
+        }
+      }
+      Context: ${JSON.stringify(context)}
+    `;
+
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const text = response.text();
+
+    const jsonMatch = text.match(/\{[\s\S]*\}/);
+    if (!jsonMatch) throw new Error("No JSON block found in response.");
+    
+    const report = JSON.parse(jsonMatch[0]);
+
+    await supabase.from("audits").update({ status: "complete", ai_analysis: report }).in("id", auditIds);
+    return report;
+
+  } catch (err: any) {
+    if (err.status === 429 && retryCount < 3) {
+      await sleep(10000 * (retryCount + 1));
+      return generateDeepAudit(auditIds, retryCount + 1);
+    }
+    console.error("❌ Deep Audit failed permanently:", err.message);
+    return null;
   }
 }
